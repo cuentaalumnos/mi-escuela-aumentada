@@ -1389,17 +1389,17 @@ function gesture(g){const a=$('agAvatar');a.className=a.className.replace(/\bg-\
 const NAR={k:0,i:0,paused:false};
 function speakMundi(text,onend){const a=$('agAvatar');
   if(!(V.on&&V.ok)){a.classList.add('talk');setTimeout(()=>{a.classList.remove('talk');onend&&onend();},1400+text.length*55);return;}
-  try{const u=new SpeechSynthesisUtterance(text);u.lang=V.voice?V.voice.lang:'es-AR';if(V.voice)u.voice=V.voice;u.rate=1;u.pitch=1.25;
+  try{if(!V.voice)V.voice=pickVoice();const u=new SpeechSynthesisUtterance(text);u.lang=V.voice?V.voice.lang:'es-AR';if(V.voice)u.voice=V.voice;u.rate=1;u.pitch=1.25;u.volume=1;
     let fired=false;const fin=()=>{if(fired)return;fired=true;a.classList.remove('talk');onend&&onend();};
     u.onstart=()=>a.classList.add('talk');u.onend=fin;u.onerror=fin;a.classList.add('talk');speechSynthesis.speak(u);
     setTimeout(()=>{if(!fired&&!speechSynthesis.speaking)fin();},1500+text.length*120);}catch(e){onend&&setTimeout(onend,1200+text.length*55);}
 }
 function narrate(lines,done,start){
   const tok=++V.token;let i=start||0;const k=cur;NAR.k=k;NAR.paused=false;
-  try{if(V.ok)speechSynthesis.cancel();}catch(e){}
+  let wasBusy=false;try{wasBusy=speechSynthesis.speaking||speechSynthesis.pending;if(V.ok)speechSynthesis.cancel();}catch(e){}
   const step=()=>{if(tok!==V.token)return;NAR.i=i;if(i>=lines.length){gesture(null);done&&done();return;}const text=lines[i];const g=(GES[k]||[])[i]||'talk';i++;
     $('subText').textContent=text;gesture(g);speakMundi(text,()=>{if(tok===V.token)setTimeout(step,300);});};
-  step();
+  setTimeout(step,wasBusy?250:0);
 }
 function stopVoice(){V.token++;try{if(V.ok)speechSynthesis.cancel();}catch(e){}$('agAvatar').classList.remove('talk');gesture(null);}
 
@@ -1454,7 +1454,7 @@ function agentSay(text,g){
   V.token++;try{if(V.ok)speechSynthesis.cancel();}catch(e){}
   if(auto){auto=false;$('auto').setAttribute('aria-pressed','false');}
   $('agText').textContent=text;gesture(g||'talk');
-  speakMundi(text,()=>gesture(null));
+  const tk=V.token;setTimeout(()=>{if(tk===V.token)speakMundi(text,()=>gesture(null));},230);
 }
 function resume(){bub.hidden=true;const r=NAR.paused;NAR.paused=false;if(wasAuto){auto=true;$('auto').setAttribute('aria-pressed','true');}
   if(r)narrate(STATIONS[cur].narr,()=>{if(auto&&cur<STATIONS.length-1)setTimeout(()=>{if(auto)go(cur+1);},1300);},Math.max(0,NAR.i-1));else go(cur+1);}
