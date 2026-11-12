@@ -296,7 +296,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
     </div>
   </section>
 
-  <footer class="wrap"><b>Versión 12/11 · 18 láminas</b> · Coloquio Final · Prácticas Profesionalizantes · Auxiliar en Inteligencia Artificial · ISFD y T «República Federal de Alemania», El Colorado, Formosa · 2026</footer>
+  <footer class="wrap"><b>Versión 12/11 · 18 láminas · giro 360°</b> · Coloquio Final · Prácticas Profesionalizantes · Auxiliar en Inteligencia Artificial · ISFD y T «República Federal de Alemania», El Colorado, Formosa · 2026</footer>
 </main>
 
 <!-- Explorador 3D sin cámara -->
@@ -312,7 +312,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
         <button class="chip-btn" id="exNext" type="button" aria-label="Tema siguiente">›</button>
       </div>
     </div>
-    <span class="stage-hint">Arrastrá para girar · pellizcá o usá la rueda para acercar</span>
+    <span class="stage-hint">Gira solo 360° · arrastrá para girarlo vos · pellizcá para acercar</span>
   </div>
   <aside class="panel" id="exPanel">
     <span class="area" id="exArea"></span>
@@ -331,7 +331,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
   <div id="arStage">
   <div id="arBox"></div>
   <div class="reticle" id="reticle"></div>
-  <div class="hud"><button id="arClose" class="hud-btn" type="button">Cerrar</button><div class="hud-r"><button id="arVoice" class="hud-btn" type="button" aria-pressed="true">Voz: sí</button><button id="arLabels" class="hud-btn" type="button">Rótulos: sí</button></div></div>
+  <div class="hud"><button id="arClose" class="hud-btn" type="button">Cerrar</button><div class="hud-r"><button id="arSpin" class="hud-btn" type="button" aria-pressed="true">Girar: sí</button><button id="arVoice" class="hud-btn" type="button" aria-pressed="true">Voz: sí</button><button id="arLabels" class="hud-btn" type="button">Rótulos: sí</button></div></div>
   <p id="hudMsg" role="status">Abriendo cámara…</p>
   </div>
   <div class="arcard" id="arCard">
@@ -356,7 +356,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
 </script>
 <script type="module">
 const MINDAR_THREE='https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-three.prod.js';
-const MIND_FILE='marcadores.mind?v=20261112b';
+const MIND_FILE='marcadores.mind?v=20261112c';
 const $=id=>document.getElementById(id);
 
 /* ================= Contenidos ================= */
@@ -1491,7 +1491,8 @@ async function openExplorer(i){
     realLight(THREE,renderer,scene);
     const sc=document.createElement('canvas');sc.width=sc.height=128;const sx=sc.getContext('2d');const gr=sx.createRadialGradient(64,64,4,64,64,64);gr.addColorStop(0,'rgba(0,0,0,.28)');gr.addColorStop(1,'rgba(0,0,0,0)');sx.fillStyle=gr;sx.fillRect(0,0,128,128);
     const shadow=new THREE.Mesh(new THREE.PlaneGeometry(1.3,1.3),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(sc),transparent:true,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=-.002;scene.add(shadow);
-    const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.minDistance=.6;controls.maxDistance=5;
+    const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.minDistance=.6;controls.maxDistance=5;controls.autoRotate=true;controls.autoRotateSpeed=1.6;
+    let arT=null;controls.addEventListener('start',()=>{controls.autoRotate=false;clearTimeout(arT);});controls.addEventListener('end',()=>{clearTimeout(arT);arT=setTimeout(()=>controls.autoRotate=true,3000);});
     const fit=()=>{const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();};
     new ResizeObserver(fit).observe(host);fit();
     const clock=new THREE.Clock();
@@ -1534,7 +1535,7 @@ function cameraError(e){
   if(e&&e.name==='NotFoundError')return 'No se encontró ninguna cámara en este dispositivo. Usá «Ver en 3D».';
   return 'No se pudo abrir la cámara. Probá con otro navegador o usá «Ver en 3D».';
 }
-let lastSpoke={i:-1,t:0};
+let lastSpoke={i:-1,t:0};let arSpinOn=true,arSpinT=0;
 async function openAR(){
   unlockVoice();
   let L;try{L=await libs();}catch(e){toast('No se pudo cargar el 3D. Revisá la conexión a internet.');return;}
@@ -1548,18 +1549,27 @@ async function openAR(){
     const mindar=new MindARThree({container:$('arBox'),imageTargetSrc:MIND_FILE,maxTrack:1,uiLoading:'no',uiScanning:'no',uiError:'no',filterMinCF:.0001,filterBeta:.001});
     const {renderer,scene,camera}=mindar;renderer.outputEncoding=THREE.sRGBEncoding;
     realLight(THREE,renderer,scene);
-    const models=[];
-    TOPICS.forEach((t,i)=>{const anchor=mindar.addAnchor(i);const m=buildTopic(THREE,i);m.labelGroup.visible=arLabelsOn;
-      const pivot=new THREE.Group();pivot.rotation.x=Math.PI/2;pivot.scale.setScalar(.85);pivot.add(m.group);anchor.group.add(pivot);models.push(m);if(m.title&&m.title.parent)m.title.parent.remove(m.title);
+    const models=[],spins=[];
+    TOPICS.forEach((t,i)=>{const anchor=mindar.addAnchor(i);const m=buildTopic(THREE,i);
+      const flat=!!m.group.userData.flat;m.labelGroup.visible=false;const bb=new THREE.Box3().setFromObject(m.group);m.labelGroup.visible=arLabelsOn;
+      const sz=bb.getSize(new THREE.Vector3()),c=bb.getCenter(new THREE.Vector3());
+      const face=new THREE.Group(),spin=new THREE.Group();face.add(spin);spin.add(m.group);m.group.position.set(-c.x,-c.y,-c.z);
+      if(flat){face.rotation.x=Math.PI/2-.6;face.scale.setScalar(Math.min(1.25,1.05/Math.max(sz.x,sz.z)));}
+      else{face.rotation.x=.12;face.scale.setScalar(Math.min(1.1/sz.y,.95/Math.max(sz.x,sz.z)));}
+      face.position.z=.04;anchor.group.add(face);spins.push(spin);models.push(m);if(m.title&&m.title.parent)m.title.parent.remove(m.title);
       anchor.onTargetFound=()=>{const fresh=ARC.i!==i;arCurrent=i;ARC.i=i;m.reveal();$('reticle').classList.add('locked');$('hudMsg').hidden=true;showArCard(i,fresh);
         if(fresh||Date.now()-lastSpoke.t>25000){speakTopic(t,'Tocá una palabra para escucharla, o preguntame con el micrófono.');lastSpoke={i,t:Date.now()};}};
       anchor.onTargetLost=()=>{if(arCurrent===i){arCurrent=-1;$('reticle').classList.remove('locked');$('hudMsg').hidden=false;$('hudMsg').textContent='Apuntá a una de las láminas';}};});
-    AR={mindar,renderer,models};
+    AR={mindar,renderer,models,spins};
+    {let down=false,lx=0;const box=$('arBox');
+     box.addEventListener('pointerdown',e=>{down=true;lx=e.clientX;});
+     box.addEventListener('pointermove',e=>{if(!down||arCurrent<0)return;const dx=e.clientX-lx;lx=e.clientX;if(Math.abs(dx)>0){spins[arCurrent].rotation.y+=dx*.012;arSpinT=performance.now();}});
+     ['pointerup','pointercancel','pointerleave'].forEach(ev=>box.addEventListener(ev,()=>{down=false;}));}
     onTap($('arBox'),e=>{if(arCurrent<0)return;const r=pickLabel(renderer.domElement,camera,models[arCurrent],e);if(r==='title')explainTopic(ARC);else if(r!=null&&r>=0)explainPart(ARC,r);});
     await mindar.start();busy(null);
     $('hudMsg').textContent='Apuntá a una de las láminas';
     const clock=new THREE.Clock();
-    renderer.setAnimationLoop(()=>{const t=clock.getElapsedTime();if(arCurrent>=0)models[arCurrent].tick(t);renderer.render(scene,camera);});
+    let lastT=0;renderer.setAnimationLoop(()=>{const t=clock.getElapsedTime();const dt=Math.min(.05,t-lastT);lastT=t;if(arCurrent>=0){models[arCurrent].tick(t);if(arSpinOn&&performance.now()-arSpinT>2500)spins[arCurrent].rotation.y+=dt*.5;}renderer.render(scene,camera);});
   }catch(e){console.error(e);busy(null);await closeAR();toast(cameraError(e));}
 }
 function resetArCard(){const c=$('arCard');c.style.removeProperty('--tc');$('arTitle').textContent='Mi escuela aumentada';$('arIntro').textContent='Apuntá la cámara a una de las láminas. Acá vas a ver la explicación del tema, sin tapar la imagen 3D.';showSaid(ARC,'');$('arQopts').hidden=true;}
@@ -1573,6 +1583,7 @@ async function closeAR(){
 }
 $('btnAR').addEventListener('click',openAR);
 $('arClose').addEventListener('click',closeAR);
+$('arSpin').addEventListener('click',()=>{arSpinOn=!arSpinOn;$('arSpin').textContent=arSpinOn?'Girar: sí':'Girar: no';$('arSpin').setAttribute('aria-pressed',String(arSpinOn));});
 $('arLabels').addEventListener('click',()=>{arLabelsOn=!arLabelsOn;$('arLabels').textContent=arLabelsOn?'Rótulos: sí':'Rótulos: no';if(AR)AR.models.forEach(m=>m.labelGroup.visible=arLabelsOn);});
 $('arMore').addEventListener('click',async()=>{const i=ARC.i>=0?ARC.i:arCurrent;await closeAR();if(i>=0)openExplorer(i);});
 
