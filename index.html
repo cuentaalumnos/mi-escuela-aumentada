@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
@@ -86,7 +86,8 @@ section{padding-block:1.6rem}
 .sec-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;flex-wrap:wrap;margin-bottom:1.1rem}
 .sec-head h2{font-size:clamp(1.7rem,4vw,2.3rem)}
 .sec-head p{margin:0;color:var(--muted);max-width:46ch}
-.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1rem}
+.grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1rem}
+@media (max-width:1180px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:420px){.grid{grid-template-columns:1fr}}
 .topic{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
@@ -142,6 +143,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
 .panel .area{font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--tc)}
 .panel h2{font-size:1.9rem;margin:.1rem 0 .5rem}
 .panel p{margin:0 0 1rem}
+#exIntro{white-space:pre-line}
 .parts{list-style:none;padding:0;margin:0 0 1.2rem;display:flex;flex-direction:column;gap:.35rem}
 .parts button{width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);padding:.45rem 0;cursor:pointer;display:grid;grid-template-columns:auto 1fr;gap:.6rem;align-items:baseline}
 .parts button:hover strong{color:var(--accent)}
@@ -200,7 +202,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
 .arcard.mini .arhead{gap:0}
 .arhead b{font-family:var(--display);font-size:1.05rem;line-height:1.1;overflow-wrap:anywhere}
 .arhead button{flex:none;border:1.5px solid rgba(29,42,58,.3);background:#fff;color:#1D2A3A;border-radius:8px;width:1.9rem;height:1.9rem;font-weight:800;cursor:pointer;padding:0;font-size:.9rem}
-#arIntro{margin:0;font-size:.8rem;line-height:1.35;color:#33445A}
+#arIntro{margin:0;font-size:.8rem;line-height:1.35;color:#33445A;white-space:pre-line}
 @media (max-width:480px){#arIntro{font-size:.74rem}.arcard .row button{font-size:.74rem;padding:.28rem .4rem}}
 .arcard .row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.3rem}
 @media (orientation:landscape){.arcard .row{grid-template-columns:1fr}}
@@ -261,7 +263,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
 <main>
   <section class="wrap" aria-labelledby="tT">
     <div class="sec-head">
-      <h2 id="tT">Las 10 láminas</h2>
+      <h2 id="tT">Las 18 láminas</h2>
       <p>Cada lámina es un marcador. Sin cámara, tocá «Ver en 3D» para girar el modelo con el dedo o el mouse.</p>
     </div>
     <div class="grid" id="grid"></div>
@@ -279,7 +281,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
   <section class="wrap" aria-labelledby="aT">
     <div class="sec-head"><h2 id="aT">Sobre el proyecto</h2></div>
     <div class="about">
-      <div><h3>De qué se trata y para quién</h3><p>Un aula aumentada para estudiantes y docentes de nivel primario. Diez láminas de Ciencias Naturales, Matemática y Folclore muestran en tres dimensiones sistemas del cuerpo humano, la célula animal y vegetal, los cuerpos geométricos, las partes de la planta, el atuendo tradicional de los salones y el atuendo de campaña.</p></div>
+      <div><h3>De qué se trata y para quién</h3><p>Un aula aumentada para estudiantes y docentes de nivel primario. Dieciocho láminas de Ciencias Naturales, Matemática, Geografía, Lengua y Folclore muestran en tres dimensiones los sistemas del cuerpo humano, las células, las plantas, los cuerpos geométricos, el mapa de Argentina como rompecabezas, el relieve, los ríos, los ambientes de Formosa, el sistema solar, las capas de la Tierra, las clases de palabras, el abecedario con sílabas y la ropa tradicional.</p></div>
       <div><h3>Objetivo</h3><p>Que los temas que en el libro se ven planos se puedan mirar por dentro y desde todos los ángulos, nombrar sus partes y repasar con una pregunta, usando el celular o la netbook que ya hay en la escuela.</p></div>
       <div><h3>Cómo funciona</h3><p>La cámara reconoce cada lámina y coloca encima un modelo 3D animado con rótulos. La app explica el tema en voz alta, nombra cada parte que se toca y responde cuando se le dice el nombre de una parte. Todo pasa en el navegador: no hay que instalar nada.</p></div>
       <div><h3>Herramientas</h3><ul><li>MindAR para reconocer las láminas (realidad aumentada web).</li><li>three.js para los modelos 3D, rótulos y animaciones.</li><li>La voz del navegador (Web Speech) para leer en voz alta y escuchar las preguntas.</li><li>Claude (IA) para diseñar las láminas y programar la página.</li><li>GitHub Pages para publicarla con https.</li></ul></div>
@@ -294,7 +296,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
     </div>
   </section>
 
-  <footer class="wrap">Coloquio Final · Prácticas Profesionalizantes · Auxiliar en Inteligencia Artificial · ISFD y T «República Federal de Alemania», El Colorado, Formosa · 2026</footer>
+  <footer class="wrap"><b>Versión 12/11 · 18 láminas</b> · Coloquio Final · Prácticas Profesionalizantes · Auxiliar en Inteligencia Artificial · ISFD y T «República Federal de Alemania», El Colorado, Formosa · 2026</footer>
 </main>
 
 <!-- Explorador 3D sin cámara -->
@@ -354,7 +356,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
 </script>
 <script type="module">
 const MINDAR_THREE='https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-three.prod.js';
-const MIND_FILE='marcadores.mind';
+const MIND_FILE='marcadores.mind?v=20261112b';
 const $=id=>document.getElementById(id);
 
 /* ================= Contenidos ================= */
@@ -496,7 +498,145 @@ const TOPICS=[
   ['Blusa con volados','De algodón liso o floreado, con escote mediano, mangas sueltas hasta el antebrazo, faldón y volados en el escote y las mangas.'],
   ['Falda fruncida','De algodón floreado o liso, larga hasta los empeines, con volado en el ruedo. Debajo, enagua y calzones de algodón blanco.'],
   ['Alpargatas','Alpargatas blancas con bordados, zapatos de taco bajo o botas cortas con taco.']],
- q:{p:'¿Qué prenda de merino negro usaba el varón de campaña sobre el calzoncillo?',o:['El chiripá','El chaleco','La faja'],a:0}}
+ q:{p:'¿Qué prenda de merino negro usaba el varón de campaña sobre el calzoncillo?',o:['El chiripá','El chaleco','La faja'],a:0}},
+{key:'mapa',img:'marcadores/11-mapa.jpg',area:'Geografía · Argentina',title:'Mapa de Argentina',color:'#2C78B0',sub:'23 provincias y la Ciudad Autónoma',
+ card:'Un rompecabezas de las provincias que se desarma, y cada provincia se presenta.',
+ intro:'La Argentina tiene 23 provincias y la Ciudad Autónoma de Buenos Aires. Mirá cómo el mapa se desarma como un rompecabezas. Los colores muestran las regiones: NOA, NEA, Cuyo, Centro y Patagonia.',
+ parts:[
+  ["Buenos Aires", "Capital: La Plata. Es la provincia con más habitantes del país. Casi toda es llanura pampeana, ideal para la agricultura y la ganadería.", null, "ba"],
+  ["CABA", "Es la Capital Federal. Es la Capital Federal de la Argentina. Allí está la sede del Gobierno nacional.", null, "df"],
+  ["Catamarca", "Capital: San Fernando del Valle de Catamarca. Tiene montañas altísimas, como el volcán Ojos del Salado, y es famosa por la Fiesta Nacional del Poncho.", null, "ct"],
+  ["Chaco", "Capital: Resistencia. Su capital, Resistencia, es conocida como la ciudad de las esculturas. Tiene monte, esteros y el Parque Nacional Chaco.", null, "cc"],
+  ["Chubut", "Capital: Rawson. En sus costas está la Península Valdés, donde llegan las ballenas francas.", null, "ch"],
+  ["Córdoba", "Capital: Córdoba. Es famosa por sus sierras, sus ríos y su universidad, una de las más antiguas de América.", null, "cb"],
+  ["Corrientes", "Capital: Corrientes. Tiene los Esteros del Iberá, llenos de yacarés y carpinchos, y es la cuna del chamamé.", null, "cn"],
+  ["Entre Ríos", "Capital: Paraná. Está entre los ríos Paraná y Uruguay, por eso su nombre. Tiene islas, palmares y termas.", null, "er"],
+  ["Formosa", "Capital: Formosa. Limita con Paraguay. Tiene el Bañado La Estrella y el monte chaqueño. Allí está El Colorado.", null, "fm"],
+  ["Jujuy", "Capital: San Salvador de Jujuy. Tiene la Quebrada de Humahuaca, Patrimonio de la Humanidad, y el Cerro de los Siete Colores.", null, "jy"],
+  ["La Pampa", "Capital: Santa Rosa. Está en el centro del país. Su árbol típico es el caldén.", null, "lp"],
+  ["La Rioja", "Capital: La Rioja. Tiene el Parque Nacional Talampaya, con enormes paredones rojos.", null, "lr"],
+  ["Mendoza", "Capital: Mendoza. Allí está el Aconcagua, la montaña más alta de América. Es famosa por sus viñedos.", null, "mz"],
+  ["Misiones", "Capital: Posadas. Tiene las Cataratas del Iguazú y su tierra colorada es ideal para la yerba mate.", null, "mn"],
+  ["Neuquén", "Capital: Neuquén. Tiene lagos, volcanes y restos de dinosaurios gigantes.", null, "nq"],
+  ["Río Negro", "Capital: Viedma. Allí está San Carlos de Bariloche, junto al lago Nahuel Huapi.", null, "rn"],
+  ["Salta", "Capital: Salta. La llaman «la Linda». Tiene el Tren a las Nubes, uno de los trenes más altos del mundo.", null, "sa"],
+  ["San Juan", "Capital: San Juan. Tiene el Parque Provincial Ischigualasto, conocido como Valle de la Luna.", null, "sj"],
+  ["San Luis", "Capital: San Luis. Tiene sierras y el Parque Nacional Sierra de las Quijadas.", null, "sl"],
+  ["Santa Cruz", "Capital: Río Gallegos. Allí está el glaciar Perito Moreno, un gigante de hielo.", null, "sc"],
+  ["Santa Fe", "Capital: Santa Fe. En su ciudad de Rosario está el Monumento a la Bandera.", null, "sf"],
+  ["Santiago del Estero", "Capital: Santiago del Estero. Su capital es la ciudad más antigua del país: la llaman «Madre de Ciudades».", null, "se"],
+  ["Tierra del Fuego", "Su nombre completo es Tierra del Fuego, Antártida e Islas del Atlántico Sur. Capital: Ushuaia. Su capital, Ushuaia, es la ciudad más austral del país. Incluye las Islas Malvinas, que son argentinas.", null, "tf"],
+  ["Tucumán", "Capital: San Miguel de Tucumán. En su Casa Histórica se declaró la Independencia el 9 de julio de 1816. Es la provincia más pequeña.", null, "tm"]],
+ q:{p:'¿Cuál es la capital de la provincia de Formosa?',o:['Resistencia','Formosa','Posadas'],a:1}},
+{key:"relieve",img:"marcadores/12-relieve.jpg",area:"Geografía · Argentina",title:"El relieve argentino",color:"#8C5A3A",sub:"Montañas, mesetas y llanuras",
+ card:"El relieve de la Argentina en 3D, de la cordillera al mar.",
+ intro:"El relieve son las formas de la superficie: montañas, mesetas, sierras y llanuras. En la Argentina, al oeste se levanta la Cordillera de los Andes y hacia el este el terreno baja hasta las llanuras y el mar. Los colores marcan la altura: verde lo más bajo y blanco las cumbres nevadas.",
+ parts:[
+  ["Cordillera de los Andes", "Cadena de montañas muy altas a lo largo de todo el oeste del país, en el límite con Chile."],
+  ["Cerro Aconcagua", "Con 6.961 metros es la montaña más alta de América. Está en Mendoza."],
+  ["La Puna", "Altiplano frío y seco a más de 3.500 metros, en el noroeste: Jujuy, Salta y Catamarca."],
+  ["Sierras Pampeanas", "Sierras más bajas y antiguas en el centro del país, como las de Córdoba y San Luis."],
+  ["Llanura Chaco-Pampeana", "Gran llanura del centro y norte del país, casi sin desniveles. Allí está Formosa."],
+  ["Meseta Patagónica", "Mesetas escalonadas, frías y ventosas, en el sur del país."],
+  ["Mesopotamia", "Tierras bajas entre los ríos Paraná y Uruguay: Misiones, Corrientes y Entre Ríos."],
+  ["Mar Argentino", "Parte del océano Atlántico que baña las costas del país."]],
+ q:{p:"¿Cuál es la montaña más alta de América?",o:["El Aconcagua", "El Tronador", "El Lanín"],a:0}},
+{key:"rios",img:"marcadores/13-rios.jpg",area:"Geografía · Formosa y el NEA",title:"Ríos de la Cuenca del Plata",color:"#2E7FD6",sub:"Los ríos del noreste",
+ card:"Los grandes ríos del noreste, con el agua que fluye hasta el Río de la Plata.",
+ intro:"Una cuenca es el territorio cuyas aguas van a parar a un mismo río. La Cuenca del Plata reúne los grandes ríos del noreste: el Paraguay, el Paraná y el Uruguay, que desembocan en el Río de la Plata. Formosa está rodeada por el Pilcomayo, el Paraguay y el Bermejo.",
+ parts:[
+  ["Río Paraná", "El río más largo del país. Nace en Brasil y recorre el noreste hasta el delta."],
+  ["Río Paraguay", "Marca el límite entre Formosa y Paraguay, y se une al Paraná cerca de Corrientes."],
+  ["Río Pilcomayo", "Marca el límite norte de Formosa con Paraguay y forma bañados."],
+  ["Río Bermejo", "Separa Formosa de Chaco. Su agua es rojiza por el barro que arrastra."],
+  ["Río Uruguay", "Marca el límite con Brasil y Uruguay, al este de la Mesopotamia."],
+  ["Río de la Plata", "Es el estuario donde desembocan el Paraná y el Uruguay. Es muy ancho."],
+  ["Cataratas del Iguazú", "Saltos de agua del río Iguazú, en Misiones. Son una maravilla natural del mundo."],
+  ["Bañado La Estrella", "Gran humedal del oeste de Formosa, formado por las aguas del Pilcomayo."],
+  ["Ciudad de Formosa", "Capital de la provincia, a orillas del río Paraguay."],
+  ["El Colorado", "Nuestra ciudad, en el sur de Formosa, cerca del río Bermejo."]],
+ q:{p:"¿Qué río separa a Formosa de Chaco?",o:["El Bermejo", "El Uruguay", "El Iguazú"],a:0}},
+{key:"biomas",img:"marcadores/14-biomas.jpg",area:"Geografía · Formosa",title:"Ambientes de Formosa",color:"#5E8F3A",sub:"El monte y el bañado",
+ card:"El monte chaqueño y el bañado, con sus plantas y animales.",
+ intro:"En Formosa hay dos grandes ambientes: el monte chaqueño, con árboles de madera dura, y los bañados y esteros, con agua y plantas acuáticas. Cada uno tiene sus propios animales.",
+ parts:[
+  ["Monte chaqueño", "Bosque de árboles resistentes al calor y a la sequía."],
+  ["Quebracho colorado", "Árbol de madera durísima, típico del monte chaqueño."],
+  ["Palo santo", "Árbol de tronco verdoso y madera perfumada."],
+  ["Bañado", "Terreno cubierto de agua poco profunda, con juncos y embalsados."],
+  ["Yacaré", "Reptil que vive en los bañados. Toma sol en las orillas."],
+  ["Carpincho", "El roedor más grande del mundo. Vive cerca del agua."],
+  ["Oso hormiguero", "Come hormigas y termitas con su lengua larga."],
+  ["Tatú carreta", "El armadillo más grande. Está en peligro de extinción."],
+  ["Tuyuyú", "Ave grande y blanca de cuello negro y rojo. Vive en los bañados."]],
+ q:{p:"¿Qué animal es el roedor más grande del mundo?",o:["El tatú", "El carpincho", "El yacaré"],a:1}},
+{key:"solar",img:"marcadores/15-solar.jpg",area:"Geografía · El planeta",title:"El sistema solar",color:"#3A3F9E",sub:"El Sol y sus planetas",
+ card:"El Sol y los ocho planetas girando en sus órbitas.",
+ intro:"El sistema solar está formado por el Sol y los ocho planetas que giran a su alrededor. La Tierra gira sobre sí misma (rotación: el día y la noche) y alrededor del Sol (traslación: el año).",
+ parts:[
+  ["Sol", "Es una estrella. Nos da luz y calor."],
+  ["Mercurio", "El planeta más cercano al Sol y el más pequeño."],
+  ["Venus", "El planeta más caliente, cubierto de nubes."],
+  ["Tierra", "Nuestro planeta. Gira sobre sí misma en 24 horas y alrededor del Sol en un año."],
+  ["Marte", "El planeta rojo."],
+  ["Júpiter", "El planeta más grande. Tiene una gran mancha roja."],
+  ["Saturno", "Famoso por sus anillos."],
+  ["Urano", "Planeta helado y celeste, que gira acostado."],
+  ["Neptuno", "El planeta más lejano del Sol. Tiene vientos muy fuertes."],
+  ["Luna", "Satélite natural de la Tierra. Gira a su alrededor."]],
+ q:{p:"¿Cuál es el planeta más grande del sistema solar?",o:["Saturno", "La Tierra", "Júpiter"],a:2}},
+{key:"capas",img:"marcadores/16-capas.jpg",area:"Geografía · El planeta",title:"Capas de la Tierra",color:"#C84A28",sub:"Por dentro del planeta",
+ card:"La Tierra cortada para ver por dentro: corteza, manto y núcleo.",
+ intro:"Si pudiéramos cortar la Tierra como una fruta, veríamos sus capas: la corteza, el manto y el núcleo. Alrededor la cubre la atmósfera.",
+ parts:[
+  ["Atmósfera", "Capa de aire que rodea la Tierra. Nos da oxígeno y nos protege del Sol."],
+  ["Corteza", "La capa más delgada, donde vivimos: continentes y fondo del mar."],
+  ["Manto", "Capa muy gruesa de roca caliente que se mueve muy lentamente."],
+  ["Núcleo externo", "Metal líquido muy caliente: hierro y níquel."],
+  ["Núcleo interno", "Una bola de metal sólido, la parte más caliente del planeta."]],
+ q:{p:"¿En qué capa de la Tierra vivimos?",o:["En el manto", "En la corteza", "En el núcleo"],a:1}},
+{key:"palabras",img:"marcadores/17-palabras.jpg",area:"Lengua · Gramática",title:"Clases de palabras",color:"#2F80ED",sub:"Artículo, sustantivo, adjetivo y verbo",
+ card:"Las clases de palabras son personajes que arman una oración.",
+ intro:"Las palabras tienen distintas clases según lo que hacen en la oración. En «El perro grande corre» hay un artículo, un sustantivo, un adjetivo y un verbo.",
+ parts:[
+  ["Artículo", "Va delante del sustantivo: el, la, los, las, un, una."],
+  ["Sustantivo", "Nombra personas, animales, cosas y lugares: perro, Ana, mesa, Formosa."],
+  ["Adjetivo", "Dice cómo es el sustantivo: grande, rojo, alegre, suave."],
+  ["Verbo", "Indica acciones: correr, saltar, comer, leer."],
+  ["La oración", "«El perro grande corre»: cada palabra tiene su clase y su color."]],
+ q:{p:"En «El perro grande corre», ¿qué clase de palabra es «grande»?",o:["Verbo", "Adjetivo", "Sustantivo"],a:1}},
+{key:"abc",img:"marcadores/18-abc.jpg",area:"Lengua · Alfabetización",title:"Abecedario con sílabas",color:"#E74C3C",sub:"27 letras, de la A a la Z",
+ card:"Una calesita de letras: cada una dice sus sílabas y una palabra.",
+ intro:"Nuestro abecedario tiene 27 letras, de la A a la Z, con la Ñ. Las vocales son A, E, I, O, U. Cada consonante, junto a las vocales, forma sílabas: ma, me, mi, mo, mu.",
+ parts:[
+  ["A", "A de árbol. Es una vocal.", "árbol", null, "vocal"],
+  ["B", "B de barco. Sílabas: ba, be, bi, bo, bu.", "barco", null, "ba · be · bi · bo · bu"],
+  ["C", "C de casa. Sílabas: ca, ce, ci, co, cu.", "casa", null, "ca · ce · ci · co · cu"],
+  ["D", "D de dedo. Sílabas: da, de, di, do, du.", "dedo", null, "da · de · di · do · du"],
+  ["E", "E de elefante. Es una vocal.", "elefante", null, "vocal"],
+  ["F", "F de foca. Sílabas: fa, fe, fi, fo, fu.", "foca", null, "fa · fe · fi · fo · fu"],
+  ["G", "G de gato. Sílabas: ga, ge, gi, go, gu.", "gato", null, "ga · ge · gi · go · gu"],
+  ["H", "H de helado. Sílabas: ha, he, hi, ho, hu.", "helado", null, "ha · he · hi · ho · hu"],
+  ["I", "I de isla. Es una vocal.", "isla", null, "vocal"],
+  ["J", "J de jirafa. Sílabas: ja, je, ji, jo, ju.", "jirafa", null, "ja · je · ji · jo · ju"],
+  ["K", "K de kiwi. Sílabas: ka, ke, ki, ko, ku.", "kiwi", null, "ka · ke · ki · ko · ku"],
+  ["L", "L de luna. Sílabas: la, le, li, lo, lu.", "luna", null, "la · le · li · lo · lu"],
+  ["M", "M de mano. Sílabas: ma, me, mi, mo, mu.", "mano", null, "ma · me · mi · mo · mu"],
+  ["N", "N de nube. Sílabas: na, ne, ni, no, nu.", "nube", null, "na · ne · ni · no · nu"],
+  ["Ñ", "Ñ de ñandú. Sílabas: ña, ñe, ñi, ño, ñu.", "ñandú", null, "ña · ñe · ñi · ño · ñu"],
+  ["O", "O de oso. Es una vocal.", "oso", null, "vocal"],
+  ["P", "P de pato. Sílabas: pa, pe, pi, po, pu.", "pato", null, "pa · pe · pi · po · pu"],
+  ["Q", "Q de queso. Sílabas: que, qui.", "queso", null, "que · qui"],
+  ["R", "R de ratón. Sílabas: ra, re, ri, ro, ru.", "ratón", null, "ra · re · ri · ro · ru"],
+  ["S", "S de sol. Sílabas: sa, se, si, so, su.", "sol", null, "sa · se · si · so · su"],
+  ["T", "T de tatú. Sílabas: ta, te, ti, to, tu.", "tatú", null, "ta · te · ti · to · tu"],
+  ["U", "U de uva. Es una vocal.", "uva", null, "vocal"],
+  ["V", "V de vaca. Sílabas: va, ve, vi, vo, vu.", "vaca", null, "va · ve · vi · vo · vu"],
+  ["W", "W de wichí. Sílabas: wa, we, wi.", "wichí", null, "wa · we · wi"],
+  ["X", "X de xilófono. Sílabas: xa, xe, xi, xo, xu.", "xilófono", null, "xa · xe · xi · xo · xu"],
+  ["Y", "Y de yacaré. Sílabas: ya, ye, yi, yo, yu.", "yacaré", null, "ya · ye · yi · yo · yu"],
+  ["Z", "Z de zorro. Sílabas: za, ze, zi, zo, zu.", "zorro", null, "za · ze · zi · zo · zu"]],
+ q:{p:"¿Cuántas letras tiene el abecedario en español?",o:["25", "27", "30"],a:1}}
 ];
 
 /* ================= Interfaz ================= */
@@ -536,6 +676,7 @@ async function libs(){
 function rr(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();}
 
 function kit(THREE,topic){
+  THREE_REF=THREE;
   const V=(x,y,z=0)=>new THREE.Vector3(x,y,z);
   const M=(c,o={})=>new THREE.MeshStandardMaterial({color:c,roughness:.55,metalness:.04,...o});
   const G=(c,op)=>M(c,{transparent:true,opacity:op,depthWrite:false,side:THREE.DoubleSide});
@@ -567,6 +708,44 @@ function kit(THREE,topic){
   }
   return {THREE,V,M,G,mesh,curve,tube,sph,cyl,group,labelGroup,labels,L};
 }
+
+const AR_PROV=[{"k":"tf","n":"Tierra del Fuego","p":[[[[-0.0654,0.0136],[-0.0539,0.0131],[-0.0573,0.0099],[-0.0576,0.0121],[-0.0636,0.0091],[-0.0647,0.0113],[-0.0726,0.0065],[-0.0744,0.0092],[-0.0654,0.0136]]],[[[-0.1575,0.0052],[-0.1588,0.0051],[-0.1639,0.0885],[-0.1554,0.0775],[-0.1552,0.0748],[-0.1604,0.0705],[-0.1607,0.066],[-0.1584,0.064],[-0.1506,0.0627],[-0.1472,0.0531],[-0.1427,0.0486],[-0.1372,0.0447],[-0.1374,0.0421],[-0.1311,0.0368],[-0.119,0.03],[-0.1125,0.0221],[-0.0982,0.0156],[-0.0951,0.0151],[-0.0866,0.0168],[-0.0833,0.0163],[-0.0869,0.0059],[-0.089,0.007],[-0.0945,0.0036],[-0.0953,0.0059],[-0.101,0.0056],[-0.1012,0.0033],[-0.1081,0.0023],[-0.1129,0.0],[-0.1187,0.0039],[-0.1237,0.0051],[-0.1466,0.0062],[-0.1516,0.0079],[-0.152,0.0059],[-0.1575,0.0052]]],[[[0.0636,0.1391],[0.0671,0.1367],[0.0717,0.1371],[0.0735,0.1364],[0.0744,0.1345],[0.0737,0.1328],[0.0723,0.1332],[0.071,0.1328],[0.0711,0.1305],[0.0718,0.1295],[0.0764,0.1267],[0.0772,0.1265],[0.0772,0.1275],[0.0765,0.1292],[0.0763,0.1311],[0.0772,0.1326],[0.0784,0.133],[0.0839,0.1332],[0.0851,0.1324],[0.0874,0.1279],[0.0849,0.1275],[0.0837,0.1258],[0.0858,0.1248],[0.0874,0.1234],[0.0863,0.1217],[0.0861,0.1208],[0.0821,0.1198],[0.0787,0.1193],[0.0769,0.1172],[0.074,0.1159],[0.0658,0.1138],[0.0665,0.1115],[0.0665,0.1105],[0.066,0.1076],[0.0551,0.1118],[0.0536,0.1116],[0.0562,0.1055],[0.054,0.1046],[0.0518,0.1054],[0.0498,0.1051],[0.0483,0.1009],[0.0453,0.1039],[0.0429,0.1078],[0.0429,0.11],[0.0458,0.1139],[0.0451,0.1156],[0.0516,0.1206],[0.0528,0.1222],[0.0548,0.123],[0.0567,0.1232],[0.0576,0.1239],[0.0576,0.1252],[0.0569,0.1275],[0.0573,0.1312],[0.0625,0.1359],[0.0621,0.1392],[0.0636,0.1391]]],[[[0.0293,0.134],[0.0328,0.1331],[0.036,0.1355],[0.0382,0.1363],[0.04,0.1356],[0.0411,0.1339],[0.0429,0.1341],[0.0482,0.1354],[0.0488,0.1348],[0.0507,0.1366],[0.0523,0.1356],[0.0534,0.1339],[0.0526,0.132],[0.0511,0.1308],[0.0502,0.1292],[0.049,0.1279],[0.0471,0.1268],[0.0457,0.1248],[0.042,0.1203],[0.0369,0.1144],[0.0353,0.114],[0.0319,0.1137],[0.0305,0.1143],[0.0293,0.1142],[0.0282,0.1109],[0.0265,0.1085],[0.0258,0.108],[0.0242,0.1078],[0.0235,0.1076],[0.0228,0.1067],[0.0187,0.1071],[0.0158,0.1088],[0.0126,0.1123],[0.0174,0.1163],[0.0214,0.1159],[0.0248,0.1186],[0.0275,0.1198],[0.0287,0.1212],[0.0299,0.1222],[0.03,0.1237],[0.0291,0.1244],[0.0279,0.1244],[0.0267,0.1238],[0.0238,0.1231],[0.0219,0.1249],[0.0232,0.1254],[0.0247,0.1253],[0.0291,0.1267],[0.03,0.1273],[0.0288,0.1295],[0.0262,0.131],[0.0241,0.1333],[0.0238,0.1342],[0.024,0.1355],[0.0229,0.1382],[0.0242,0.1383],[0.0257,0.1365],[0.0293,0.134]]],[[[0.0117,0.1226],[0.0133,0.122],[0.015,0.1221],[0.0139,0.1183],[0.0131,0.1165],[0.0111,0.1167],[0.0093,0.1193],[0.0086,0.1206],[0.0109,0.1215],[0.0117,0.1226]]],[[[0.0712,0.1105],[0.0711,0.1073],[0.0693,0.1084],[0.0688,0.1101],[0.0699,0.1111],[0.0708,0.111],[0.0712,0.1105]]],[[[0.0336,0.1363],[0.0304,0.1364],[0.0298,0.1377],[0.03,0.1408],[0.0324,0.1409],[0.0348,0.1395],[0.0346,0.1382],[0.0336,0.1363]]],[[[0.0418,0.1042],[0.0403,0.1036],[0.0399,0.1039],[0.0396,0.1054],[0.0396,0.1072],[0.0395,0.108],[0.0404,0.1077],[0.042,0.1062],[0.0418,0.1042]]]]},{"k":"ba","n":"Buenos Aires","p":[[[[-0.0016,0.5486],[-0.0037,0.5455],[-0.0074,0.5476],[-0.0055,0.5527],[-0.0016,0.5486]]],[[[-0.0008,0.5543],[-0.0042,0.56],[-0.0037,0.5619],[-0.0007,0.5601],[-0.0008,0.5543]]],[[[0.0029,0.5985],[0.0044,0.5952],[0.0004,0.5969],[-0.0023,0.601],[0.0029,0.5985]]],[[[0.1158,0.7877],[0.1175,0.7808],[0.1113,0.7774],[0.1148,0.7742],[0.1139,0.7685],[0.1117,0.7668],[0.1114,0.7614],[0.1143,0.7588],[0.1186,0.763],[0.1232,0.7592],[0.1319,0.7557],[0.1423,0.7481],[0.1502,0.7388],[0.1533,0.7322],[0.1528,0.7296],[0.1457,0.7209],[0.1447,0.7112],[0.1478,0.704],[0.157,0.6961],[0.162,0.6964],[0.164,0.6943],[0.1636,0.6771],[0.1628,0.6743],[0.156,0.666],[0.1502,0.6569],[0.142,0.6487],[0.1354,0.6406],[0.134,0.6326],[0.1321,0.6302],[0.1148,0.6208],[0.0875,0.6125],[0.0629,0.6083],[0.034,0.6042],[0.0258,0.6036],[0.0175,0.6046],[0.0148,0.6035],[-0.0,0.6066],[-0.0038,0.6115],[-0.0106,0.6114],[-0.0088,0.6059],[-0.0099,0.6006],[-0.007,0.5948],[-0.0004,0.5906],[-0.0014,0.5888],[-0.0054,0.5929],[-0.0079,0.5927],[-0.0014,0.5875],[-0.0033,0.5735],[-0.0088,0.574],[-0.0109,0.5589],[-0.0145,0.5554],[-0.0124,0.5496],[-0.0099,0.548],[-0.0073,0.5421],[-0.0106,0.5341],[-0.0218,0.528],[-0.0239,0.5279],[-0.0255,0.5319],[-0.0327,0.5392],[-0.0404,0.5407],[-0.0401,0.5926],[-0.0393,0.7181],[-0.0389,0.7551],[-0.0385,0.7772],[-0.0374,0.7783],[-0.0222,0.7782],[0.0133,0.7777],[0.0373,0.8034],[0.0392,0.8077],[0.0464,0.8069],[0.0506,0.8043],[0.053,0.8054],[0.0549,0.8107],[0.0594,0.8167],[0.059,0.8185],[0.0643,0.8132],[0.0723,0.808],[0.0749,0.8046],[0.0801,0.8018],[0.0827,0.8026],[0.0866,0.7993],[0.0907,0.7996],[0.0937,0.7955],[0.0977,0.7954],[0.1084,0.7872],[0.1158,0.7877]]]]},{"k":"sj","n":"San Juan","p":[[[[-0.2575,0.8502],[-0.2597,0.8513],[-0.2619,0.8606],[-0.2579,0.8635],[-0.2604,0.8663],[-0.2641,0.8666],[-0.27,0.8783],[-0.2699,0.8876],[-0.2674,0.8955],[-0.2641,0.8948],[-0.2607,0.8986],[-0.2632,0.9018],[-0.2628,0.907],[-0.259,0.9236],[-0.2542,0.9226],[-0.2502,0.9261],[-0.2489,0.9331],[-0.253,0.9343],[-0.2516,0.9401],[-0.2523,0.9484],[-0.2567,0.9615],[-0.2565,0.9649],[-0.2529,0.97],[-0.2493,0.9719],[-0.2497,0.9771],[-0.2476,0.9828],[-0.2481,0.9893],[-0.2461,0.9923],[-0.2456,0.9984],[-0.2349,0.9957],[-0.229,0.9908],[-0.2267,0.985],[-0.2204,0.9774],[-0.2228,0.9724],[-0.2206,0.9655],[-0.2226,0.9578],[-0.2212,0.953],[-0.2122,0.9547],[-0.1998,0.9516],[-0.1921,0.9453],[-0.1862,0.9392],[-0.1764,0.9316],[-0.174,0.9267],[-0.1612,0.9142],[-0.1576,0.9075],[-0.1588,0.9036],[-0.1568,0.9009],[-0.158,0.8906],[-0.156,0.8843],[-0.15,0.8806],[-0.1489,0.8759],[-0.1454,0.8713],[-0.1536,0.8706],[-0.1652,0.8719],[-0.1665,0.8699],[-0.1662,0.8562],[-0.1686,0.8579],[-0.1802,0.8566],[-0.1866,0.8628],[-0.1984,0.8593],[-0.2075,0.8519],[-0.2143,0.8519],[-0.2154,0.8614],[-0.2186,0.8611],[-0.2227,0.8653],[-0.227,0.8617],[-0.2322,0.8614],[-0.2374,0.8584],[-0.2377,0.8543],[-0.2488,0.8509],[-0.2575,0.8502]]]]},{"k":"mz","n":"Mendoza","p":[[[[-0.254,0.7063],[-0.2527,0.7094],[-0.2543,0.7161],[-0.2525,0.7182],[-0.2549,0.7239],[-0.2548,0.7297],[-0.2598,0.7407],[-0.2551,0.7425],[-0.2545,0.7506],[-0.2525,0.7567],[-0.2515,0.7648],[-0.2467,0.7722],[-0.2463,0.7768],[-0.24,0.7784],[-0.2412,0.7881],[-0.243,0.7891],[-0.2432,0.8001],[-0.2404,0.8109],[-0.2444,0.816],[-0.2476,0.8136],[-0.2507,0.8177],[-0.2513,0.8232],[-0.2481,0.8295],[-0.2528,0.8333],[-0.2545,0.8446],[-0.2575,0.8502],[-0.2488,0.8509],[-0.2377,0.8543],[-0.2374,0.8584],[-0.2322,0.8614],[-0.227,0.8617],[-0.2227,0.8653],[-0.2186,0.8611],[-0.2154,0.8614],[-0.2143,0.8519],[-0.2075,0.8519],[-0.1984,0.8593],[-0.1866,0.8628],[-0.1802,0.8566],[-0.1686,0.8579],[-0.1662,0.8562],[-0.1615,0.8416],[-0.1592,0.8376],[-0.1601,0.8318],[-0.1569,0.8117],[-0.1528,0.8057],[-0.1498,0.7975],[-0.1437,0.7892],[-0.1459,0.7829],[-0.1455,0.777],[-0.143,0.7684],[-0.1376,0.7597],[-0.1353,0.7489],[-0.1355,0.7348],[-0.1383,0.7185],[-0.1378,0.7165],[-0.1876,0.7148],[-0.1887,0.71],[-0.1875,0.7043],[-0.1851,0.6563],[-0.1904,0.6567],[-0.1936,0.6603],[-0.2006,0.6625],[-0.2085,0.6632],[-0.2109,0.6682],[-0.2162,0.6699],[-0.2227,0.6686],[-0.2271,0.6693],[-0.233,0.6743],[-0.2328,0.6798],[-0.237,0.6828],[-0.2417,0.6888],[-0.2451,0.6902],[-0.2486,0.6978],[-0.2509,0.6972],[-0.2515,0.7033],[-0.254,0.7063]]]]},{"k":"nq","n":"Neuquén","p":[[[[-0.2821,0.5192],[-0.2818,0.522],[-0.2856,0.53],[-0.2835,0.5329],[-0.2823,0.5414],[-0.2789,0.5449],[-0.2835,0.5494],[-0.2832,0.5544],[-0.2798,0.554],[-0.2787,0.5619],[-0.2819,0.5679],[-0.2814,0.574],[-0.2766,0.5727],[-0.2775,0.5757],[-0.2755,0.5796],[-0.2744,0.5872],[-0.2757,0.5985],[-0.2706,0.6036],[-0.2604,0.609],[-0.2602,0.6151],[-0.2642,0.6187],[-0.2659,0.6247],[-0.2663,0.6321],[-0.2726,0.6453],[-0.2715,0.6554],[-0.2744,0.6608],[-0.2714,0.6682],[-0.2753,0.6779],[-0.2743,0.6837],[-0.2721,0.6835],[-0.2717,0.6916],[-0.2673,0.6951],[-0.2621,0.6949],[-0.2619,0.7008],[-0.2582,0.7056],[-0.254,0.7063],[-0.2515,0.7033],[-0.2509,0.6972],[-0.2486,0.6978],[-0.2451,0.6902],[-0.2417,0.6888],[-0.237,0.6828],[-0.2328,0.6798],[-0.233,0.6743],[-0.2271,0.6693],[-0.2227,0.6686],[-0.2162,0.6699],[-0.2109,0.6682],[-0.2085,0.6632],[-0.2006,0.6625],[-0.1936,0.6603],[-0.1904,0.6567],[-0.1851,0.6563],[-0.1833,0.6148],[-0.1768,0.6059],[-0.1762,0.6034],[-0.1829,0.6021],[-0.1847,0.6033],[-0.1919,0.5975],[-0.1984,0.5897],[-0.2025,0.5825],[-0.2111,0.578],[-0.2137,0.5733],[-0.2186,0.5689],[-0.2226,0.5687],[-0.2306,0.5625],[-0.2328,0.5455],[-0.2362,0.5408],[-0.2427,0.5393],[-0.2467,0.5406],[-0.2505,0.5375],[-0.2576,0.5354],[-0.2618,0.5297],[-0.2584,0.5244],[-0.2614,0.5195],[-0.2673,0.5175],[-0.2731,0.5192],[-0.2821,0.5192]]]]},{"k":"lp","n":"La Pampa","p":[[[[-0.1851,0.6563],[-0.1875,0.7043],[-0.1887,0.71],[-0.1876,0.7148],[-0.1378,0.7165],[-0.0911,0.7175],[-0.0916,0.7549],[-0.0567,0.7552],[-0.0389,0.7551],[-0.0393,0.7181],[-0.0401,0.5926],[-0.0428,0.5929],[-0.0495,0.5973],[-0.0578,0.6045],[-0.0718,0.6104],[-0.0821,0.6119],[-0.0908,0.6121],[-0.0981,0.6107],[-0.1047,0.6128],[-0.1077,0.6113],[-0.1157,0.614],[-0.1232,0.6147],[-0.1284,0.614],[-0.1333,0.6151],[-0.1361,0.6204],[-0.1487,0.6256],[-0.1522,0.6325],[-0.1633,0.6307],[-0.1679,0.6365],[-0.1722,0.638],[-0.1725,0.6436],[-0.1687,0.6486],[-0.1699,0.6527],[-0.1731,0.6552],[-0.1851,0.6563]]]]},{"k":"rn","n":"Río Negro","p":[[[[-0.0239,0.5279],[-0.0323,0.5238],[-0.0517,0.5238],[-0.0598,0.5297],[-0.0629,0.5294],[-0.0699,0.5331],[-0.0789,0.5361],[-0.08,0.5395],[-0.0834,0.5407],[-0.09,0.5358],[-0.0914,0.5291],[-0.0879,0.5127],[-0.086,0.5089],[-0.0872,0.5046],[-0.0861,0.4998],[-0.0876,0.4915],[-0.0895,0.492],[-0.2759,0.4823],[-0.2771,0.4872],[-0.2816,0.496],[-0.2798,0.4984],[-0.2819,0.5057],[-0.2821,0.5192],[-0.2731,0.5192],[-0.2673,0.5175],[-0.2614,0.5195],[-0.2584,0.5244],[-0.2618,0.5297],[-0.2576,0.5354],[-0.2505,0.5375],[-0.2467,0.5406],[-0.2427,0.5393],[-0.2362,0.5408],[-0.2328,0.5455],[-0.2306,0.5625],[-0.2226,0.5687],[-0.2186,0.5689],[-0.2137,0.5733],[-0.2111,0.578],[-0.2025,0.5825],[-0.1984,0.5897],[-0.1919,0.5975],[-0.1847,0.6033],[-0.1829,0.6021],[-0.1762,0.6034],[-0.1768,0.6059],[-0.1833,0.6148],[-0.1851,0.6563],[-0.1731,0.6552],[-0.1699,0.6527],[-0.1687,0.6486],[-0.1725,0.6436],[-0.1722,0.638],[-0.1679,0.6365],[-0.1633,0.6307],[-0.1522,0.6325],[-0.1487,0.6256],[-0.1361,0.6204],[-0.1333,0.6151],[-0.1284,0.614],[-0.1232,0.6147],[-0.1157,0.614],[-0.1077,0.6113],[-0.1047,0.6128],[-0.0981,0.6107],[-0.0908,0.6121],[-0.0821,0.6119],[-0.0718,0.6104],[-0.0578,0.6045],[-0.0495,0.5973],[-0.0428,0.5929],[-0.0401,0.5926],[-0.0404,0.5407],[-0.0327,0.5392],[-0.0255,0.5319],[-0.0239,0.5279]]]]},{"k":"sl","n":"San Luis","p":[[[[-0.1378,0.7165],[-0.1383,0.7185],[-0.1355,0.7348],[-0.1353,0.7489],[-0.1376,0.7597],[-0.143,0.7684],[-0.1455,0.777],[-0.1459,0.7829],[-0.1437,0.7892],[-0.1498,0.7975],[-0.1528,0.8057],[-0.1569,0.8117],[-0.1601,0.8318],[-0.1592,0.8376],[-0.1615,0.8416],[-0.1662,0.8562],[-0.1665,0.8699],[-0.1652,0.8719],[-0.1536,0.8706],[-0.1454,0.8713],[-0.1413,0.87],[-0.1289,0.8699],[-0.1238,0.8719],[-0.1143,0.8717],[-0.1089,0.8706],[-0.098,0.8633],[-0.0962,0.8555],[-0.0874,0.8564],[-0.0857,0.8472],[-0.0905,0.8259],[-0.0937,0.8224],[-0.092,0.794],[-0.0916,0.7549],[-0.0911,0.7175],[-0.1378,0.7165]]]]},{"k":"cb","n":"Córdoba","p":[[[[-0.0389,0.7551],[-0.0567,0.7552],[-0.0916,0.7549],[-0.092,0.794],[-0.0937,0.8224],[-0.0905,0.8259],[-0.0857,0.8472],[-0.0874,0.8564],[-0.0962,0.8555],[-0.098,0.8633],[-0.1089,0.8706],[-0.1143,0.8717],[-0.1151,0.9013],[-0.1075,0.9273],[-0.1036,0.9373],[-0.0952,0.9403],[-0.0888,0.9472],[-0.0895,0.9574],[-0.087,0.9594],[-0.0676,0.9644],[-0.0598,0.9627],[-0.0596,0.9606],[-0.0517,0.9559],[-0.0404,0.9557],[-0.0371,0.9512],[-0.002,0.9508],[-0.0005,0.9497],[0.0044,0.9364],[0.003,0.9251],[0.0115,0.9147],[0.0024,0.882],[-0.0009,0.8784],[0.0001,0.8689],[-0.0011,0.8621],[0.0035,0.8577],[0.0053,0.8527],[0.0084,0.8498],[0.0109,0.8415],[0.0139,0.836],[0.0128,0.8295],[0.0078,0.8254],[-0.0222,0.7782],[-0.0374,0.7783],[-0.0385,0.7772],[-0.0389,0.7551]]]]},{"k":"ct","n":"Catamarca","p":[[[[-0.087,0.9594],[-0.0895,0.9574],[-0.0888,0.9472],[-0.0952,0.9403],[-0.1036,0.9373],[-0.1092,0.9484],[-0.1148,0.9611],[-0.117,0.9705],[-0.128,0.9808],[-0.1351,0.9842],[-0.1353,0.9895],[-0.1399,0.994],[-0.1437,1.0017],[-0.1568,1.0066],[-0.1608,1.0037],[-0.1662,1.003],[-0.1809,1.0032],[-0.1848,1.0015],[-0.1879,1.0062],[-0.1888,1.0111],[-0.1939,1.0098],[-0.2061,1.0159],[-0.206,1.0247],[-0.2198,1.0224],[-0.2294,1.0228],[-0.2258,1.0351],[-0.2232,1.0372],[-0.2192,1.048],[-0.2119,1.0464],[-0.2097,1.0498],[-0.2034,1.0512],[-0.2033,1.0577],[-0.2122,1.0695],[-0.2127,1.0787],[-0.2076,1.0836],[-0.2109,1.0994],[-0.213,1.1028],[-0.2148,1.1112],[-0.2115,1.1218],[-0.1878,1.1178],[-0.1467,1.1194],[-0.145,1.1191],[-0.142,1.1116],[-0.1434,1.1058],[-0.151,1.1041],[-0.1533,1.1021],[-0.1523,1.0958],[-0.1467,1.0884],[-0.1436,1.0823],[-0.1397,1.078],[-0.1376,1.0784],[-0.1333,1.0858],[-0.1275,1.0828],[-0.1307,1.0736],[-0.1204,1.0653],[-0.121,1.058],[-0.1314,1.0427],[-0.1244,1.0401],[-0.1224,1.0303],[-0.1187,1.0247],[-0.1147,1.0241],[-0.1134,1.0195],[-0.1098,1.0154],[-0.108,1.0188],[-0.1024,1.0227],[-0.0969,1.0211],[-0.0938,1.0074],[-0.0937,0.9997],[-0.097,0.9934],[-0.0944,0.9916],[-0.092,0.9692],[-0.087,0.9594]]]]},{"k":"lr","n":"La Rioja","p":[[[[-0.1143,0.8717],[-0.1238,0.8719],[-0.1289,0.8699],[-0.1413,0.87],[-0.1454,0.8713],[-0.1489,0.8759],[-0.15,0.8806],[-0.156,0.8843],[-0.158,0.8906],[-0.1568,0.9009],[-0.1588,0.9036],[-0.1576,0.9075],[-0.1612,0.9142],[-0.174,0.9267],[-0.1764,0.9316],[-0.1862,0.9392],[-0.1921,0.9453],[-0.1998,0.9516],[-0.2122,0.9547],[-0.2212,0.953],[-0.2226,0.9578],[-0.2206,0.9655],[-0.2228,0.9724],[-0.2204,0.9774],[-0.2267,0.985],[-0.229,0.9908],[-0.2349,0.9957],[-0.2456,0.9984],[-0.2382,1.0058],[-0.2347,1.0141],[-0.2304,1.017],[-0.2294,1.0228],[-0.2198,1.0224],[-0.206,1.0247],[-0.2061,1.0159],[-0.1939,1.0098],[-0.1888,1.0111],[-0.1879,1.0062],[-0.1848,1.0015],[-0.1809,1.0032],[-0.1662,1.003],[-0.1608,1.0037],[-0.1568,1.0066],[-0.1437,1.0017],[-0.1399,0.994],[-0.1353,0.9895],[-0.1351,0.9842],[-0.128,0.9808],[-0.117,0.9705],[-0.1148,0.9611],[-0.1092,0.9484],[-0.1036,0.9373],[-0.1075,0.9273],[-0.1151,0.9013],[-0.1143,0.8717]]]]},{"k":"sa","n":"Salta","p":[[[[-0.1275,1.0828],[-0.1333,1.0858],[-0.1376,1.0784],[-0.1397,1.078],[-0.1436,1.0823],[-0.1467,1.0884],[-0.1523,1.0958],[-0.1533,1.1021],[-0.151,1.1041],[-0.1434,1.1058],[-0.142,1.1116],[-0.145,1.1191],[-0.1467,1.1194],[-0.1878,1.1178],[-0.2115,1.1218],[-0.2075,1.1227],[-0.2112,1.1316],[-0.2146,1.1364],[-0.2124,1.1424],[-0.2038,1.1512],[-0.1738,1.1653],[-0.1702,1.1766],[-0.1646,1.1732],[-0.1563,1.1645],[-0.1499,1.1594],[-0.144,1.1581],[-0.1389,1.1656],[-0.1387,1.1775],[-0.141,1.1838],[-0.1394,1.1908],[-0.133,1.189],[-0.1266,1.1844],[-0.1278,1.1757],[-0.1269,1.1696],[-0.1185,1.1646],[-0.1185,1.1616],[-0.1125,1.1524],[-0.1017,1.1488],[-0.0983,1.1506],[-0.0934,1.1465],[-0.0889,1.1455],[-0.086,1.1506],[-0.0794,1.1448],[-0.0752,1.1498],[-0.0688,1.1523],[-0.0634,1.1609],[-0.0645,1.1861],[-0.07,1.1864],[-0.073,1.1821],[-0.0807,1.1882],[-0.0883,1.1869],[-0.0913,1.194],[-0.0941,1.1957],[-0.094,1.2051],[-0.0994,1.2059],[-0.102,1.2109],[-0.1021,1.219],[-0.1048,1.2206],[-0.1012,1.2304],[-0.0995,1.239],[-0.0936,1.239],[-0.0785,1.2347],[-0.078,1.2299],[-0.0729,1.2225],[-0.0738,1.2187],[-0.0707,1.2154],[-0.0699,1.2104],[-0.0667,1.2225],[-0.0635,1.2263],[-0.0561,1.2425],[-0.0489,1.2409],[-0.0453,1.2429],[-0.0162,1.2425],[-0.0157,1.2383],[-0.0098,1.233],[-0.0103,1.2315],[-0.0002,1.2247],[-0.0006,1.1841],[-0.0008,1.163],[-0.0008,1.1524],[-0.0375,1.1056],[-0.0554,1.1059],[-0.0652,1.1077],[-0.0724,1.0918],[-0.0744,1.0845],[-0.0839,1.0848],[-0.0906,1.0827],[-0.1009,1.0865],[-0.1024,1.0897],[-0.1068,1.0881],[-0.1143,1.0897],[-0.1158,1.0813],[-0.1275,1.0828]]]]},{"k":"se","n":"Santiago del Estero","p":[[[[-0.087,0.9594],[-0.092,0.9692],[-0.0944,0.9916],[-0.097,0.9934],[-0.0937,0.9997],[-0.0938,1.0074],[-0.0969,1.0211],[-0.0935,1.0219],[-0.0913,1.026],[-0.0937,1.0318],[-0.0904,1.0359],[-0.0936,1.0375],[-0.0874,1.0437],[-0.0824,1.0557],[-0.0808,1.0621],[-0.0778,1.067],[-0.075,1.0672],[-0.0756,1.0761],[-0.0744,1.0845],[-0.0724,1.0918],[-0.0652,1.1077],[-0.0554,1.1059],[-0.0375,1.1056],[0.0184,1.1049],[0.0194,1.1017],[0.0194,1.0824],[0.0183,1.0171],[0.0125,0.9828],[0.0044,0.9364],[-0.0005,0.9497],[-0.002,0.9508],[-0.0371,0.9512],[-0.0404,0.9557],[-0.0517,0.9559],[-0.0596,0.9606],[-0.0598,0.9627],[-0.0676,0.9644],[-0.087,0.9594]]]]},{"k":"tm","n":"Tucumán","p":[[[[-0.0969,1.0211],[-0.1024,1.0227],[-0.108,1.0188],[-0.1098,1.0154],[-0.1134,1.0195],[-0.1147,1.0241],[-0.1187,1.0247],[-0.1224,1.0303],[-0.1244,1.0401],[-0.1314,1.0427],[-0.121,1.058],[-0.1204,1.0653],[-0.1307,1.0736],[-0.1275,1.0828],[-0.1158,1.0813],[-0.1143,1.0897],[-0.1068,1.0881],[-0.1024,1.0897],[-0.1009,1.0865],[-0.0906,1.0827],[-0.0839,1.0848],[-0.0744,1.0845],[-0.0756,1.0761],[-0.075,1.0672],[-0.0778,1.067],[-0.0808,1.0621],[-0.0824,1.0557],[-0.0874,1.0437],[-0.0936,1.0375],[-0.0904,1.0359],[-0.0937,1.0318],[-0.0913,1.026],[-0.0935,1.0219],[-0.0969,1.0211]]]]},{"k":"cc","n":"Chaco","p":[[[[-0.0375,1.1056],[-0.0008,1.1524],[-0.0008,1.163],[0.0091,1.1595],[0.0141,1.1554],[0.0185,1.1544],[0.0223,1.1493],[0.0255,1.1487],[0.0294,1.1438],[0.0359,1.1427],[0.0399,1.1396],[0.0414,1.1339],[0.0568,1.1226],[0.0615,1.121],[0.0661,1.1151],[0.072,1.1036],[0.0768,1.102],[0.0825,1.0973],[0.0888,1.0899],[0.0887,1.086],[0.0974,1.0829],[0.0981,1.0791],[0.1015,1.0769],[0.1062,1.0786],[0.1125,1.0743],[0.1155,1.0705],[0.1249,1.0631],[0.1321,1.0553],[0.1285,1.0539],[0.1265,1.049],[0.1215,1.0456],[0.123,1.0396],[0.1132,1.0339],[0.1151,1.0227],[0.1132,1.0143],[0.0504,1.0163],[0.0183,1.0171],[0.0194,1.0824],[0.0194,1.1017],[0.0184,1.1049],[-0.0375,1.1056]]]]},{"k":"fm","n":"Formosa","p":[[[[-0.0008,1.163],[-0.0006,1.1841],[-0.0002,1.2247],[0.0035,1.2216],[0.0057,1.2155],[0.013,1.2035],[0.0168,1.2012],[0.0202,1.1959],[0.0249,1.1938],[0.0288,1.189],[0.0355,1.1864],[0.0419,1.1815],[0.0453,1.1741],[0.0511,1.1714],[0.0594,1.1699],[0.06,1.1685],[0.0686,1.1656],[0.0787,1.1656],[0.098,1.1519],[0.102,1.1469],[0.1135,1.1406],[0.1199,1.1353],[0.1313,1.132],[0.1365,1.1265],[0.1397,1.1284],[0.1477,1.123],[0.1509,1.1227],[0.1554,1.1186],[0.1616,1.1078],[0.1591,1.102],[0.1545,1.1001],[0.1526,1.0942],[0.1488,1.0892],[0.1499,1.0875],[0.1424,1.0835],[0.1393,1.0783],[0.1358,1.06],[0.1321,1.0553],[0.1249,1.0631],[0.1155,1.0705],[0.1125,1.0743],[0.1062,1.0786],[0.1015,1.0769],[0.0981,1.0791],[0.0974,1.0829],[0.0887,1.086],[0.0888,1.0899],[0.0825,1.0973],[0.0768,1.102],[0.072,1.1036],[0.0661,1.1151],[0.0615,1.121],[0.0568,1.1226],[0.0414,1.1339],[0.0399,1.1396],[0.0359,1.1427],[0.0294,1.1438],[0.0255,1.1487],[0.0223,1.1493],[0.0185,1.1544],[0.0141,1.1554],[0.0091,1.1595],[-0.0008,1.163]]]]},{"k":"cn","n":"Corrientes","p":[[[[0.1132,1.0143],[0.1151,1.0227],[0.1132,1.0339],[0.123,1.0396],[0.1262,1.0409],[0.1426,1.0408],[0.1533,1.0375],[0.1586,1.0344],[0.1654,1.0339],[0.1704,1.0308],[0.1799,1.0328],[0.1841,1.0293],[0.1919,1.0307],[0.1976,1.0256],[0.2009,1.0327],[0.2063,1.0358],[0.2116,1.0342],[0.2097,1.0297],[0.2138,1.0195],[0.2145,1.0123],[0.2175,1.006],[0.2211,1.0028],[0.2159,0.9998],[0.2193,0.996],[0.2176,0.9931],[0.2132,0.9956],[0.2111,0.9915],[0.2072,0.9904],[0.2066,0.987],[0.2008,0.9814],[0.1974,0.9803],[0.1967,0.9765],[0.1924,0.9704],[0.1855,0.9666],[0.1832,0.961],[0.1684,0.9453],[0.1618,0.9433],[0.1603,0.9371],[0.154,0.9314],[0.1494,0.9298],[0.1488,0.9246],[0.1421,0.9191],[0.1407,0.9153],[0.1429,0.9092],[0.1374,0.915],[0.1351,0.922],[0.1292,0.9294],[0.1173,0.933],[0.1091,0.9306],[0.1049,0.9315],[0.097,0.9267],[0.0922,0.9283],[0.0833,0.9275],[0.0858,0.9396],[0.0838,0.9447],[0.0866,0.9545],[0.087,0.9621],[0.0898,0.9698],[0.0949,0.9719],[0.1005,0.9763],[0.1008,0.9801],[0.1043,0.9896],[0.1058,0.9994],[0.1057,1.0086],[0.1101,1.0102],[0.1132,1.0143]]]]},{"k":"er","n":"Entre Ríos","p":[[[[0.0833,0.9275],[0.0922,0.9283],[0.097,0.9267],[0.1049,0.9315],[0.1091,0.9306],[0.1173,0.933],[0.1292,0.9294],[0.1351,0.922],[0.1374,0.915],[0.1429,0.9092],[0.1425,0.9032],[0.1391,0.9018],[0.1407,0.8976],[0.1387,0.8908],[0.1327,0.8823],[0.1354,0.8791],[0.1326,0.8697],[0.1289,0.8686],[0.1292,0.8603],[0.1278,0.8571],[0.1302,0.8509],[0.1261,0.8444],[0.1271,0.8232],[0.1241,0.8216],[0.1197,0.8227],[0.1182,0.8143],[0.1146,0.8088],[0.1132,0.8],[0.1154,0.794],[0.1158,0.7877],[0.1084,0.7872],[0.0977,0.7954],[0.0937,0.7955],[0.0907,0.7996],[0.0866,0.7993],[0.0827,0.8026],[0.0801,0.8018],[0.0749,0.8046],[0.0723,0.808],[0.0643,0.8132],[0.059,0.8185],[0.0528,0.8238],[0.0474,0.8344],[0.0449,0.8459],[0.0471,0.8596],[0.0486,0.8643],[0.0469,0.8682],[0.0496,0.8768],[0.0572,0.8782],[0.0679,0.8898],[0.0828,0.9125],[0.0845,0.9232],[0.0833,0.9275]]]]},{"k":"ch","n":"Chubut","p":[[[[-0.2585,0.3322],[-0.2593,0.3364],[-0.2634,0.3415],[-0.2631,0.3479],[-0.257,0.3504],[-0.2569,0.3547],[-0.252,0.3592],[-0.2605,0.3707],[-0.2653,0.3719],[-0.2687,0.371],[-0.2737,0.3723],[-0.2736,0.3778],[-0.2683,0.3771],[-0.2589,0.3797],[-0.2544,0.378],[-0.252,0.3802],[-0.2523,0.3836],[-0.2495,0.3886],[-0.2523,0.3923],[-0.2585,0.3928],[-0.2689,0.3917],[-0.2691,0.3985],[-0.2709,0.4027],[-0.2685,0.4046],[-0.2662,0.41],[-0.2708,0.4172],[-0.2683,0.4195],[-0.2691,0.4224],[-0.2734,0.424],[-0.2754,0.427],[-0.275,0.4322],[-0.2708,0.4336],[-0.271,0.4375],[-0.2786,0.4395],[-0.2829,0.4437],[-0.2824,0.4489],[-0.2844,0.459],[-0.2818,0.4631],[-0.2849,0.4715],[-0.2829,0.4761],[-0.2803,0.4755],[-0.2747,0.4792],[-0.2759,0.4823],[-0.0895,0.492],[-0.0876,0.4915],[-0.0819,0.4848],[-0.0717,0.4828],[-0.0748,0.4763],[-0.0704,0.4754],[-0.0615,0.4759],[-0.0594,0.4782],[-0.0599,0.4821],[-0.0663,0.4825],[-0.0526,0.4895],[-0.0498,0.4871],[-0.0465,0.4793],[-0.0463,0.4698],[-0.0474,0.4639],[-0.0507,0.4612],[-0.061,0.459],[-0.0649,0.4631],[-0.0634,0.4679],[-0.0702,0.4731],[-0.075,0.4727],[-0.0842,0.4674],[-0.0856,0.4626],[-0.0758,0.4573],[-0.0699,0.4554],[-0.0667,0.4564],[-0.0703,0.452],[-0.0791,0.4489],[-0.0863,0.4432],[-0.0862,0.4402],[-0.0944,0.4289],[-0.0939,0.423],[-0.0908,0.4115],[-0.0933,0.4077],[-0.0907,0.403],[-0.0939,0.3993],[-0.0955,0.3943],[-0.0994,0.3933],[-0.1032,0.3897],[-0.1039,0.3838],[-0.1,0.3828],[-0.101,0.3766],[-0.1047,0.378],[-0.1104,0.3772],[-0.1167,0.3788],[-0.1269,0.3731],[-0.1251,0.3702],[-0.1342,0.3692],[-0.1392,0.3647],[-0.1459,0.3545],[-0.1468,0.3477],[-0.1488,0.3463],[-0.1519,0.3396],[-0.1725,0.3386],[-0.2585,0.3322]]]]},{"k":"sf","n":"Santa Fe","p":[[[[-0.0222,0.7782],[0.0078,0.8254],[0.0128,0.8295],[0.0139,0.836],[0.0109,0.8415],[0.0084,0.8498],[0.0053,0.8527],[0.0035,0.8577],[-0.0011,0.8621],[0.0001,0.8689],[-0.0009,0.8784],[0.0024,0.882],[0.0115,0.9147],[0.003,0.9251],[0.0044,0.9364],[0.0125,0.9828],[0.0183,1.0171],[0.0504,1.0163],[0.1132,1.0143],[0.1101,1.0102],[0.1057,1.0086],[0.1058,0.9994],[0.1043,0.9896],[0.1008,0.9801],[0.1005,0.9763],[0.0949,0.9719],[0.0898,0.9698],[0.087,0.9621],[0.0866,0.9545],[0.0838,0.9447],[0.0858,0.9396],[0.0833,0.9275],[0.0845,0.9232],[0.0828,0.9125],[0.0679,0.8898],[0.0572,0.8782],[0.0496,0.8768],[0.0469,0.8682],[0.0486,0.8643],[0.0471,0.8596],[0.0449,0.8459],[0.0474,0.8344],[0.0528,0.8238],[0.059,0.8185],[0.0594,0.8167],[0.0549,0.8107],[0.053,0.8054],[0.0506,0.8043],[0.0464,0.8069],[0.0392,0.8077],[0.0373,0.8034],[0.0133,0.7777],[-0.0222,0.7782]]]]},{"k":"mn","n":"Misiones","p":[[[[0.2116,1.0342],[0.2185,1.0295],[0.2243,1.0335],[0.2244,1.0396],[0.2292,1.0419],[0.2305,1.0457],[0.2357,1.0476],[0.2406,1.0465],[0.2412,1.05],[0.2466,1.0525],[0.2493,1.0571],[0.2531,1.0574],[0.2535,1.0617],[0.2566,1.0649],[0.2596,1.074],[0.2594,1.0822],[0.2624,1.0884],[0.2608,1.0932],[0.2626,1.0974],[0.2672,1.0945],[0.2694,1.0963],[0.2797,1.0989],[0.279,1.097],[0.2861,1.0935],[0.2881,1.0866],[0.2879,1.0803],[0.2927,1.0705],[0.2902,1.0647],[0.2885,1.0528],[0.2892,1.0459],[0.2838,1.0353],[0.2797,1.0359],[0.275,1.0314],[0.2722,1.0332],[0.2679,1.0265],[0.266,1.0279],[0.2595,1.0249],[0.2468,1.0207],[0.246,1.0165],[0.2403,1.0153],[0.2419,1.0128],[0.232,1.0107],[0.2274,1.0048],[0.2211,1.0028],[0.2175,1.006],[0.2145,1.0123],[0.2138,1.0195],[0.2097,1.0297],[0.2116,1.0342]]]]},{"k":"df","n":"Ciudad de Buenos Aires","p":[[[[0.1139,0.7685],[0.1167,0.7663],[0.1186,0.763],[0.1143,0.7588],[0.1114,0.7614],[0.1117,0.7668],[0.1139,0.7685]]]]},{"k":"sc","n":"Santa Cruz","p":[[[[-0.1519,0.3396],[-0.1526,0.3335],[-0.1495,0.3233],[-0.1467,0.3185],[-0.139,0.3135],[-0.1297,0.3026],[-0.1146,0.3],[-0.1088,0.301],[-0.1027,0.296],[-0.1022,0.2845],[-0.1048,0.2757],[-0.1049,0.2705],[-0.1076,0.2641],[-0.106,0.263],[-0.1117,0.2606],[-0.1157,0.2561],[-0.1167,0.2523],[-0.1243,0.2491],[-0.1296,0.243],[-0.1356,0.2396],[-0.1374,0.234],[-0.1425,0.2305],[-0.146,0.2262],[-0.1471,0.22],[-0.1517,0.2117],[-0.1495,0.2119],[-0.1476,0.2174],[-0.1489,0.1972],[-0.151,0.1905],[-0.1566,0.1852],[-0.1627,0.1836],[-0.1678,0.1902],[-0.1715,0.1968],[-0.1696,0.1889],[-0.1631,0.1826],[-0.1651,0.1805],[-0.1755,0.1749],[-0.1796,0.166],[-0.1809,0.159],[-0.1802,0.153],[-0.1858,0.147],[-0.1808,0.1501],[-0.1774,0.1373],[-0.1746,0.1307],[-0.1748,0.1281],[-0.178,0.1266],[-0.1819,0.128],[-0.1896,0.125],[-0.1824,0.1267],[-0.1736,0.1253],[-0.1669,0.1123],[-0.1587,0.1013],[-0.1694,0.1031],[-0.1787,0.1064],[-0.185,0.1061],[-0.1962,0.11],[-0.2419,0.1063],[-0.2433,0.1107],[-0.2464,0.1138],[-0.2515,0.1162],[-0.2537,0.1204],[-0.2562,0.1212],[-0.2542,0.1244],[-0.2531,0.1339],[-0.2569,0.1388],[-0.2548,0.1414],[-0.2549,0.1487],[-0.2569,0.1513],[-0.2565,0.1556],[-0.2617,0.1569],[-0.264,0.1541],[-0.2681,0.1554],[-0.2749,0.1488],[-0.277,0.1494],[-0.2799,0.1564],[-0.2827,0.167],[-0.2884,0.1711],[-0.2877,0.1758],[-0.2904,0.1788],[-0.2886,0.1857],[-0.2927,0.1939],[-0.2906,0.2027],[-0.2829,0.2037],[-0.2841,0.2061],[-0.281,0.2159],[-0.2748,0.2197],[-0.2715,0.2246],[-0.2726,0.2374],[-0.266,0.2426],[-0.2684,0.2524],[-0.274,0.2578],[-0.2703,0.27],[-0.2706,0.2767],[-0.2666,0.2778],[-0.2635,0.2833],[-0.2597,0.2876],[-0.2637,0.292],[-0.2629,0.3013],[-0.2569,0.306],[-0.2576,0.3125],[-0.2606,0.3226],[-0.2648,0.3257],[-0.2613,0.3276],[-0.2585,0.3322],[-0.1725,0.3386],[-0.1519,0.3396]]]]},{"k":"jy","n":"Jujuy","p":[[[[-0.1702,1.1766],[-0.1625,1.2042],[-0.169,1.2107],[-0.1636,1.2171],[-0.1636,1.2221],[-0.155,1.2259],[-0.1535,1.2335],[-0.141,1.2374],[-0.1382,1.2403],[-0.1364,1.25],[-0.1313,1.2486],[-0.1295,1.2454],[-0.1255,1.2445],[-0.1188,1.2381],[-0.1131,1.2392],[-0.0995,1.239],[-0.1012,1.2304],[-0.1048,1.2206],[-0.1021,1.219],[-0.102,1.2109],[-0.0994,1.2059],[-0.094,1.2051],[-0.0941,1.1957],[-0.0913,1.194],[-0.0883,1.1869],[-0.0807,1.1882],[-0.073,1.1821],[-0.07,1.1864],[-0.0645,1.1861],[-0.0634,1.1609],[-0.0688,1.1523],[-0.0752,1.1498],[-0.0794,1.1448],[-0.086,1.1506],[-0.0889,1.1455],[-0.0934,1.1465],[-0.0983,1.1506],[-0.1017,1.1488],[-0.1125,1.1524],[-0.1185,1.1616],[-0.1185,1.1646],[-0.1269,1.1696],[-0.1278,1.1757],[-0.1266,1.1844],[-0.133,1.189],[-0.1394,1.1908],[-0.141,1.1838],[-0.1387,1.1775],[-0.1389,1.1656],[-0.144,1.1581],[-0.1499,1.1594],[-0.1563,1.1645],[-0.1646,1.1732],[-0.1702,1.1766]]]]}];
+const RELIEF_B64='AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3NS8mAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg2LyYmJCMiISAfHx0AAAAAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOTYvKignJiUjIwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4NzAtLCspKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADk3MjAwLi0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOjc0MjAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA6NzEwLgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADs3MSwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOzgxAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA7OQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADs5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD88NSwAAAAAACEgHh4cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwMAAAAEAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+PDYtKSgnJiQkIiIhIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAAAAAMEAwQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPjw1Li0sKykoKCYlIyIhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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AAAAAAAAAAAAAAAAAAAAAACuq6GUjYiEgYEAHhUPCwAAAAUFBQQEBAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK2poZONh4OAfygdFQ8LAAAABQQEBAQEAwMFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArKmgAAAAAAAAAAAAAAAABgUEBAQEBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACrqQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==';
+const RELIEF_META={"NX": 110, "NY": 236, "X0": -0.3, "X1": 0.3, "Y0": -0.01, "Y1": 1.26};
+const GEO_PTS={"pl": {"aconcagua": [-0.2486, 0.838], "puna": [-0.1544, 1.1669], "cordoba": [-0.0773, 0.8902], "llanura": [0.0207, 0.8105], "meseta": [-0.1656, 0.3955], "meso": [0.1194, 0.9575], "mar": [0.0354, 0.3774], "andes": [-0.2661, 0.5589], "formosa": [0.1391, 1.0817], "colorado": [0.0989, 1.0784], "iguazu": [0.2678, 1.0926], "ba\u00f1ado": [0.0453, 1.163]}, "rv": {"parana": [[0.2632, 1.0964], [0.2173, 1.035], [0.1799, 1.0317], [0.1231, 1.0402], [0.1159, 1.0292], [0.1004, 0.9771], [0.0851, 0.9213], [0.0497, 0.8811], [0.0497, 0.8323], [0.0801, 0.801], [0.1137, 0.7806]], "paraguay": [[0.1554, 1.2348], [0.1636, 1.1816], [0.1605, 1.1139], [0.1384, 1.0809], [0.1231, 1.0402]], "pilcomayo": [[-0.0108, 1.2351], [0.0288, 1.2046], [0.0696, 1.1699], [0.1136, 1.1422], [0.1587, 1.1121]], "bermejo": [[-0.0701, 1.2053], [-0.0441, 1.194], [-0.0029, 1.1675], [0.0377, 1.1294], [0.0844, 1.0906], [0.1271, 1.0551]], "uruguay": [[0.2853, 1.0357], [0.2256, 1.0079], [0.1855, 0.9576], [0.1506, 0.9257], [0.1383, 0.8811], [0.1256, 0.8252], [0.1174, 0.7917]], "plata": [[0.1172, 0.7879], [0.1409, 0.7639], [0.1641, 0.7396], [0.1748, 0.7161]], "iguazu": [[0.2867, 1.0965], [0.2728, 1.0957], [0.2632, 1.0964]]}};
+let THREE_REF=null;
+let RELIEF=null;
+function reliefData(){if(RELIEF)return RELIEF;const b=atob(RELIEF_B64);const a=new Uint8Array(b.length);for(let i=0;i<b.length;i++)a[i]=b.charCodeAt(i);RELIEF={...RELIEF_META,a};return RELIEF;}
+function reliefSample(x,y){const R=reliefData();const fx=(x-R.X0)/(R.X1-R.X0)*(R.NX-1),fy=(y-R.Y0)/(R.Y1-R.Y0)*(R.NY-1);
+  if(fx<0||fy<0||fx>R.NX-1||fy>R.NY-1)return -1;const i=Math.floor(fx),j=Math.floor(fy),u=fx-i,v=fy-j;const at=(a,b)=>R.a[Math.min(R.NY-1,b)*R.NX+Math.min(R.NX-1,a)];
+  const q=(at(i,j)*(1-u)+at(i+1,j)*u)*(1-v)+(at(i,j+1)*(1-u)+at(i+1,j+1)*u)*v;if(q<.5)return -1;return Math.max(0,(q-1)/254*7000);}
+function hyps(THREE,m){const st=[[0,'#4E8F3A'],[300,'#7DB04F'],[800,'#C8C47A'],[1500,'#C79A5E'],[3000,'#9C6B45'],[4300,'#7E5A48'],[5300,'#EDEDED']];
+  for(let i=0;i<st.length-1;i++){if(m<=st[i+1][0]){const t=(m-st[i][0])/(st[i+1][0]-st[i][0]);return new THREE.Color(st[i][1]).lerp(new THREE.Color(st[i+1][1]),t);}}return new THREE.Color(st[st.length-1][1]);}
+function reliefBuild(k,o){const {THREE,group:g}=k;const [x0,x1,y0,y1]=o.crop;const xc=(x0+x1)/2,yc=(y0+y1)/2,sc=o.scale,E=o.exag;
+  const nx=o.nx||150,ny=Math.round(nx*(y1-y0)/(x1-x0));const pos=new Float32Array(nx*ny*3),col=new Float32Array(nx*ny*3);const sea=new THREE.Color(o.slab||'#5DA9DD');
+  for(let j=0;j<ny;j++)for(let i=0;i<nx;i++){const x=x0+(x1-x0)*i/(nx-1),y=y0+(y1-y0)*j/(ny-1);const m=reliefSample(x,y);const q=(j*nx+i)*3;
+    pos[q]=(x-xc)*sc;pos[q+1]=m<0?-.006:m*E+.002;pos[q+2]=-(y-yc)*sc;const c=m<0?sea:hyps(THREE,m);col[q]=c.r;col[q+1]=c.g;col[q+2]=c.b;}
+  const idx=[];for(let j=0;j<ny-1;j++)for(let i=0;i<nx-1;i++){const a=j*nx+i,b=a+1,c=a+nx,d=c+1;idx.push(a,b,c,b,d,c);}
+  const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.BufferAttribute(pos,3));geo.setAttribute('color',new THREE.BufferAttribute(col,3));geo.setIndex(idx);geo.computeVertexNormals();
+  g.add(new THREE.Mesh(geo,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.85,metalness:0})));
+  const w=(x1-x0)*sc+.06,d=(y1-y0)*sc+.06,r=.04;const sh=new THREE.Shape();sh.moveTo(-w/2+r,-d/2);sh.lineTo(w/2-r,-d/2);sh.quadraticCurveTo(w/2,-d/2,w/2,-d/2+r);sh.lineTo(w/2,d/2-r);sh.quadraticCurveTo(w/2,d/2,w/2-r,d/2);sh.lineTo(-w/2+r,d/2);sh.quadraticCurveTo(-w/2,d/2,-w/2,d/2-r);sh.lineTo(-w/2,-d/2+r);sh.quadraticCurveTo(-w/2,-d/2,-w/2+r,-d/2);
+  const slab=new THREE.Mesh(new THREE.ExtrudeGeometry(sh,{depth:.03,bevelEnabled:true,bevelSize:.008,bevelThickness:.008,bevelSegments:3}),new THREE.MeshPhysicalMaterial({color:o.slab||'#4F9FD8',roughness:.25,clearcoat:.8}));
+  slab.rotation.x=-Math.PI/2;slab.position.y=-.042;g.add(slab);
+  const W=(x,y,lift=0)=>{const m=reliefSample(x,y);return new THREE.Vector3((x-xc)*sc,(m<0?0:m*E)+lift,-(y-yc)*sc);};
+  return {w:W};}
+function planetTex(cols,spot,mode){const c=document.createElement('canvas');c.width=512;c.height=256;const x=c.getContext('2d');let s=hashStr(String(cols)+mode+spot);const r=()=>{s=(s*16807)%2147483647;return s/2147483647;};
+  if(mode==='earth'){x.fillStyle='#2D6FB8';x.fillRect(0,0,512,256);
+    for(let i=0;i<9;i++){const cx=r()*512,cy=50+r()*156;for(let j=0;j<14;j++){x.fillStyle=r()<.7?'#4E9A3E':'#B7A36A';x.beginPath();x.ellipse(cx+(r()-.5)*90,cy+(r()-.5)*60,8+r()*26,6+r()*18,r()*3,0,7);x.fill();}}
+    x.fillStyle='#F4F8FB';x.fillRect(0,0,512,18);x.fillRect(0,238,512,18);
+    for(let i=0;i<60;i++){x.fillStyle='rgba(255,255,255,.45)';x.beginPath();x.ellipse(r()*512,r()*256,10+r()*30,3+r()*6,r()*.6,0,7);x.fill();}}
+  else if(mode==='sun'){x.fillStyle='#FFB300';x.fillRect(0,0,512,256);for(let i=0;i<500;i++){x.fillStyle=cols[Math.floor(r()*cols.length)];x.globalAlpha=.35;x.beginPath();x.arc(r()*512,r()*256,2+r()*10,0,7);x.fill();}x.globalAlpha=1;}
+  else{let y=0;while(y<256){const h=6+r()*22;x.fillStyle=cols[Math.floor(r()*cols.length)];x.fillRect(0,y,512,h+1);y+=h;}
+    for(let i=0;i<200;i++){x.fillStyle=cols[Math.floor(r()*cols.length)];x.globalAlpha=.4;x.beginPath();x.ellipse(r()*512,r()*256,4+r()*24,1+r()*4,0,0,7);x.fill();}x.globalAlpha=1;
+    if(spot){x.fillStyle='#B5482E';x.beginPath();x.ellipse(330,160,30,14,0,0,7);x.fill();}}
+  const t=new THREE_REF.CanvasTexture(c);t.encoding=THREE_REF.sRGBEncoding;return t;}
+function mantleTex(){const c=document.createElement('canvas');c.width=c.height=256;const x=c.getContext('2d');const g=x.createRadialGradient(128,128,20,128,128,128);g.addColorStop(0,'#F0A23A');g.addColorStop(1,'#B53A1F');x.fillStyle=g;x.fillRect(0,0,256,256);
+  let s=11;const r=()=>{s=(s*16807)%2147483647;return s/2147483647;};for(let i=0;i<80;i++){x.strokeStyle='rgba(255,210,120,.35)';x.lineWidth=2+r()*4;x.beginPath();x.arc(128,128,30+r()*95,r()*6,r()*6+1.2);x.stroke();}
+  const t=new THREE_REF.CanvasTexture(c);t.encoding=THREE_REF.sRGBEncoding;return t;}
 
 const TEX={};
 function hashStr(s){let h=7;for(const c of s)h=(h*31+c.charCodeAt(0))%2147483647;return h||1;}
@@ -929,7 +1108,7 @@ atuendo(k){
   L(4,[.3,.88,.03],[.64,.62,0]);L(5,[.27,.48,.045],[.62,.45,0]);L(6,[.27,.22,.03],[.62,.27,0]);L(7,[.27,.04,.07],[.6,.08,0]);
   L(8,[-.21,1.17,-.06],[-.6,1.26,0]);L(9,[-.21,1.02,.036],[-.62,1.08,0]);L(10,[-.21,.5,.12],[-.62,.5,0]);L(11,[-.31,.99,.02],[-.62,.9,0]);
   L(12,[-.36,.8,.04],[-.64,.72,0]);L(13,[-.255,.025,.16],[-.6,.12,0]);
-  return t=>{const s=Math.sin(t*.9);W.rotation.y=.07*s;M.rotation.y=-.07*s;W.position.y=.004*Math.max(0,Math.sin(t*1.8));M.position.y=.004*Math.max(0,Math.sin(t*1.8+1));};
+  return t=>{const s=Math.sin(t*.9);const w=window.__who;W.rotation.y=.07*s+(w==='ella'?.15*Math.sin(t*3):0);M.rotation.y=-.07*s+(w==='el'?.15*Math.sin(t*3):0);W.position.y=.004*Math.max(0,Math.sin(t*1.8))+(w==='ella'?.012*Math.abs(Math.sin(t*7)):0);M.position.y=.004*Math.max(0,Math.sin(t*1.8+1))+(w==='el'?.012*Math.abs(Math.sin(t*7)):0);};
 },
 campana(k){
   const {THREE,group:g,sph,L,mesh}=k;const {P,PT,varTube,blob}=extra(k);
@@ -1008,7 +1187,249 @@ campana(k){
   L(4,[.285,.5,.1],[.64,.5,0]);L(5,[.21,.66,.09],[.64,.73,0]);L(6,[.25,.45,.11],[.62,.38,0]);L(7,[.26,.34,.06],[.62,.25,0]);
   L(8,[.26,.04,-.06],[.6,.1,0]);L(9,[.33,.665,-.09],[.64,.61,0]);
   L(10,[-.25,1.125,.03],[-.6,1.24,0]);L(11,[-.2,.85,.075],[-.62,.96,0]);L(12,[-.2,.35,.19],[-.62,.45,0]);L(13,[-.25,.025,.2],[-.6,.1,0]);
-  return t=>{const s=Math.sin(t*.9);W.rotation.y=.06*s;M.rotation.y=-.05*s;sk.rotation.y=.08*Math.sin(t*1.8);};
+  return t=>{const s=Math.sin(t*.9);const w=window.__who;W.rotation.y=.06*s+(w==='ella'?.15*Math.sin(t*3):0);M.rotation.y=-.05*s+(w==='el'?.15*Math.sin(t*3):0);sk.rotation.y=.08*Math.sin(t*1.8);W.position.y=w==='ella'?.012*Math.abs(Math.sin(t*7)):0;M.position.y=w==='el'?.012*Math.abs(Math.sin(t*7)):0;};
+},
+mapa(k){
+  const {THREE,group:g,L,mesh,labels,labelGroup}=k;const {P,PT}=extra(k);
+  const REG={noa:['#E07A3F','#C9602B','#EF9A5C','#D36A35','#F0A86E'],nea:['#4FA34A','#3C8C3A','#6CBB5E','#2F7A35'],cuyo:['#9C5BB5','#B57AC9','#844A9E','#A868BE'],
+    pam:['#E9B92E','#D9A520','#F2C94C','#E0AE33','#F5D36A','#CF9A1C'],pat:['#3B8FC9','#57A8DA','#2C78B0','#6CB6E0','#4597CF']};
+  const regionOf={jy:'noa',sa:'noa',tm:'noa',ct:'noa',se:'noa',fm:'nea',cc:'nea',mn:'nea',cn:'nea',mz:'cuyo',sj:'cuyo',sl:'cuyo',lr:'cuyo',
+    ba:'pam',df:'pam',cb:'pam',sf:'pam',er:'pam',lp:'pam',nq:'pat',rn:'pat',ch:'pat',sc:'pat',tf:'pat'};
+  const count={};
+  const board=new THREE.Shape();const bw=.78,bh=1.42,r=.05;board.moveTo(-bw/2+r,-.08);board.lineTo(bw/2-r,-.08);board.quadraticCurveTo(bw/2,-.08,bw/2,-.08+r);board.lineTo(bw/2,bh-.08-r);board.quadraticCurveTo(bw/2,bh-.08,bw/2-r,bh-.08);board.lineTo(-bw/2+r,bh-.08);board.quadraticCurveTo(-bw/2,bh-.08,-bw/2,bh-.08-r);board.lineTo(-bw/2,-.08+r);board.quadraticCurveTo(-bw/2,-.08,-bw/2+r,-.08);
+  const bg=new THREE.ExtrudeGeometry(board,{depth:.02,bevelEnabled:true,bevelSize:.01,bevelThickness:.01,bevelSegments:3});
+  const bm=mesh(bg,PT('#9FD3EE',{roughness:.5,clearcoat:.4},.08),[0,0,-.05]);g.add(bm);
+  const nArrow=mesh(new THREE.ConeGeometry(.025,.07,3),P('#D63B3B'),[.29,1.24,-.015]);g.add(nArrow);
+  const pieces=[],base=[],dirs=[];
+  AR_PROV.forEach(pr=>{
+    const idx=TOPICS.find(t=>t.key==='mapa').parts.findIndex(p=>p[3]===pr.k);
+    const reg=regionOf[pr.k]||'pam';count[reg]=(count[reg]||0)+1;const pal=REG[reg];const col=pal[(count[reg]-1)%pal.length];
+    const piece=new THREE.Group();const mat=P(col,{clearcoat:.6,clearcoatRoughness:.3,roughness:.45});
+    let cx=0,cy=0,n=0,area=0;
+    pr.p.forEach(poly=>{const sh=new THREE.Shape(poly[0].map(([x,y])=>new THREE.Vector2(x,y)));
+      poly.slice(1).forEach(h=>sh.holes.push(new THREE.Path(h.map(([x,y])=>new THREE.Vector2(x,y)))));
+      const geo=new THREE.ExtrudeGeometry(sh,{depth:.03,bevelEnabled:true,bevelSize:.0025,bevelThickness:.004,bevelSegments:2,curveSegments:2});
+      piece.add(new THREE.Mesh(geo,mat));
+      const edge=new THREE.LineSegments(new THREE.EdgesGeometry(geo,40),new THREE.LineBasicMaterial({color:'#FFFFFF',transparent:true,opacity:.75}));piece.add(edge);
+      let a=0,sx=0,sy=0;const R=poly[0];for(let i=0;i<R.length-1;i++){const c=R[i][0]*R[i+1][1]-R[i+1][0]*R[i][1];a+=c;sx+=(R[i][0]+R[i+1][0])*c;sy+=(R[i][1]+R[i+1][1])*c;}
+      if(Math.abs(a)>area){area=Math.abs(a);cx=sx/(3*a);cy=sy/(3*a);}});
+    piece.userData={idx,cx,cy};g.add(piece);pieces[idx]=piece;
+    const dx=cx,dy=cy-.62;const len=Math.hypot(dx,dy)||1;dirs[idx]=new THREE.Vector3((dx/len*.16+dx*.25)*.7,(dy/len*.1+dy*.18)*.7,.12+((idx*37)%7)*.02);
+    piece.traverse(o=>{if(o.isMesh)o.userData.pieceIdx=idx;});
+    const small=['df','tm'].includes(pr.k);
+    L(idx,[cx,cy,.04],[cx+(pr.k==='df'?.12:pr.k==='tm'?-.11:0),cy+(pr.k==='df'?.02:0),.06]);
+    const grp=labels[idx].parent;grp.children.forEach(o=>{if(!o.isSprite)o.visible=!!small;});
+    labels[idx].scale.multiplyScalar(small?.5:.55);labels[idx].userData.base=labels[idx].scale.clone();
+    base[idx]=labels[idx].position.clone();
+  });
+  let sel=-1,selT=0;
+  g.userData.onPart=j=>{sel=j;selT=performance.now();};
+  g.userData.pickMeshes=pieces;
+  const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+  return t=>{
+    const c=t%16;let e=0;if(c>5&&c<7)e=ease((c-5)/2);else if(c>=7&&c<11)e=1;else if(c>=11&&c<13)e=1-ease((c-11)/2);
+    const selOn=sel>=0&&performance.now()-selT<5000;if(selOn)e=0;
+    pieces.forEach((p,i)=>{if(!p)return;const d=dirs[i];const lift=selOn&&i===sel?1:0;
+      p.position.set(d.x*e,d.y*e,d.z*e+lift*.1+(e>.99?.01*Math.sin(t*2+i):0));
+      p.rotation.z=e*(((i*13)%9)-4)*.03;
+      const s=1+lift*.18;p.scale.set(s,s,1+lift);
+      if(lift){p.position.x-=(p.userData.cx)*(s-1);p.position.y-=(p.userData.cy)*(s-1);}
+      const lb=labels[i];if(lb&&base[i]){lb.position.copy(base[i]).add(p.position);if(lift){lb.position.x+=p.userData.cx*(s-1);lb.position.y+=p.userData.cy*(s-1);lb.position.z+=.06;}}});
+  };
+},
+relieve(k){
+  const {THREE,group:g,L}=k;const R=reliefBuild(k,{crop:[-.3,.3,-.01,1.26],scale:1,exag:.12/7000});
+  g.userData.flat=true;
+  const P2=GEO_PTS.pl,W=R.w;
+  L(0,W(P2.andes[0],P2.andes[1],.03),[-.48,.2,-.05]);
+  L(1,W(P2.aconcagua[0],P2.aconcagua[1],.01),[-.5,.22,-.2]);
+  L(2,W(P2.puna[0],P2.puna[1],.01),[-.42,.2,-.55]);
+  L(3,W(P2.cordoba[0],P2.cordoba[1],.01),[.42,.2,-.35]);
+  L(4,W(P2.llanura[0],P2.llanura[1],.01),[.45,.16,-.1]);
+  L(5,W(P2.meseta[0],P2.meseta[1],.01),[-.45,.14,.3]);
+  L(6,W(P2.meso[0],P2.meso[1],.01),[.48,.16,-.45]);
+  L(7,W(P2.mar[0],P2.mar[1],0),[.45,.1,.35]);
+  return t=>{};
+},
+rios(k){
+  const {THREE,group:g,L,sph}=k;const {P}=extra(k);
+  const R=reliefBuild(k,{crop:[-.12,.32,.68,1.26],scale:2.3,exag:.045/7000,slab:'#DCD3BC'});
+  g.userData.flat=true;const W=R.w;
+  const RV=GEO_PTS.rv,flows=[];
+  const add=(key,r,col)=>{const pts=RV[key].map(([x,y])=>W(x,y,.012));const c=new THREE.CatmullRomCurve3(pts);
+    g.add(new THREE.Mesh(new THREE.TubeGeometry(c,Math.max(40,pts.length*20),r,8,false),P(col,{clearcoat:1,clearcoatRoughness:.1,roughness:.2})));flows.push({c,n:Math.round(c.getLength()/.05)});return c;};
+  const cP=add('parana',.012,'#2E7FD6'),cPy=add('paraguay',.01,'#2E7FD6'),cPi=add('pilcomayo',.008,'#3D8BDB'),cB=add('bermejo',.008,'#C9763A'),cU=add('uruguay',.011,'#2E7FD6');
+  const pl=RV.plata.map(([x,y])=>W(x,y,.012));const cPl=new THREE.CatmullRomCurve3(pl);
+  g.add(new THREE.Mesh(new THREE.TubeGeometry(cPl,40,.03,10,false),P('#5B9BD5',{clearcoat:1,roughness:.2})));
+  add('iguazu',.008,'#2E7FD6');
+  const P2=GEO_PTS.pl;
+  const fall=W(P2.iguazu[0],P2.iguazu[1],.02);const spray=new THREE.Group();spray.position.copy(fall);g.add(spray);
+  for(let i=0;i<8;i++)spray.add(sph(.008,P('#FFFFFF',{transparent:true,opacity:.8}),[Math.cos(i)*.015,.01*i%3,Math.sin(i)*.015]));
+  const bn=W(P2['bañado'][0],P2['bañado'][1],.006);const bm=new THREE.Mesh(new THREE.CircleGeometry(.07,32),P('#7FC8E8',{transparent:true,opacity:.8,roughness:.2,clearcoat:1}));bm.rotation.x=-Math.PI/2;bm.scale.set(1.6,.8,1);bm.position.copy(bn);g.add(bm);
+  for(let i=0;i<18;i++){const a=i*2.4;g.add(k.cyl(.002,.001,.03,P('#5E8F3A'),[bn.x+Math.cos(a)*.08*Math.random(),bn.y+.015,bn.z+Math.sin(a)*.04*Math.random()]));}
+  const city=(p,col)=>{const w=W(p[0],p[1],.02);g.add(sph(.012,P(col,{emissive:col,emissiveIntensity:.4}),[w.x,w.y,w.z]));return w;};
+  const fw=city(P2.formosa,'#E2402E'),cw=city(P2.colorado,'#F2B632');
+  const dots=[];flows.forEach(f=>{for(let i=0;i<f.n;i++){const d=sph(.006,P('#BFE6FF',{emissive:'#6FC3FF',emissiveIntensity:.8}));g.add(d);dots.push({d,c:f.c,o:i/f.n});}});
+  const mid=(c,u)=>c.getPointAt(u);const up=(v,h)=>[v.x,v.y+h,v.z];
+  L(0,up(mid(cP,.55),0),[.62,.12,.25]);L(1,up(mid(cPy,.4),0),[.45,.14,-.55]);L(2,up(mid(cPi,.35),0),[-.3,.15,-.6]);L(3,up(mid(cB,.3),0),[-.55,.13,-.3]);
+  L(4,up(mid(cU,.5),0),[.65,.1,.0]);L(5,up(cPl.getPointAt(.5),0),[.5,.1,.55]);L(6,[fall.x,fall.y+.02,fall.z],[.65,.16,-.35]);
+  L(7,[bn.x,bn.y+.01,bn.z],[-.45,.16,-.45]);L(8,[fw.x,fw.y,fw.z],[.3,.2,-.3]);L(9,[cw.x,cw.y,cw.z],[-.1,.22,-.25]);
+  return t=>{dots.forEach(({d,c,o})=>d.position.copy(c.getPointAt((t*.05+o)%1)).add(new THREE.Vector3(0,.01,0)));spray.rotation.y=t*2;spray.children.forEach((s,i)=>s.position.y=.005+(t*.3+i/8)%1*.03);};
+},
+biomas(k){
+  const {THREE,group:g,L,mesh,sph,cyl}=k;const {P,PT,varTube,blob}=extra(k);
+  g.add(mesh(new THREE.CylinderGeometry(.52,.55,.06,64),PT('#7A5634',{roughness:.95},.25),[0,.03,0]));
+  const half=(a0,col)=>{const m=new THREE.Mesh(new THREE.CircleGeometry(.52,64,a0,Math.PI),col);m.rotation.x=-Math.PI/2;m.position.y=.061;return m;};
+  g.add(half(Math.PI/2,PT('#9C8A4E',{roughness:.95},.3)));
+  const water=half(-Math.PI/2,P('#3E8FC4',{transparent:true,opacity:.85,roughness:.15,clearcoat:1}));water.position.y=.064;g.add(water);
+  [[.18,-.12,.07],[.36,.1,.06],[.22,.25,.05],[.4,-.25,.045]].forEach(([x,z,r])=>{const e=new THREE.Mesh(new THREE.CircleGeometry(r,24),PT('#6DA544',{roughness:.8},.3));e.rotation.x=-Math.PI/2;e.position.set(x,.066,z);g.add(e);});
+  for(let i=0;i<40;i++){const a=rnd()*Math.PI-Math.PI/2,r=.1+rnd()*.38;const x=Math.cos(a)*r,z=Math.sin(a)*r;if(x<.06)continue;g.add(cyl(.002,.001,.04+rnd()*.04,P('#6E8F3A'),[x,.085,z],[rnd()*.2,0,rnd()*.2],5));}
+  function rnd(){rnd.s=(rnd.s||7)*16807%2147483647;return rnd.s/2147483647;}
+  const tree=(x,z,h,trunk,crown,cs)=>{g.add(varTube([[x,.06,z],[x+.01,.06+h*.5,z],[x-.005,.06+h,z]],u=>.018-.01*u,PT(trunk,{roughness:.8},.3,4),20,8));
+    [[0,0,0,1],[.05,-.02,.02,.75],[-.05,-.015,-.02,.8],[.0,.03,-.04,.7]].forEach(([dx,dy,dz,s])=>g.add(blob(cs*s,PT(crown,{roughness:.7},.25),[x+dx,.06+h+dy+cs*.4,z+dz],[1,.8,1],.12,3,x*10+dx*30)));};
+  tree(-.32,-.12,.32,'#5A2E1E','#2F6B2A',.085);tree(-.2,.18,.26,'#7A8A55','#79B84A',.07);tree(-.4,.15,.22,'#5A2E1E','#3C7A30',.065);tree(-.14,-.3,.2,'#7A8A55','#86C25A',.06);
+  // yacaré
+  const yac=new THREE.Group();yac.position.set(.26,.068,.02);g.add(yac);const YM=PT('#4F5B2E',{clearcoat:.6},.35);
+  yac.add(blob(1,YM,[0,0,0],[.11,.02,.035],.05));yac.add(blob(1,YM,[.13,.005,0],[.055,.014,.022],.05));yac.add(blob(1,YM,[-.15,0,0],[.07,.012,.015],.05));
+  for(let i=0;i<7;i++)yac.add(mesh(new THREE.ConeGeometry(.006,.014,4),YM,[-.08+i*.025,.018,0]));
+  for(const s of[-1,1])yac.add(sph(.008,P('#E8D04A'),[.1,.018,s*.016]));
+  // carpincho
+  const car=new THREE.Group();car.position.set(.05,.06,.3);car.rotation.y=-.6;g.add(car);const CM=PT('#8A5A34',{roughness:.8},.3);
+  car.add(blob(1,CM,[0,.05,0],[.07,.045,.04],.04));car.add(blob(1,CM,[.075,.065,0],[.035,.03,.025],.05));
+  for(const s of[-1,1]){car.add(sph(.008,CM,[.07,.095,s*.015]));car.add(sph(.005,P('#111'),[.1,.072,s*.014]));for(const f of[-1,1])car.add(cyl(.009,.008,.03,CM,[f*.04,.012,s*.022]));}
+  // oso hormiguero
+  const oso=new THREE.Group();oso.position.set(-.2,.06,-.02);oso.rotation.y=.4;g.add(oso);const OM=PT('#7C766C',{roughness:.8},.25);
+  oso.add(blob(1,OM,[0,.07,0],[.08,.045,.035],.04));oso.add(varTube([[.07,.075,0],[.11,.065,0],[.17,.05,0]],u=>.022-.016*u,OM,20,10));
+  oso.add(blob(1,PT('#3A3530',{roughness:.9},.3),[-.11,.085,0],[.07,.04,.018],.25,5,2));
+  oso.add(varTube([[.06,.1,.03],[0,.07,.04],[-.05,.04,.03]],()=>.008,P('#1A1A1A'),12,6,false));oso.add(varTube([[.06,.1,-.03],[0,.07,-.04],[-.05,.04,-.03]],()=>.008,P('#1A1A1A'),12,6,false));
+  for(const s of[-1,1])for(const f of[-1,1])oso.add(cyl(.01,.009,.05,OM,[f*.045,.025,s*.022]));
+  // tatú carreta
+  const tat=new THREE.Group();tat.position.set(-.05,.06,-.32);tat.rotation.y=-.3;g.add(tat);const TM=PT('#8E7A5E',{clearcoat:.5},.2);
+  const shell=new THREE.Mesh(new THREE.SphereGeometry(.06,32,16,0,Math.PI*2,0,Math.PI/2),TM);shell.scale.set(1.3,.75,.9);shell.position.y=.02;tat.add(shell);
+  for(let i=0;i<6;i++)tat.add(mesh(new THREE.TorusGeometry(.05,.003,6,30,Math.PI),P('#5E4E3A'),[-.04+i*.016,.02,0],[1,.85,1.1],[0,Math.PI/2,0]));
+  tat.add(blob(1,TM,[.085,.025,0],[.025,.018,.015],.05));tat.add(mesh(new THREE.ConeGeometry(.01,.07,8),TM,[-.1,.018,0],null,[0,0,Math.PI/2]));
+  // tuyuyú
+  const tu=new THREE.Group();tu.position.set(.38,.065,-.2);g.add(tu);const WM=P('#F7F7F2',{roughness:.6});
+  for(const s of[-1,1])tu.add(varTube([[0,0,s*.01],[0,.08,s*.01]],()=>.003,P('#151515'),6,5,false));
+  tu.add(blob(1,WM,[0,.1,0],[.04,.03,.026],.05));tu.add(varTube([[.03,.11,0],[.045,.15,0],[.05,.18,0]],u=>.01,P('#111'),12,8));
+  tu.add(mesh(new THREE.TorusGeometry(.011,.005,6,16),P('#D2232A'),[.03,.112,0],null,[Math.PI/2,0,0]));tu.add(mesh(new THREE.ConeGeometry(.008,.06,8),P('#111'),[.08,.18,0],null,[0,0,-Math.PI/2+.25]));
+  L(0,[-.3,.42,-.1],[-.62,.6,0]);L(1,[-.32,.36,-.12],[-.65,.42,0]);L(2,[-.2,.33,.18],[-.6,.25,.2]);L(3,[.3,.07,.1],[.62,.25,.2]);
+  L(4,[.3,.09,.02],[.62,.4,0]);L(5,[.08,.12,.3],[.45,.15,.4]);L(6,[-.2,.13,-.02],[-.62,.12,-.1]);L(7,[-.05,.11,-.32],[-.4,.08,-.5]);L(8,[.4,.25,-.2],[.62,.55,-.2]);
+  return t=>{yac.position.x=.26+.03*Math.sin(t*.4);yac.rotation.y=.1*Math.sin(t*.4);oso.children[1].rotation.z=.05*Math.sin(t*3);tu.rotation.y=.3*Math.sin(t*.7);car.position.y=.06+.003*Math.sin(t*2);};
+},
+solar(k){
+  const {THREE,group:g,L,labels,mesh,sph}=k;const {P}=extra(k);
+  g.userData.flat=true;
+  const sunTex=planetTex(['#FFB300','#FF8F00','#FFD54F','#FF6F00'],0,'sun');
+  const sun=mesh(new THREE.SphereGeometry(.1,48,32),new THREE.MeshBasicMaterial({map:sunTex,toneMapped:false}),[0,.12,0]);g.add(sun);
+  const gc=document.createElement('canvas');gc.width=gc.height=128;const gx=gc.getContext('2d');const gr=gx.createRadialGradient(64,64,10,64,64,64);gr.addColorStop(0,'rgba(255,200,60,.9)');gr.addColorStop(1,'rgba(255,140,0,0)');gx.fillStyle=gr;gx.fillRect(0,0,128,128);
+  const glow=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(gc),blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,toneMapped:false}));glow.scale.setScalar(.42);glow.position.set(0,.12,0);g.add(glow);
+  const pl=[['Mercurio',.17,.014,['#9E9E9E','#7A7A7A','#BDBDBD'],4.1],['Venus',.23,.022,['#E8C27A','#D9A85A','#F2D59A'],1.6],['Tierra',.3,.024,null,1],
+    ['Marte',.37,.018,['#C1440E','#A5360A','#D96A3A'],.53],['Júpiter',.49,.05,['#D9B38C','#B5835A','#F0D9B5','#C8956A'],.084],['Saturno',.62,.042,['#E8D49A','#CBB27A','#F2E3B5'],.034],
+    ['Urano',.73,.03,['#9EE0E8','#7FCBD6'],.012],['Neptuno',.83,.03,['#3E66D9','#2A4FB8','#5A80E8'],.006]];
+  const bodies=[];let moon=null;
+  pl.forEach(([n,r,sz,cols,sp],i)=>{
+    const orb=new THREE.Mesh(new THREE.RingGeometry(r-.0015,r+.0015,128),new THREE.MeshBasicMaterial({color:'#9FB4D9',transparent:true,opacity:.45,side:THREE.DoubleSide}));orb.rotation.x=-Math.PI/2;orb.position.y=.12;g.add(orb);
+    const tex=n==='Tierra'?planetTex(null,0,'earth'):planetTex(cols,n==='Júpiter'?1:0);
+    const m=new THREE.Mesh(new THREE.SphereGeometry(sz,32,24),new THREE.MeshStandardMaterial({map:tex,roughness:.8,emissive:'#222',emissiveIntensity:.25}));
+    const holder=new THREE.Group();holder.add(m);g.add(holder);
+    if(n==='Saturno'){const rg=new THREE.Mesh(new THREE.RingGeometry(sz*1.3,sz*2.1,64),new THREE.MeshStandardMaterial({color:'#E3CF9A',side:THREE.DoubleSide,transparent:true,opacity:.85}));rg.rotation.x=-Math.PI/2+.4;holder.add(rg);}
+    if(n==='Tierra'){moon=sph(.008,P('#CFCFCF'));holder.add(moon);}
+    m.traverse(o=>o.userData.pieceIdx=i+1);
+    bodies.push({holder,m,r,sp:sp*.35,a:i*.9,sz});
+  });
+  sun.userData.pieceIdx=0;
+  g.userData.pickMeshes=[sun,...bodies.map(b=>b.m)];
+  L(0,[0,.24,0],[0,.36,0]);
+  bodies.forEach((b,i)=>{L(i+1,[0,0,0],[0,0,0]);});
+  L(9,[0,0,0],[0,0,0]);
+  const lab=[];for(let i=0;i<10;i++){const s=labels[i];s.parent.children.forEach(o=>{if(!o.isSprite)o.visible=false;});s.scale.multiplyScalar(.8);s.userData.base=s.scale.clone();lab.push(s);}
+  let sel=-1,selT=0;g.userData.onPart=j=>{sel=j;selT=performance.now();};
+  let tt=0,last=0;
+  return t=>{const dt=Math.min(.05,t-last);last=t;const hold=sel>=0&&performance.now()-selT<5000;if(!hold)tt+=dt;
+    sun.rotation.y=t*.1;
+    bodies.forEach((b,i)=>{const a=b.a+tt*b.sp;b.holder.position.set(Math.cos(a)*b.r,.12,-Math.sin(a)*b.r);b.m.rotation.y=t*(i===2?2:.6);
+      const s=hold&&sel===i+1?2.2:1;b.holder.scale.setScalar(s);
+      lab[i+1].position.set(b.holder.position.x,.12+b.sz*s+.05,b.holder.position.z);});
+    if(moon){const a=t*1.6;moon.position.set(Math.cos(a)*.045,0,Math.sin(a)*.045);const e=bodies[2].holder.position;lab[9].position.set(e.x+.06,.12+.07,e.z);}
+    sun.scale.setScalar(hold&&sel===0?1.3:1);};
+},
+capas(k){
+  const {THREE,group:g,L,mesh}=k;const {P}=extra(k);
+  const E=new THREE.Group();E.position.y=.45;g.add(E);
+  const lay=[['atm',.44,new THREE.MeshPhysicalMaterial({color:'#8FD3FF',transparent:true,opacity:.18,roughness:.1,depthWrite:false,side:THREE.DoubleSide})],
+    ['cor',.4,new THREE.MeshStandardMaterial({map:planetTex(null,0,'earth'),roughness:.7})],['man',.375,P('#D9532B',{roughness:.6})],['ext',.22,P('#F29A2E',{roughness:.5})],['int',.12,P('#FFE36E',{emissive:'#FFB300',emissiveIntensity:.5,roughness:.4})]];
+  const capCol={atm:null,cor:'#8A6A4A',man:'#C84A28',ext:'#F0A23A',int:'#FFE36E'};
+  lay.forEach(([key,r,m],i)=>{const s=new THREE.Mesh(new THREE.SphereGeometry(r,64,48,0,Math.PI*1.5),m);s.rotation.y=Math.PI;E.add(s);
+    if(capCol[key]){const inner=lay[i+1]?lay[i+1][1]:0;const cm=P(capCol[key],{side:THREE.DoubleSide,roughness:.6});
+      if(key==='man'){cm.map=mantleTex();}
+      const a=new THREE.Mesh(new THREE.RingGeometry(inner,r,64,1,-Math.PI/2,Math.PI),cm);a.rotation.y=-Math.PI/2;E.add(a);
+      const b=new THREE.Mesh(new THREE.RingGeometry(inner,r,64,1,-Math.PI/2,Math.PI),cm);E.add(b);}});
+  L(0,[.25,.45+.33,.2],[.62,1.0,0]);L(1,[.3,.45+.26,-.1],[.65,.78,0]);L(2,[-.03,.45+.3,.2],[-.6,.9,0]);L(3,[-.02,.45+.17,.12],[-.62,.6,0]);L(4,[-.02,.45+.05,.05],[-.6,.35,0]);
+  return t=>{E.rotation.y=-.6+.35*Math.sin(t*.4);};
+},
+palabras(k){
+  const {THREE,group:g,L,mesh,sph}=k;const {P,varTube,blob}=extra(k);
+  const chars=[];
+  const defs=[['art','#F28C28','Artículo',['el · la','los · las','un · una']],['sus','#2F80ED','Sustantivo',['perro · casa','Ana · Formosa','mesa · sol']],
+    ['adj','#E0457B','Adjetivo',['grande · rojo','alegre · suave','lindo · alto']],['ver','#27AE60','Verbo',['correr · saltar','comer · leer','jugar · cantar']]];
+  defs.forEach(([who,col,name,ex],i)=>{
+    const c=new THREE.Group();c.position.set(-.48+i*.32,0,0);g.add(c);const M=P(col,{clearcoat:.7,clearcoatRoughness:.25});
+    const sc=who==='art'?.8:1;c.scale.setScalar(sc);
+    c.add(blob(1,M,[0,.3,0],[.1,.15,.09],.03,2,i+1));
+    for(const s of[-1,1]){c.add(sph(.026,P('#FFFFFF'),[s*.038,.36,.075]));c.add(sph(.013,P('#111'),[s*.036,.36,.098]));c.add(sph(1,P('#FF9AA8',{roughness:.9}),[s*.06,.32,.075],[.018,.01,.006]));}
+    c.add(new THREE.Mesh(new THREE.TorusGeometry(.03,.006,8,20,Math.PI),P('#5A1E1E')).translateY(.315).translateZ(.085).rotateZ(Math.PI));
+    const armL=new THREE.Group(),armR=new THREE.Group();armL.position.set(-.09,.3,0);armR.position.set(.09,.3,0);c.add(armL,armR);
+    armL.add(varTube([[0,0,0],[-.06,-.05,.02],[-.09,-.1,.03]],()=>.013,M,12,8));armL.add(sph(.02,P('#FFFFFF'),[-.09,-.105,.03]));
+    armR.add(varTube([[0,0,0],[.06,-.05,.02],[.09,-.1,.03]],()=>.013,M,12,8));armR.add(sph(.02,P('#FFFFFF'),[.09,-.105,.03]));
+    const legs=[];for(const s of[-1,1]){const lg=new THREE.Group();lg.position.set(s*.045,.16,0);lg.add(varTube([[0,0,0],[0,-.11,0]],()=>.015,M,8,8,false));lg.add(blob(1,P('#2B2B2B',{clearcoat:.6}),[0,-.12,.02],[.025,.016,.035],.05));c.add(lg);legs.push(lg);}
+    if(who==='art')c.add(mesh(new THREE.ConeGeometry(.02,.04,4),P('#1A1A1A'),[0,.22,.08],null,[0,0,Math.PI/2]));
+    if(who==='sus'){c.add(mesh(new THREE.BoxGeometry(.07,.04,.005),P('#FFFFFF'),[0,.25,.092]));}
+    if(who==='adj'){c.add(blob(1,P('#2B2B2B'),[0,.45,0],[.09,.025,.09],.05));armR.add(varTube([[.09,-.1,.03],[.13,-.02,.06]],()=>.005,P('#8A5A2A'),6,5));armR.add(sph(.012,P('#F2C230'),[.135,-.01,.062]));}
+    if(who==='ver'){c.add(mesh(new THREE.TorusGeometry(.085,.012,8,32),P('#FFFFFF'),[0,.41,0],[1,1,1],[Math.PI/2,0,0]));}
+    const cv=document.createElement('canvas');cv.width=420;cv.height=300;const x=cv.getContext('2d');rr(x,6,6,408,288,30);x.fillStyle='#FFFFFF';x.fill();x.lineWidth=12;x.strokeStyle=col;x.stroke();
+    x.fillStyle=col;x.font='800 54px Nunito, sans-serif';x.textAlign='center';x.fillText(name,210,74);x.fillStyle='#1D2A3A';x.font='700 40px Nunito, sans-serif';ex.forEach((e,j)=>x.fillText(e,210,140+j*58));
+    const tx=new THREE.CanvasTexture(cv);tx.encoding=THREE.sRGBEncoding;const sign=new THREE.Mesh(new THREE.PlaneGeometry(.26,.186),new THREE.MeshBasicMaterial({map:tx,toneMapped:false}));sign.position.set(0,.62/sc,.0);c.add(sign);
+    c.add(k.cyl(.004,.004,.1/sc,P('#8A5A2A'),[0,.5/sc,-.005]));
+    c.traverse(o=>{if(o.isMesh)o.userData.pieceIdx=i;});
+    chars.push({c,who,armL,armR,legs,sc});
+  });
+  const bc=document.createElement('canvas');bc.width=1200;bc.height=180;const bx=bc.getContext('2d');rr(bx,6,6,1188,168,40);bx.fillStyle='#FFFDF5';bx.fill();bx.lineWidth=8;bx.strokeStyle='#1D2A3A';bx.stroke();
+  bx.font='800 96px Nunito, sans-serif';bx.textBaseline='middle';const ws=[['El ','#F28C28'],['perro ','#2F80ED'],['grande ','#E0457B'],['corre.','#27AE60']];let tw=ws.reduce((a,[w])=>a+bx.measureText(w).width,0);let xx=600-tw/2;ws.forEach(([w,c])=>{bx.fillStyle=c;bx.fillText(w,xx,92);xx+=bx.measureText(w).width;});
+  const bt=new THREE.CanvasTexture(bc);bt.encoding=THREE.sRGBEncoding;const banner=new THREE.Mesh(new THREE.PlaneGeometry(1.1,.165),new THREE.MeshBasicMaterial({map:bt,toneMapped:false}));banner.position.set(0,.95,-.02);g.add(banner);banner.userData.pieceIdx=4;
+  g.userData.pickMeshes=[...chars.map(c=>c.c),banner];
+  L(0,[-.48,.45*.8,.08],[-.62,.25,.1]);L(1,[-.16,.47,.09],[-.16,.05,.2]);L(2,[.16,.47,.09],[.16,.05,.2]);L(3,[.48,.47,.09],[.62,.25,.1]);L(4,[-.3,.95,0],[-.62,1.08,0]);
+  return t=>{const w=window.__who;
+    chars.forEach((ch,i)=>{const talk=w===ch.who||w==='all';const b=talk?.025*Math.abs(Math.sin(t*8)):.006*Math.sin(t*2+i);
+      ch.c.position.y=b;ch.armL.rotation.z=-.2+(talk?.5*Math.sin(t*6):.1*Math.sin(t*1.5+i));ch.armR.rotation.z=.2+(talk?-.5*Math.sin(t*6+1):-.1*Math.sin(t*1.5+i));
+      if(ch.who==='ver'){ch.legs[0].rotation.x=.5*Math.sin(t*5);ch.legs[1].rotation.x=-.5*Math.sin(t*5);ch.c.position.y+=.02*Math.abs(Math.sin(t*5));}
+      if(ch.who==='adj')ch.armR.rotation.z=.2+.6*Math.sin(t*3);});};
+},
+abc(k){
+  const {THREE,group:g,mesh}=k;const {P,PT}=extra(k);
+  const T=TOPICS.find(t=>t.key==='abc');const n=T.parts.length;const Rr=.62;
+  g.add(mesh(new THREE.CylinderGeometry(.7,.74,.05,72),PT('#F4E2B8',{roughness:.7},.15),[0,.025,0]));
+  const ring=new THREE.Group();ring.position.y=.05;g.add(ring);
+  const cols=['#E74C3C','#F39C12','#F1C40F','#2ECC71','#1ABC9C','#3498DB','#9B59B6','#E91E63','#FF7043'];
+  const s=.13,rr2=.022;const sh=new THREE.Shape();sh.moveTo(-s/2+rr2,-s/2);sh.lineTo(s/2-rr2,-s/2);sh.quadraticCurveTo(s/2,-s/2,s/2,-s/2+rr2);sh.lineTo(s/2,s/2-rr2);sh.quadraticCurveTo(s/2,s/2,s/2-rr2,s/2);sh.lineTo(-s/2+rr2,s/2);sh.quadraticCurveTo(-s/2,s/2,-s/2,s/2-rr2);sh.lineTo(-s/2,-s/2+rr2);sh.quadraticCurveTo(-s/2,-s/2,-s/2+rr2,-s/2);
+  const geo=new THREE.ExtrudeGeometry(sh,{depth:.09,bevelEnabled:true,bevelSize:.012,bevelThickness:.012,bevelSegments:4,curveSegments:8});geo.translate(0,0,-.045);
+  const blocks=[];
+  T.parts.forEach((p,i)=>{const col=cols[i%cols.length];const cv=document.createElement('canvas');cv.width=cv.height=512;const x=cv.getContext('2d');
+    x.fillStyle=col;x.fillRect(0,0,512,512);x.fillStyle='#FFFFFF';rr(x,40,40,432,432,60);x.fill();
+    const L1=p[0].split(' ')[0];x.fillStyle=col;x.textAlign='center';x.textBaseline='middle';x.font='800 210px "Baloo 2", Nunito, sans-serif';x.fillText(L1+L1.toLowerCase(),256,190);
+    x.fillStyle='#1D2A3A';x.font='800 64px Nunito, sans-serif';x.fillText(p[2],256,340);x.fillStyle='#55657A';x.font='700 40px Nunito, sans-serif';x.fillText(p[4]||'',256,412);
+    const tx=new THREE.CanvasTexture(cv);tx.encoding=THREE.sRGBEncoding;tx.anisotropy=4;tx.repeat.set(1/s,1/s);tx.offset.set(.5,.5);
+    const m=new THREE.Mesh(geo,[new THREE.MeshPhysicalMaterial({map:tx,roughness:.4,clearcoat:.6}),P(col,{clearcoat:.6,roughness:.4})]);
+    const a=i/n*Math.PI*2;const b=new THREE.Group();b.position.set(Math.sin(a)*Rr,.09+(i%2)*.0,Math.cos(a)*Rr);b.rotation.y=a;b.add(m);ring.add(b);m.userData.pieceIdx=i;blocks.push({b,a,m});});
+  const pole=mesh(new THREE.CylinderGeometry(.03,.03,.5,24),P('#E74C3C',{clearcoat:.6}),[0,.3,0]);g.add(pole);
+  const top=mesh(new THREE.SphereGeometry(.07,32,16),P('#F1C40F',{clearcoat:.8}),[0,.58,0]);g.add(top);
+  g.userData.pickMeshes=blocks.map(b=>b.m);
+  let sel=-1,selT=0,rot=0,target=null;g.userData.onPart=j=>{sel=j;selT=performance.now();target=-blocks[j].a;};
+  let last=0;
+  return t=>{const dt=Math.min(.05,t-last);last=t;const hold=sel>=0&&performance.now()-selT<6000;
+    if(hold&&target!=null){let d=((target-rot)%(Math.PI*2)+Math.PI*3)%(Math.PI*2)-Math.PI;rot+=d*Math.min(1,dt*4);}else rot+=dt*.18;
+    ring.rotation.y=rot;top.rotation.y=-rot*.5;
+    blocks.forEach((bl,i)=>{const on=hold&&i===sel;const tg=on?1.45:1;bl.b.scale.lerp(new THREE.Vector3(tg,tg,tg),.15);bl.b.position.y=.09+(on?.12:0)+.008*Math.sin(t*2+i);});};
 }
 };
 
@@ -1043,12 +1464,14 @@ function buildTopic(THREE,i){
   let top=0;const bx=new THREE.Box3();
   k.group.children.forEach(ch=>{if(ch!==k.labelGroup){bx.setFromObject(ch);if(isFinite(bx.max.y))top=Math.max(top,bx.max.y);}});
   k.labels.forEach(l=>{if(l)top=Math.max(top,l.position.y+.03);});
-  const title=titleSprite(THREE,topic);title.position.set(0,top+.16,0);k.labelGroup.add(title);
+  const title=titleSprite(THREE,topic);title.position.set(0,top+.16,0);
+  if(k.group.userData.flat){const bb=new THREE.Box3().setFromObject(k.group);title.position.set(0,Math.max(top,.2)+.12,bb.min.z-.02);}
+  k.labelGroup.add(title);
   const parts=k.labelGroup.children.filter(o=>o!==title);
   let timers=[];
   const reveal=()=>{timers.forEach(clearTimeout);timers=[];popIn(title,0);
     parts.forEach((g,j)=>{const sp=g.children.find(o=>o.isSprite);g.visible=false;timers.push(setTimeout(()=>{g.visible=true;popIn(sp,0);},450+j*380));});};
-  return {group:k.group,labelGroup:k.labelGroup,labels:k.labels,title,tick:tick||(()=>{}),reveal};
+  return {group:k.group,labelGroup:k.labelGroup,labels:k.labels,title,tick:tick||(()=>{}),reveal,onPart:k.group.userData.onPart,pickMeshes:k.group.userData.pickMeshes};
 }
 function pulse(lbl){if(!lbl)return;const b=lbl.userData.base;let n=0;const iv=setInterval(()=>{n++;const s=1+.35*Math.abs(Math.sin(n/4));lbl.scale.set(b.x*s,b.y*s,1);if(n>24){clearInterval(iv);lbl.scale.copy(b);}},40);}
 
@@ -1084,16 +1507,17 @@ function setExplorer(i){
   exModel=buildTopic(THREE,exIndex);exModel.labelGroup.visible=showLabels;EX.scene.add(exModel.group);exModel.reveal();
   const box=new THREE.Box3().setFromObject(exModel.group);const c=box.getCenter(new THREE.Vector3());const sz=box.getSize(new THREE.Vector3());
   const vf=EX.camera.fov*Math.PI/360,hf=Math.atan(Math.tan(vf)*EX.camera.aspect);
-  const d=Math.max((sz.y/2+.08)/Math.tan(vf),(sz.x/2+.12)/Math.tan(hf))*1.08;
-  EX.controls.target.set(0,c.y,0);EX.camera.position.set(.25*d,c.y+.2*d,d*.95);EX.controls.update();
+  const flat=exModel.group.userData.flat;const vy=flat?Math.max(sz.z*.62,sz.y):sz.y;
+  const d=Math.max((vy/2+.08)/Math.tan(vf),(sz.x/2+.12)/Math.tan(hf))*1.08;
+  EX.controls.target.set(0,flat?c.y:c.y,flat?c.z*.3:0);if(flat)EX.camera.position.set(.05*d,c.y+.78*d,.62*d);else EX.camera.position.set(.25*d,c.y+.2*d,d*.95);EX.controls.update();
   const panel=$('exPanel');panel.style.setProperty('--tc',t.color);panel.scrollTop=0;
-  $('exArea').textContent=t.area;$('exTitle').textContent=t.title;$('exIntro').textContent=t.intro;
+  $('exArea').textContent=t.area;$('exTitle').textContent=t.title;$('exIntro').textContent=topicIntro(t);
   const ul=$('exParts');ul.innerHTML='';
   t.parts.forEach((p,j)=>{const li=document.createElement('li');const b=document.createElement('button');b.type='button';
     b.innerHTML='<i></i><span><strong></strong><small></small></span>';b.querySelector('strong').textContent=p[0];b.querySelector('small').textContent=p[1];
     b.addEventListener('click',()=>explainPart(EXC,j));li.appendChild(b);ul.appendChild(li);});
   EXC.i=exIndex;showSaid(EXC,'');quizUI($('exQuiz'),EXC,false);
-  say(t.title+'. '+t.intro);
+  speakTopic(t);
 }
 function toggleLabels(){showLabels=!showLabels;$('exLabels').setAttribute('aria-pressed',String(showLabels));if(exModel)exModel.labelGroup.visible=showLabels;}
 $('exLabels').addEventListener('click',toggleLabels);
@@ -1128,7 +1552,7 @@ async function openAR(){
     TOPICS.forEach((t,i)=>{const anchor=mindar.addAnchor(i);const m=buildTopic(THREE,i);m.labelGroup.visible=arLabelsOn;
       const pivot=new THREE.Group();pivot.rotation.x=Math.PI/2;pivot.scale.setScalar(.85);pivot.add(m.group);anchor.group.add(pivot);models.push(m);if(m.title&&m.title.parent)m.title.parent.remove(m.title);
       anchor.onTargetFound=()=>{const fresh=ARC.i!==i;arCurrent=i;ARC.i=i;m.reveal();$('reticle').classList.add('locked');$('hudMsg').hidden=true;showArCard(i,fresh);
-        if(fresh||Date.now()-lastSpoke.t>25000){say(t.title+'. '+t.intro+' Tocá una palabra para escucharla, o preguntame con el micrófono.');lastSpoke={i,t:Date.now()};}};
+        if(fresh||Date.now()-lastSpoke.t>25000){speakTopic(t,'Tocá una palabra para escucharla, o preguntame con el micrófono.');lastSpoke={i,t:Date.now()};}};
       anchor.onTargetLost=()=>{if(arCurrent===i){arCurrent=-1;$('reticle').classList.remove('locked');$('hudMsg').hidden=false;$('hudMsg').textContent='Apuntá a una de las láminas';}};});
     AR={mindar,renderer,models};
     onTap($('arBox'),e=>{if(arCurrent<0)return;const r=pickLabel(renderer.domElement,camera,models[arCurrent],e);if(r==='title')explainTopic(ARC);else if(r!=null&&r>=0)explainPart(ARC,r);});
@@ -1139,7 +1563,7 @@ async function openAR(){
   }catch(e){console.error(e);busy(null);await closeAR();toast(cameraError(e));}
 }
 function resetArCard(){const c=$('arCard');c.style.removeProperty('--tc');$('arTitle').textContent='Mi escuela aumentada';$('arIntro').textContent='Apuntá la cámara a una de las láminas. Acá vas a ver la explicación del tema, sin tapar la imagen 3D.';showSaid(ARC,'');$('arQopts').hidden=true;}
-function showArCard(i,fresh){const t=TOPICS[i];const c=$('arCard');c.style.setProperty('--tc',t.color);$('arTitle').textContent=t.title;$('arIntro').textContent=t.intro;
+function showArCard(i,fresh){const t=TOPICS[i];const c=$('arCard');c.style.setProperty('--tc',t.color);$('arTitle').textContent=t.title;$('arIntro').textContent=topicIntro(t);
   if(fresh){showSaid(ARC,'');$('arQopts').hidden=true;ARC.quizOn=false;}c.hidden=false;}
 async function closeAR(){
   const s=AR;AR=null;arCurrent=-1;ARC.i=-1;lastSpoke={i:-1,t:0};hush();if(rec)try{rec.abort();}catch(e){}
@@ -1162,10 +1586,271 @@ function pickVoice(){
   return vs.find(v=>L(v).startsWith('es'))||null;
 }
 if(VOZ.ok){VOZ.voice=pickVoice();try{speechSynthesis.addEventListener('voiceschanged',()=>{VOZ.voice=pickVoice();});}catch(e){}}
-function say(text,queue){
-  if(!VOZ.on||!VOZ.ok||!text)return;
-  try{if(!queue)speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=VOZ.voice?VOZ.voice.lang:'es-AR';if(VOZ.voice)u.voice=VOZ.voice;u.rate=.98;speechSynthesis.speak(u);}catch(e){}
+/* ---------- Voces en primera persona ---------- */
+const VOCES={
+"relieve":{pitch:0.9,rate:1,
+ intro:"¡Hola! Soy el relieve argentino. Al oeste me levanto con la Cordillera de los Andes, y hacia el este bajo hasta las llanuras y el mar. Tocá cada lugar y te cuento cómo es.",
+ parts:[
+  "Soy la Cordillera de los Andes. Recorro todo el oeste del país, ¡y tengo cumbres nevadas!",
+  "Soy el Aconcagua, con casi siete mil metros. ¡Soy la montaña más alta de América!",
+  "Soy la Puna, un altiplano alto, frío y seco del noroeste.",
+  "Somos las Sierras Pampeanas, más bajitas y muy antiguas, como las de Córdoba.",
+  "Soy la llanura chaco-pampeana, casi plana. En mí está Formosa.",
+  "Soy la meseta patagónica, fría y con mucho viento.",
+  "Soy la Mesopotamia, tierra baja entre los ríos Paraná y Uruguay.",
+  "Soy el Mar Argentino, parte del océano Atlántico."]},
+"rios":{pitch:1.05,rate:1,
+ intro:"¡Hola! Somos los ríos de la Cuenca del Plata. Nuestras aguas viajan hasta el Río de la Plata. Mirá cómo fluyen las gotitas. Tocá cada río y se presenta.",
+ parts:[
+  "Soy el río Paraná, el más largo del país.",
+  "Soy el río Paraguay. Separo a Formosa del país Paraguay.",
+  "Soy el río Pilcomayo, en el norte de Formosa. Formo bañados.",
+  "Soy el río Bermejo. Mi agua es rojiza por el barro, y separo a Formosa de Chaco.",
+  "Soy el río Uruguay, en el límite con Brasil y Uruguay.",
+  "Soy el Río de la Plata, ¡tan ancho que parezco un mar!",
+  "Somos las Cataratas del Iguazú, ¡una de las maravillas naturales del mundo!",
+  "Soy el Bañado La Estrella, un gran humedal de Formosa.",
+  "Soy la ciudad de Formosa, a orillas del río Paraguay.",
+  "¡Soy El Colorado, la ciudad de esta escuela, cerca del río Bermejo!"]},
+"biomas":{pitch:1.05,rate:1,
+ intro:"¡Hola! Somos los ambientes de Formosa: el monte chaqueño y el bañado. Tocá a cada planta y animal, y se presentan.",
+ parts:[
+  "Soy el monte chaqueño, un bosque que aguanta el calor y la sequía.",
+  "Soy el quebracho colorado. ¡Mi madera es durísima!",
+  "Soy el palo santo, de tronco verdoso y madera perfumada.",
+  "Soy el bañado, con agua bajita, juncos y embalsados.",
+  "Soy el yacaré. Me encanta tomar sol en la orilla.",
+  "Soy el carpincho, ¡el roedor más grande del mundo!",
+  "Soy el oso hormiguero. Como hormigas con mi lengua larguísima.",
+  "Soy el tatú carreta, el armadillo más grande. Cuidame, estoy en peligro.",
+  "Soy el tuyuyú, un ave grande que camina por los bañados."]},
+"solar":{pitch:1.0,rate:1,
+ intro:"¡Hola! Somos el sistema solar: el Sol y ocho planetas que giramos a su alrededor. Tocanos y te contamos.",
+ parts:[
+  "Soy el Sol, una estrella. Les doy luz y calor a todos.",
+  "Soy Mercurio, el más cercano al Sol y el más chiquito.",
+  "Soy Venus, el planeta más caliente.",
+  "Soy la Tierra, ¡tu planeta! Giro sobre mí misma en un día, y alrededor del Sol en un año.",
+  "Soy Marte, el planeta rojo.",
+  "Soy Júpiter, ¡el más grande de todos!",
+  "Soy Saturno, el de los anillos.",
+  "Soy Urano, frío y celeste. Giro acostado.",
+  "Soy Neptuno, el más lejano y con vientos muy fuertes.",
+  "Soy la Luna, y doy vueltas alrededor de la Tierra."]},
+"capas":{pitch:0.95,rate:1,
+ intro:"¡Hola! Soy la Tierra, y me corté para que veas mis capas por dentro. Tocá cada capa.",
+ parts:[
+  "Soy la atmósfera, el aire que te rodea. Te doy oxígeno.",
+  "Soy la corteza, la capa más finita. ¡Sobre mí vivís vos!",
+  "Soy el manto, roca muy caliente que se mueve despacito.",
+  "Soy el núcleo externo, metal líquido y muy caliente.",
+  "Soy el núcleo interno, una bola de metal sólido. ¡La parte más caliente!"]},
+"palabras":{pitch:1,rate:1,
+ dialog:[["sus", "¡Hola! Somos las clases de palabras y juntos armamos oraciones."], ["art", "Yo soy el artículo, y voy delante del sustantivo."], ["adj", "Yo soy el adjetivo: digo cómo son las cosas."], ["ver", "¡Y yo soy el verbo: hago que pasen cosas!"], ["sus", "Juntos decimos: el perro grande corre. ¡Tocanos y te contamos más!"]],
+ who:["art", "sus", "adj", "ver", "all"],
+ parts:[
+  "Soy el artículo, chiquito pero importante. Voy delante del sustantivo: el, la, los, las, un, una.",
+  "Soy el sustantivo. Nombro personas, animales, cosas y lugares: perro, Ana, mesa, Formosa.",
+  "Soy el adjetivo, y pinto las palabras: digo cómo son. Grande, rojo, alegre, suave.",
+  "¡Soy el verbo y no paro de moverme! Digo acciones: correr, saltar, comer, leer.",
+  "Somos una oración: el perro grande corre. El es artículo, perro es sustantivo, grande es adjetivo y corre es verbo."]},
+"abc":{pitch:1.15,rate:1,
+ intro:"¡Hola! Somos las letras del abecedario, y giramos en una calesita. Tocá una letra y te dice sus sílabas.",
+ parts:[
+  "Soy la vocal A. A de árbol.",
+  "Soy la letra B. Sueno así: ba, be, bi, bo, bu. B de barco.",
+  "Soy la letra C. Sueno así: ca, ce, ci, co, cu. C de casa.",
+  "Soy la letra D. Sueno así: da, de, di, do, du. D de dedo.",
+  "Soy la vocal E. E de elefante.",
+  "Soy la letra F. Sueno así: fa, fe, fi, fo, fu. F de foca.",
+  "Soy la letra G. Sueno así: ga, ge, gi, go, gu. G de gato.",
+  "Soy la letra H. Sueno así: ha, he, hi, ho, hu. H de helado.",
+  "Soy la vocal I. I de isla.",
+  "Soy la letra J. Sueno así: ja, je, ji, jo, ju. J de jirafa.",
+  "Soy la letra K. Sueno así: ka, ke, ki, ko, ku. K de kiwi.",
+  "Soy la letra L. Sueno así: la, le, li, lo, lu. L de luna.",
+  "Soy la letra M. Sueno así: ma, me, mi, mo, mu. M de mano.",
+  "Soy la letra N. Sueno así: na, ne, ni, no, nu. N de nube.",
+  "Soy la letra Ñ. Sueno así: ña, ñe, ñi, ño, ñu. Ñ de ñandú.",
+  "Soy la vocal O. O de oso.",
+  "Soy la letra P. Sueno así: pa, pe, pi, po, pu. P de pato.",
+  "Soy la letra Q. Sueno así: que, qui. Q de queso.",
+  "Soy la letra R. Sueno así: ra, re, ri, ro, ru. R de ratón.",
+  "Soy la letra S. Sueno así: sa, se, si, so, su. S de sol.",
+  "Soy la letra T. Sueno así: ta, te, ti, to, tu. T de tatú.",
+  "Soy la vocal U. U de uva.",
+  "Soy la letra V. Sueno así: va, ve, vi, vo, vu. V de vaca.",
+  "Soy la letra W. Sueno así: wa, we, wi. W de wichí.",
+  "Soy la letra X. Sueno así: xa, xe, xi, xo, xu. X de xilófono.",
+  "Soy la letra Y. Sueno así: ya, ye, yi, yo, yu. Y de yacaré.",
+  "Soy la letra Z. Sueno así: za, ze, zi, zo, zu. Z de zorro."]},
+mapa:{pitch:1.05,rate:1,
+ intro:'¡Hola! Soy la República Argentina. Tengo veintitrés provincias y la Ciudad Autónoma de Buenos Aires. ¡Mirá cómo me desarmo como un rompecabezas! Tocá una provincia y se presenta.',
+ parts:[
+  "¡Hola! Soy Buenos Aires y mi capital es La Plata. Soy la provincia con más habitantes, y en mis llanuras se cultiva y se cría ganado.",
+  "Soy la Ciudad Autónoma de Buenos Aires, la Capital Federal. Acá está la Casa Rosada, la sede del Gobierno nacional.",
+  "Soy Catamarca y mi capital es San Fernando del Valle de Catamarca. Tengo el volcán Ojos del Salado y la Fiesta Nacional del Poncho.",
+  "Soy Chaco, vecina de Formosa, y mi capital es Resistencia, la ciudad de las esculturas.",
+  "Soy Chubut y mi capital es Rawson. A mi Península Valdés llegan las ballenas francas.",
+  "Soy Córdoba y mi capital también se llama Córdoba. Tengo sierras, ríos y una de las universidades más antiguas de América.",
+  "Soy Corrientes y mi capital es Corrientes. Tengo los Esteros del Iberá, y acá nació el chamamé.",
+  "Soy Entre Ríos y mi capital es Paraná. Me llamo así porque estoy entre los ríos Paraná y Uruguay.",
+  "¡Hola! Soy Formosa, y mi capital también se llama Formosa. Tengo el Bañado La Estrella, y en mi tierra está El Colorado, ¡donde está esta escuela!",
+  "Soy Jujuy y mi capital es San Salvador de Jujuy. Tengo la Quebrada de Humahuaca y el Cerro de los Siete Colores.",
+  "Soy La Pampa y mi capital es Santa Rosa. Mi árbol más típico es el caldén.",
+  "Soy La Rioja y mi capital también se llama La Rioja. Tengo el Parque Nacional Talampaya, con paredones rojos gigantes.",
+  "Soy Mendoza y mi capital es Mendoza. Tengo el Aconcagua, ¡la montaña más alta de América!",
+  "Soy Misiones y mi capital es Posadas. Tengo las Cataratas del Iguazú, y en mi tierra colorada crece la yerba mate.",
+  "Soy Neuquén y mi capital también se llama Neuquén. Tengo lagos, volcanes y huellas de dinosaurios gigantes.",
+  "Soy Río Negro y mi capital es Viedma. En mi territorio está Bariloche, junto al lago Nahuel Huapi.",
+  "Soy Salta, ¡la Linda!, y mi capital es Salta. Tengo el Tren a las Nubes.",
+  "Soy San Juan y mi capital es San Juan. Tengo el Valle de la Luna, Ischigualasto.",
+  "Soy San Luis y mi capital es San Luis. Tengo sierras y el Parque Nacional Sierra de las Quijadas.",
+  "Soy Santa Cruz y mi capital es Río Gallegos. Tengo el glaciar Perito Moreno, ¡un gigante de hielo!",
+  "Soy Santa Fe y mi capital es Santa Fe. En mi ciudad de Rosario está el Monumento a la Bandera.",
+  "Soy Santiago del Estero. Mi capital es la ciudad más antigua del país: ¡me dicen Madre de Ciudades!",
+  "Soy Tierra del Fuego, Antártida e Islas del Atlántico Sur, y mi capital es Ushuaia, la ciudad más austral. Las Islas Malvinas son parte de mí: ¡son argentinas!",
+  "Soy Tucumán, la provincia más pequeña. Mi capital es San Miguel de Tucumán, y en mi Casa Histórica se declaró la Independencia, el 9 de julio de 1816."]},
+digestivo:{pitch:1.05,rate:1,
+ intro:'¡Hola! Soy el sistema digestivo. Transformo los alimentos en nutrientes tan pequeñitos que pasan a tu sangre. ¿Ves la bolita amarilla? Es un bocado haciendo su viaje por mí. Tocá mis partes y cada una te cuenta qué hace.',
+ parts:['Soy la boca y el esófago. En la boca masticás y la saliva empieza la digestión; yo, el esófago, llevo el bocado hasta el estómago.',
+  'Soy el estómago. Mezclo la comida con los jugos gástricos y la convierto en una papilla llamada quimo.',
+  'Soy el hígado. Fabrico la bilis, que ayuda a digerir las grasas.',
+  'Soy el páncreas. Preparo el jugo pancreático y lo vuelco en el intestino.',
+  'Soy el intestino delgado. Mido unos siete metros, y por mis paredes los nutrientes pasan a la sangre.',
+  'Soy el intestino grueso. Absorbo el agua y formo la materia fecal.',
+  'Somos el recto y el ano. Guardamos los desechos y los eliminamos.',
+  'Soy la vesícula biliar. Guardo la bilis que hace el hígado hasta que se necesita.',
+  'Soy el apéndice, un tubito cerrado al comienzo del intestino grueso.',
+  'Somos las glándulas salivales. Fabricamos la saliva, que humedece la comida.']},
+respiratorio:{pitch:1.15,rate:1,
+ intro:'¡Hola! Soy el sistema respiratorio. Tomo el oxígeno del aire y se lo paso a tu sangre. Mirá cómo se inflan mis pulmones cuando el diafragma baja: ¡estoy respirando! Tocá mis partes para conocerlas.',
+ parts:['Somos las fosas nasales. Por acá entra el aire, y lo limpiamos, lo calentamos y lo humedecemos.',
+  'Soy la faringe. Por mí pasan el aire y también los alimentos.',
+  'Soy la laringe. Tengo las cuerdas vocales: gracias a mí podés hablar y cantar.',
+  'Soy la tráquea, un tubo con anillos de cartílago que lleva el aire hacia tu pecho.',
+  'Soy un bronquio. La tráquea se divide en dos, y yo llevo el aire a un pulmón.',
+  'Soy un bronquiolo. Soy una ramita finita, como las de un árbol.',
+  'Soy un pulmón, esponjoso y elástico. Tenés dos, protegidos por las costillas.',
+  'Soy un alvéolo pulmonar, una bolsita diminuta. En mí el oxígeno pasa a la sangre.',
+  'Soy el diafragma, un músculo. Bajo cuando inspirás y subo cuando espirás.']},
+circulatorio:{pitch:.95,rate:1,
+ intro:'¡Hola! Soy el sistema circulatorio. Mi corazón late unas setenta veces por minuto y empuja la sangre por todo tu cuerpo. Mis arterias van en rojo y mis venas en azul. Tocá mis partes.',
+ parts:['Soy el corazón, un músculo del tamaño de tu puño. Bombeo la sangre sin parar, ¡nunca descanso!',
+  'Somos la aorta y las arterias grandes. La aorta es la arteria más grande: reparte la sangre que sale del corazón.',
+  'Somos las arterias de la cabeza. Llevamos sangre con oxígeno a tu cerebro.',
+  'Soy la arteria pulmonar. Llevo la sangre a los pulmones para que busque oxígeno.',
+  'Soy la circulación capilar. Somos vasitos finísimos donde la sangre deja el oxígeno y los nutrientes.',
+  'Soy el sistema venoso. Las venas devolvemos la sangre al corazón.',
+  'Somos las arterias y venas del brazo y de la mano.',
+  'Somos las arterias y venas de la pierna y del pie.']},
+esqueletico:{pitch:.85,rate:.98,
+ intro:'¡Hola, hola! Soy el sistema esquelético, ¿ves que te saludo? Tengo doscientos seis huesos. Sostengo tu cuerpo, protejo tus órganos y, junto con los músculos, te dejo moverte. Tocá mis huesos.',
+ parts:['Soy el cráneo. Protejo tu cerebro como un casco.',
+  'Soy la clavícula. Uno tu hombro con el esternón.',
+  'Somos las costillas: doce pares que forman una jaula para cuidar el corazón y los pulmones.',
+  'Soy la columna vertebral, hecha de treinta y tres vértebras apiladas. Te sostengo derechito.',
+  'Soy el húmero, el hueso del brazo, entre el hombro y el codo.',
+  'Soy la pelvis. Uno la columna con las piernas.',
+  'Soy el fémur, el hueso más largo de tu cuerpo. Estoy en el muslo.',
+  'Somos la tibia y el peroné, los dos huesos de tu pierna.',
+  'Soy el cartílago. Soy flexible: uno las costillas y cubro las articulaciones.',
+  'Somos los ligamentos. Unimos un hueso con otro, como en la rodilla.']},
+'celula-animal':{pitch:1.3,rate:1.03,
+ intro:'¡Hola! Soy una célula animal, y todos los animales estamos hechos de células como yo. Por dentro funciono como una fábrica, y cada organela tiene su tarea. Tocalas y se presentan.',
+ parts:['Soy la membrana plasmática. Cubro la célula y decido qué entra y qué sale.',
+  'Soy el núcleo, el jefe de la célula. Guardo el ADN y dirijo todo lo que pasa.',
+  'Soy el citoplasma, un líquido gelatinoso donde flotan las organelas.',
+  'Soy la mitocondria, ¡la central de energía! Saco energía de los nutrientes.',
+  'Somos los ribosomas, unos puntitos que fabrican proteínas.',
+  'Soy el retículo endoplasmático, una red de canales que transporta sustancias.',
+  'Soy el aparato de Golgi. Empaqueto lo que se fabrica y lo envío.',
+  'Soy el lisosoma. Digiero lo que la célula ya no necesita.',
+  'Soy el nucléolo. Vivo dentro del núcleo y armo los ribosomas.',
+  'Somos los centríolos. Ayudamos a la célula a dividirse en dos.',
+  'Soy una vacuola, una bolsita que guarda agua y sustancias.']},
+'celula-vegetal':{pitch:1.25,rate:1.02,
+ intro:'¡Hola! Soy una célula vegetal. Las plantas están hechas de células como yo. Tengo una pared rígida, una vacuola grande y cloroplastos verdes que fabrican alimento con la luz del sol. Tocá mis partes.',
+ parts:['Soy la pared celular, rígida y de celulosa. Le doy forma y sostén a la célula.',
+  'Soy la membrana plasmática. Estoy por dentro de la pared y controlo lo que entra y sale.',
+  'Soy la vacuola, una bolsa grande que guarda agua y sustancias de reserva.',
+  'Somos los cloroplastos. Tenemos clorofila, y con la luz del sol fabricamos el alimento.',
+  'Soy el núcleo. Guardo el ADN y dirijo la célula.',
+  'Soy el citoplasma, donde están todas las organelas.',
+  'Soy la mitocondria. Produzco energía, igual que en la célula animal.',
+  'Soy el nucléolo. Estoy dentro del núcleo y armo los ribosomas.',
+  'Somos los ribosomas, y fabricamos proteínas.',
+  'Soy el complejo de Golgi. Empaqueto y envío lo que la célula fabrica.']},
+cuerpos:{pitch:1.1,rate:1,
+ intro:'¡Hola! Somos los cuerpos geométricos y ocupamos lugar en el espacio. Algunos somos poliedros, con todas las caras planas; otros somos cuerpos redondos y podemos rodar. Tocá a cada uno y se presenta.',
+ parts:['Soy el cubo. Tengo seis caras cuadradas iguales, doce aristas y ocho vértices.',
+  'Soy la pirámide triangular. Tengo cuatro caras triangulares, seis aristas y cuatro vértices.',
+  'Soy la pirámide cuadrada. Mi base es un cuadrado y tengo cuatro caras triangulares: cinco caras, ocho aristas y cinco vértices.',
+  'Soy la esfera, perfectamente redonda. No tengo caras planas, ni aristas, ni vértices. ¡Ruedo para todos lados!',
+  'Soy el cilindro. Tengo dos caras circulares y una cara curva, dos aristas y ningún vértice.',
+  'Soy el cono. Tengo una base circular, una cara curva, una arista y un vértice en la punta.']},
+plantas:{pitch:1.1,rate:1,
+ intro:'¡Hola! Soy una planta. Fabrico mi propio alimento con la luz del sol, el agua que toman mis raíces y el aire. Dejé el suelo transparente para que veas mis raíces. Tocá mis partes.',
+ parts:['Soy la raíz. Absorbo el agua y los nutrientes del suelo, y sostengo la planta bien firme.',
+  'Soy el tallo. Sostengo la planta y llevo el agua y los nutrientes hacia arriba.',
+  'Somos las hojas. Con la luz del sol fabricamos el alimento de la planta.',
+  'Soy la flor. Ayudo a la planta a reproducirse.',
+  'Soy el fruto. Protejo y guardo las semillas.',
+  'Soy el sol. Mi luz le da la energía a la planta para la fotosíntesis.']},
+atuendo:{pitch:1,rate:1,
+ dialog:[['ella','¡Buenas noches! Somos una dama y un caballero, y estamos bailando en un salón.'],
+  ['el','Nuestra ropa primero siguió la usanza española y después la moda francesa e inglesa.'],
+  ['ella','Yo llevo un vestido línea imperio, con el talle debajo del busto.'],
+  ['el','Y yo, levita, chaleco y calzón. Tóquennos y les contamos cada prenda.']],
+ who:['el','el','el','el','el','el','el','el','ella','ella','ella','ella','ella','ella'],
+ parts:['Esta es mi galera. Es un sombrero alto, pero no la uso para bailar.',
+  'Mi camisa es de encaje blanco, sin cuello, y el volado que cae sobre el pecho se llama jabot.',
+  'Estos volados de puntilla en los puños se llaman llorones.',
+  'Mi chaleco es de seda clara, largo hasta la cintura, con abotonadura derecha.',
+  'Mi levita es de paño oscuro. A veces uso capa: corta, al estilo francés, o larga, al modo español.',
+  'Este es mi calzón, o culotte: un pantalón ajustado de raso que llega hasta debajo de las rodillas.',
+  'Llevo medias de seda blanca.',
+  'Mis escarpines son de cuero negro, con hebilla. También podría usar botas altas con taco.',
+  'Mi peinado es recogido, con una torzada, y lo adorno con perlas.',
+  'Uso accesorios de perlas y brillantes, como este collar.',
+  'Mi vestido es línea imperio, de raso en color claro, con la falda larga hasta los empeines.',
+  'Mis mangas son cortas y abullonadas, y el escote es amplio y cuadrado.',
+  'Llevo mitones, unos guantes largos que dejan los dedos libres.',
+  'Mis escarpines son de raso negro, atados con cintas a los tobillos.']},
+campana:{pitch:1,rate:1,
+ dialog:[['el','¡Buenas! Somos la mujer y el varón de campaña.'],
+  ['ella','Así se vestía la gente del campo para trabajar y para las fiestas.'],
+  ['el','Yo llevo chambergo, pañuelo, chiripá y botas con espuelas.'],
+  ['ella','Y yo, trenzas con flores, blusa con volados y falda fruncida. ¡Tóquennos y les contamos!']],
+ who:['el','el','el','el','el','el','el','el','el','el','ella','ella','ella','ella'],
+ parts:['Este es mi chambergo, un sombrero de fieltro negro.',
+  'Mi pañuelo es de seda, y lo pongo en forma de triángulo sobre la espalda.',
+  'Mi camisa es de algodón rayado.',
+  'Mi chaleco es oscuro y tiene bordados.',
+  'Esta es mi faja tejida, atada a la cintura.',
+  'Este es mi tirador con rastra, adornado con monedas.',
+  'Mi chiripá es de merino negro y lo uso sobre el calzoncillo.',
+  'Mi calzoncillo es blanco, de puño, y lo llevo metido dentro de las botas.',
+  'Uso botas fuertes y espuelas.',
+  'Detrás del tirador llevo mi facón.',
+  'Me peino a dos bandas, con trenzas adornadas con flores, y uso accesorios de plata.',
+  'Mi blusa es de algodón floreado, con volados en el escote y en las mangas.',
+  'Mi falda es fruncida, larga hasta los empeines, con un volado en el ruedo. Debajo llevo enagua.',
+  'Uso alpargatas blancas bordadas.']}
+};
+
+window.__who=null;
+function say(text,queue,o){
+  o=o||{};if(!VOZ.on||!VOZ.ok||!text){o.end&&o.end();return;}
+  try{if(!queue)speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=VOZ.voice?VOZ.voice.lang:'es-AR';if(VOZ.voice)u.voice=VOZ.voice;u.rate=o.rate||.98;u.pitch=o.pitch||1;
+    u.onstart=()=>{window.__who=o.who||'all';o.start&&o.start();};u.onend=u.onerror=()=>{window.__who=null;o.end&&o.end();};speechSynthesis.speak(u);}catch(e){}
 }
+const PITCH={ella:1.3,el:.78,art:1.45,sus:1.0,adj:1.25,ver:.85,all:1};
+function voiceOf(key,who){const v=VOCES[key]||{};return {pitch:who?PITCH[who]:(v.pitch||1),rate:v.rate||1,who:who||'all'};}
+function topicIntro(t){const v=VOCES[t.key];if(!v)return t.intro;if(v.dialog)return v.dialog.map(([w,x])=>({art:'Artículo',sus:'Sustantivo',adj:'Adjetivo',ver:'Verbo'}[w]||(w==='ella'?(t.key==='atuendo'?'Dama':'Mujer'):(t.key==='atuendo'?'Caballero':'Varón')))+': '+x).join('\n');return v.intro;}
+function speakTopic(t,extra){const v=VOCES[t.key];
+  if(v&&v.dialog){hush();v.dialog.forEach(([w,x],k)=>say(x,true,voiceOf(t.key,w)));if(extra)say(extra,true,{});return;}
+  say((v?v.intro:t.title+'. '+t.intro)+(extra?' '+extra:''),false,voiceOf(t.key));}
 function hush(){try{if(VOZ.ok)speechSynthesis.cancel();}catch(e){}}
 function unlockVoice(){if(!VOZ.ok||!VOZ.on)return;try{const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u);}catch(e){}}
 function setVoice(on){VOZ.on=on;try{localStorage.setItem('mea-voz',on?'1':'0');}catch(e){}if(!on)hush();
@@ -1181,10 +1866,11 @@ let saidT=null;
 function showSaid(ctx,txt){const el=$(ctx.said);el.textContent=txt||'';el.hidden=!txt;if(ctx.said==='arSaid'){clearTimeout(saidT);if(txt&&!/^Escuchando/.test(txt))saidT=setTimeout(()=>{el.hidden=true;},8000);}}
 function explainPart(ctx,j){
   const t=TOPICS[ctx.i],m=ctx.model();if(!t||!t.parts[j])return;
-  if(m){if(!m.labelGroup.visible)ctx.showLabels();pulse(m.labels[j]);}
-  const p=t.parts[j];showSaid(ctx,p[0]+': '+p[1]);say(p[0]+'. '+p[1]);
+  if(m){if(!m.labelGroup.visible)ctx.showLabels();pulse(m.labels[j]);if(m.onPart)m.onPart(j);}
+  const p=t.parts[j];const v=VOCES[t.key];const txt=v&&v.parts&&v.parts[j]?v.parts[j]:p[0]+'. '+p[1];
+  showSaid(ctx,p[0]+': '+txt);say(txt,false,voiceOf(t.key,v&&v.who?v.who[j]:null));
 }
-function explainTopic(ctx){const t=TOPICS[ctx.i];if(!t)return;showSaid(ctx,'');say(t.title+'. '+t.intro);}
+function explainTopic(ctx){const t=TOPICS[ctx.i];if(!t)return;showSaid(ctx,'');speakTopic(t);}
 function quizUI(box,ctx,speak){
   const t=TOPICS[ctx.i];
   box.innerHTML='<div class="qhead"><h3>Pregunta para repasar</h3><button type="button">Escuchar</button></div><p class="qq"></p><div class="opts"></div><p class="fb" role="status"></p>';
@@ -1233,7 +1919,9 @@ function pickLabel(dom,camera,model,ev){
   const r=dom.getBoundingClientRect();const v=new THREE.Vector2(((ev.clientX-r.left)/r.width)*2-1,-((ev.clientY-r.top)/r.height)*2+1);
   const rc=new THREE.Raycaster();rc.setFromCamera(v,camera);rc.camera=camera;
   const list=[model.title,...model.labels.filter(Boolean)].filter(o=>o&&o.visible&&o.parent&&o.parent.visible!==false);
-  const h=rc.intersectObjects(list,false);if(!h.length)return null;
+  const h=rc.intersectObjects(list,false);
+  if(!h.length&&model.pickMeshes){const hm=rc.intersectObjects(model.pickMeshes.filter(Boolean),true);const o=hm.find(x=>x.object.userData.pieceIdx!=null);if(o)return o.object.userData.pieceIdx;}
+  if(!h.length)return null;
   const o=h[0].object;return o===model.title?'title':model.labels.indexOf(o);
 }
 function onTap(el,fn){let x0=0,y0=0;el.addEventListener('pointerdown',e=>{x0=e.clientX;y0=e.clientY;});el.addEventListener('pointerup',e=>{if(Math.hypot(e.clientX-x0,e.clientY-y0)<8)fn(e);});}
