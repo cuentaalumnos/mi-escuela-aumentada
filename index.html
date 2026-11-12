@@ -86,7 +86,7 @@ section{padding-block:1.6rem}
 .sec-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;flex-wrap:wrap;margin-bottom:1.1rem}
 .sec-head h2{font-size:clamp(1.7rem,4vw,2.3rem)}
 .sec-head p{margin:0;color:var(--muted);max-width:46ch}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1rem}
 @media (max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:420px){.grid{grid-template-columns:1fr}}
 .topic{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
@@ -169,7 +169,9 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
 .quiz .qhead button{background:transparent;border:2px solid var(--line);border-radius:999px;padding:.25rem .7rem;font-weight:800;cursor:pointer;font-size:.85rem}
 
 /* Visor RA */
-#viewer{position:fixed;inset:0;z-index:50;background:#000}
+#viewer{position:fixed;inset:0;z-index:50;background:#000;display:flex;flex-direction:column}
+#arStage{position:relative;flex:1;min-height:0;min-width:0;overflow:hidden}
+@media (orientation:landscape){#viewer{flex-direction:row}}
 #viewer[hidden]{display:none}
 #arBox{position:absolute;inset:0;overflow:hidden}
 .hud{position:absolute;left:0;right:0;top:0;padding:calc(env(safe-area-inset-top,0px) + .8rem) max(14px,env(safe-area-inset-right,0px)) .8rem max(14px,env(safe-area-inset-left,0px));
@@ -181,20 +183,39 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
 .reticle{position:absolute;left:50%;top:50%;width:min(60vw,280px);aspect-ratio:3/4;max-width:100%;transform:translate(-50%,-50%);z-index:4;pointer-events:none;
   border:3px dashed rgba(242,182,50,.9);border-radius:18px;transition:opacity .3s}
 .reticle.locked{opacity:0}
-.arcard{position:absolute;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 12px);z-index:6;
-  max-width:520px;margin:0 auto;background:rgba(251,250,244,.96);color:#1D2A3A;border-radius:18px;padding:.9rem 1rem;border-top:6px solid var(--tc)}
-.arcard h3{font-size:1.35rem}
-.arcard p{margin:.25rem 0 .6rem;font-size:.95rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.arcard .row{display:flex;gap:.5rem;flex-wrap:wrap}
-.arcard .row button{border:2px solid #1D2A3A;background:#fff;color:#1D2A3A;border-radius:999px;padding:.4rem .85rem;font-weight:800;cursor:pointer}
-.arcard{max-height:58vh;overflow-y:auto}
-.arcard .said{background:#F1EEE2;color:#1D2A3A}
-.arcard .quiz{background:#fff;color:#1D2A3A;border-color:var(--tc);margin:0 0 .6rem;padding:.7rem .8rem}
-.arcard .quiz .opts button{background:#fff;color:#1D2A3A;border-color:rgba(29,42,58,.2)}
-.arcard .quiz .qhead button{color:#1D2A3A;border-color:rgba(29,42,58,.25)}
+.arcard{position:relative;flex:none;z-index:6;width:100%;max-height:38%;overflow-y:auto;display:flex;flex-direction:column;gap:.4rem;
+  background:#FBFAF4;color:#1D2A3A;padding:.6rem max(12px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + .7rem) max(12px,env(safe-area-inset-left,0px));border-top:5px solid var(--tc,#F2B632)}
+@media (orientation:landscape){.arcard{width:min(36vw,300px);max-height:none;height:100%;border-top:0;border-left:5px solid var(--tc,#F2B632);padding:calc(env(safe-area-inset-top,0px) + .7rem) max(12px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + .7rem) .8rem}
+  .arcard.left{border-left:0;border-right:5px solid var(--tc,#F2B632)}}
+.arcard.left{order:-1}
+.arcard.mini{padding-block:.35rem}
+@media (orientation:landscape){.arcard.mini{width:auto}}
+.arcard.mini>*:not(.arhead){display:none!important}
+.arcard.mini .arhead b{display:none}
+.arhead{display:flex;flex-direction:column;gap:.3rem}
+.arhead{flex-direction:row-reverse!important;align-items:flex-start}
+.arhead b{flex:1;min-width:0}
+.arhead .tools{display:flex;gap:.3rem;justify-content:flex-end;flex:none}
+@media (orientation:landscape){.arhead{flex-direction:column!important}.arhead .tools{width:100%}}
+.arcard.mini .arhead{gap:0}
+.arhead b{font-family:var(--display);font-size:1.05rem;line-height:1.1;overflow-wrap:anywhere}
+.arhead button{flex:none;border:1.5px solid rgba(29,42,58,.3);background:#fff;color:#1D2A3A;border-radius:8px;width:1.9rem;height:1.9rem;font-weight:800;cursor:pointer;padding:0;font-size:.9rem}
+#arIntro{margin:0;font-size:.8rem;line-height:1.35;color:#33445A}
+@media (max-width:480px){#arIntro{font-size:.74rem}.arcard .row button{font-size:.74rem;padding:.28rem .4rem}}
+.arcard .row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.3rem}
+@media (orientation:landscape){.arcard .row{grid-template-columns:1fr}}
+.arcard .row button{border:1.5px solid #1D2A3A;background:#fff;color:#1D2A3A;border-radius:999px;padding:.32rem .6rem;font-weight:800;cursor:pointer;font-size:.8rem;justify-content:center}
+.arcard .said{background:#F1EEE2;color:#1D2A3A;margin:0!important;font-size:.8rem;padding:.4rem .5rem;border-left-width:3px}
+.arcard .quiz{background:#fff;color:#1D2A3A;border-color:var(--tc);margin:0;padding:.45rem .5rem;font-size:.8rem}
+.arcard .quiz .qhead h3{display:none}
+.arcard .quiz .qhead{margin-bottom:.25rem;justify-content:flex-start;flex-wrap:wrap;gap:.25rem}
+.arcard .quiz .qq{margin:0 0 .35rem;font-weight:700}
+.arcard .quiz .opts{gap:.25rem}
+.arcard .quiz .opts button{background:#fff;color:#1D2A3A;border-color:rgba(29,42,58,.2);padding:.28rem .5rem;font-size:.8rem}
+.arcard .quiz .fb{margin:.3rem 0 0;min-height:0}
+.arcard .quiz .qhead button{color:#1D2A3A;border-color:rgba(29,42,58,.25);font-size:.75rem}
 .arcard .quiz .fb.good,.arcard .quiz .opts button.ok{color:#2E8B57}.arcard .quiz .opts button.ok{border-color:#2E8B57}
 .arcard .quiz .fb.bad,.arcard .quiz .opts button.no{color:#C2413B}.arcard .quiz .opts button.no{border-color:#C2413B}
-.arcard .tip{display:block;margin-top:.5rem;color:#55657A;font-size:.82rem}
 .hud-r{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:flex-end}
 
 #busy{position:fixed;inset:0;z-index:60;background:rgba(10,20,15,.65);display:grid;place-items:center;padding:1.5rem}
@@ -218,13 +239,14 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
     <div>
       <span class="kicker">Aula aumentada · Coloquio Final de IA</span>
       <h1>Mi escuela <span>aumentada</span></h1>
-      <p class="lede">Enfocá una lámina con el celular y el tema aparece <b>en 3D sobre el papel</b>: órganos, células, cuerpos geométricos y plantas, con sus partes señaladas.</p>
+      <p class="lede">Enfocá una lámina con el celular y el tema aparece <b>en 3D sobre el papel</b>: órganos, células, cuerpos geométricos, plantas y la ropa de época, con sus partes señaladas.</p>
       <div class="actions">
         <button class="btn btn-sun" id="btnAR" type="button">
           <svg class="cam" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
           Abrir cámara
         </button>
         <a class="btn btn-line" href="laminas-mi-escuela-aumentada.pdf" target="_blank" rel="noopener">Láminas para imprimir (PDF)</a>
+        <a class="btn btn-line" href="presentacion.html">Presentación 3D</a>
       </div>
       <p class="team">Proyecto 2 de Prácticas Profesionalizantes · <b>Fernández, Alejandra · Benítez, Magali · Acosta, Melina</b></p>
     </div>
@@ -239,7 +261,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
 <main>
   <section class="wrap" aria-labelledby="tT">
     <div class="sec-head">
-      <h2 id="tT">Las 8 láminas</h2>
+      <h2 id="tT">Las 10 láminas</h2>
       <p>Cada lámina es un marcador. Sin cámara, tocá «Ver en 3D» para girar el modelo con el dedo o el mouse.</p>
     </div>
     <div class="grid" id="grid"></div>
@@ -257,7 +279,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
   <section class="wrap" aria-labelledby="aT">
     <div class="sec-head"><h2 id="aT">Sobre el proyecto</h2></div>
     <div class="about">
-      <div><h3>De qué se trata y para quién</h3><p>Un aula aumentada para estudiantes y docentes de nivel primario. Ocho láminas de Ciencias Naturales y Matemática muestran sistemas del cuerpo humano, la célula animal y vegetal, los cuerpos geométricos y las partes de la planta en tres dimensiones.</p></div>
+      <div><h3>De qué se trata y para quién</h3><p>Un aula aumentada para estudiantes y docentes de nivel primario. Diez láminas de Ciencias Naturales, Matemática y Folclore muestran en tres dimensiones sistemas del cuerpo humano, la célula animal y vegetal, los cuerpos geométricos, las partes de la planta, el atuendo tradicional de los salones y el atuendo de campaña.</p></div>
       <div><h3>Objetivo</h3><p>Que los temas que en el libro se ven planos se puedan mirar por dentro y desde todos los ángulos, nombrar sus partes y repasar con una pregunta, usando el celular o la netbook que ya hay en la escuela.</p></div>
       <div><h3>Cómo funciona</h3><p>La cámara reconoce cada lámina y coloca encima un modelo 3D animado con rótulos. La app explica el tema en voz alta, nombra cada parte que se toca y responde cuando se le dice el nombre de una parte. Todo pasa en el navegador: no hay que instalar nada.</p></div>
       <div><h3>Herramientas</h3><ul><li>MindAR para reconocer las láminas (realidad aumentada web).</li><li>three.js para los modelos 3D, rótulos y animaciones.</li><li>La voz del navegador (Web Speech) para leer en voz alta y escuchar las preguntas.</li><li>Claude (IA) para diseñar las láminas y programar la página.</li><li>GitHub Pages para publicarla con https.</li></ul></div>
@@ -304,16 +326,18 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
 
 <!-- Visor de realidad aumentada -->
 <div id="viewer" hidden>
+  <div id="arStage">
   <div id="arBox"></div>
   <div class="reticle" id="reticle"></div>
   <div class="hud"><button id="arClose" class="hud-btn" type="button">Cerrar</button><div class="hud-r"><button id="arVoice" class="hud-btn" type="button" aria-pressed="true">Voz: sí</button><button id="arLabels" class="hud-btn" type="button">Rótulos: sí</button></div></div>
   <p id="hudMsg" role="status">Abriendo cámara…</p>
-  <div class="arcard" id="arCard" hidden>
-    <h3 id="arTitle"></h3><p id="arIntro"></p>
+  </div>
+  <div class="arcard" id="arCard">
+    <div class="arhead"><div class="tools"><button id="arSide" type="button" aria-label="Pasar el panel al otro lado" title="Cambiar de lado">⇆</button><button id="arMini" type="button" aria-label="Achicar el panel" title="Achicar">–</button></div><b id="arTitle"></b></div>
+    <p id="arIntro"></p>
+    <div class="row"><button id="arListen" type="button"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>Escuchar</button><button id="arMic" class="mic" type="button"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Preguntale</button><button id="arQuiz" type="button">Pregunta</button><button id="arMore" type="button">3D</button></div>
     <p class="said" id="arSaid" hidden></p>
     <div class="quiz" id="arQopts" hidden></div>
-    <div class="row"><button id="arListen" type="button"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>Escuchar</button><button id="arMic" class="mic" type="button"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Preguntale</button><button id="arQuiz" type="button">Pregunta</button><button id="arMore" type="button">Ver en 3D</button></div>
-    <small class="tip">Tocá una palabra del modelo para escucharla.</small>
   </div>
 </div>
 
@@ -436,7 +460,43 @@ const TOPICS=[
   ['Flor','Ayuda a la reproducción de la planta.'],
   ['Fruto','Protege y contiene las semillas.'],
   ['Sol','Su luz es la energía para la fotosíntesis.']],
- q:{p:'¿Qué parte de la planta absorbe el agua y los minerales del suelo?',o:['Las hojas','La raíz','La flor'],a:1}}
+ q:{p:'¿Qué parte de la planta absorbe el agua y los minerales del suelo?',o:['Las hojas','La raíz','La flor'],a:1}},
+{key:'atuendo',img:'marcadores/09-atuendo.jpg',area:'Folclore · Indumentaria',title:'Atuendo tradicional',color:'#B0265C',sub:'Indumentaria en los salones',
+ card:'La ropa de los salones: la dama y el caballero, prenda por prenda.',
+ intro:'En los salones, la ropa primero siguió la usanza española y después adoptó la moda francesa e inglesa. Mirá cada prenda de la dama y del caballero, que están bailando.',
+ parts:[['Galera','Sombrero alto del caballero. No se usaba para bailar.'],
+  ['Camisa y jabot','Camisa de encaje o linón blanco, sin cuello, con jabot: el volado que cae sobre el pecho.'],
+  ['Llorones','Volados de puntilla en los puños de la camisa.'],
+  ['Chaleco','De seda en colores claros, largo hasta la cintura, con abotonadura derecha.'],
+  ['Levita','Chaqueta de paño, terciopelo o brocato en colores oscuros. También se usaba capa, corta al estilo francés o larga al modo español.'],
+  ['Calzón o culotte','Pantalón ajustado de raso, terciopelo o brocato, largo hasta debajo de las rodillas.'],
+  ['Medias de seda','Medias de seda blanca.'],
+  ['Escarpines con hebilla','Zapatos escotados de cuero negro con hebilla, o botas altas con taco.'],
+  ['Peinado recogido','Recogido con torzada y adornado con cintas, perlas o una diadema de brillantes.'],
+  ['Perlas y brillantes','Accesorios de perlas o brillantes, como el collar.'],
+  ['Vestido línea imperio','De raso, seda o muselina en colores claros, con el talle debajo del busto y la falda larga hasta los empeines, a veces con cola.'],
+  ['Mangas abullonadas','Mangas cortas, abullonadas o rectas, con escote amplio, generalmente cuadrado.'],
+  ['Mitones','Guantes largos o mitones, que dejan los dedos libres.'],
+  ['Escarpines de raso','Zapatos de raso negro o de seda, sujetos con cintas a los tobillos. Con medias blancas de seda o muselina.']],
+ q:{p:'¿Cómo se llamaban los volados de puntilla en los puños de la camisa del caballero?',o:['Jabot','Llorones','Mitones'],a:1}},
+{key:'campana',img:'marcadores/10-campana.jpg',area:'Folclore · Indumentaria',title:'Atuendo de campaña',color:'#8C621E',sub:'Mujer y varón de campaña',
+ card:'La ropa de la gente de campo: la mujer y el varón de campaña.',
+ intro:'Así se vestían la mujer y el varón de campaña. Él con chambergo, pañuelo, chiripá y botas con espuelas; ella con trenzas, blusa con volados y falda fruncida. Tocá cada prenda para conocerla.',
+ parts:[['Chambergo','Sombrero de fieltro negro: de copa baja y ala semiancha, o de copa redonda y alta con ala angosta.'],
+  ['Pañuelo de seda','De seda lisa, colocado en forma triangular sobre la espalda.'],
+  ['Camisa','De algodón rayado o liso, con o sin cuello.'],
+  ['Chaleco','De colores oscuros, con o sin bordados.'],
+  ['Faja tejida','Faja tejida que se ata a la cintura.'],
+  ['Tirador con rastra','Cinturón ancho de cuero con rastra, adornado con monedas.'],
+  ['Chiripá','Prenda de merino negro que se usaba sobre el calzoncillo.'],
+  ['Calzoncillo','Calzoncillo blanco de puño, con los perniles puestos adentro de las botas.'],
+  ['Botas y espuelas','Botas fuertes y espuelas.'],
+  ['Facón','Cuchillo grande que el varón de campaña llevaba en la cintura, detrás del tirador.'],
+  ['Trenzas y flores','Peinado a dos bandas con una o dos trenzas, adornado con flores naturales. Con accesorios de plata.'],
+  ['Blusa con volados','De algodón liso o floreado, con escote mediano, mangas sueltas hasta el antebrazo, faldón y volados en el escote y las mangas.'],
+  ['Falda fruncida','De algodón floreado o liso, larga hasta los empeines, con volado en el ruedo. Debajo, enagua y calzones de algodón blanco.'],
+  ['Alpargatas','Alpargatas blancas con bordados, zapatos de taco bajo o botas cortas con taco.']],
+ q:{p:'¿Qué prenda de merino negro usaba el varón de campaña sobre el calzoncillo?',o:['El chiripá','El chaleco','La faja'],a:0}}
 ];
 
 /* ================= Interfaz ================= */
@@ -803,6 +863,152 @@ plantas(k){
   const rays=new THREE.Group();rays.position.copy(sun.position);for(let i=0;i<10;i++){const a=i/10*Math.PI*2;rays.add(mesh(new THREE.ConeGeometry(.012,.05,8),P('#FFC93C',{emissive:'#FFB000',emissiveIntensity:.8}),[Math.cos(a)*.1,Math.sin(a)*.1,0],null,[0,0,a-Math.PI/2]));}g.add(rays);
   L(0,[.1,.15,.02],[.55,.08,0]);L(1,[.008,.45,0],[-.48,.42,0]);L(2,[.15,.44,.05],[.55,.36,0]);L(3,[.03,.92,0],[.45,1.02,0]);L(4,[.2,.62,.05],[.55,.66,0]);L(5,[-.42,1.0,0],[-.6,.86,0]);
   return t=>{leaves.forEach((l,i)=>l.rotation.x=Math.sin(t*1.4+i)*.15);fl.rotation.y=t*.3;rays.rotation.z=t*.4;};
+},
+atuendo(k){
+  const {THREE,group:g,sph,L,mesh}=k;const {P,PT,varTube,blob}=extra(k);
+  const SK=P('#F0C4A4',{roughness:.6,clearcoat:.1}),HAIR=PT('#6B4426',{roughness:.7,clearcoat:.2},.25),HAIRM=PT('#3E2718',{roughness:.7},.25);
+  const BLK=P('#151515',{clearcoat:.6,clearcoatRoughness:.3}),PEARL=P('#F7F3EA',{clearcoat:1,clearcoatRoughness:.08,roughness:.2});
+  const W=new THREE.Group();W.position.set(-.21,0,0);g.add(W);
+  const M=new THREE.Group();M.position.set(.21,0,0);g.add(M);
+  /* ---- Dama ---- */
+  const dress=PT('#D8668C',{clearcoat:.9,clearcoatRoughness:.22},.1);
+  const prof=[[.001,.03],[.2,.03],[.19,.12],[.165,.35],[.13,.6],[.1,.82],[.088,.9],[.001,.905]].map(([r,y])=>new THREE.Vector2(r,y));
+  const skirt=new THREE.Mesh(new THREE.LatheGeometry(prof,56),dress);skirt.scale.z=.8;W.add(skirt);
+  W.add(mesh(new THREE.CylinderGeometry(.072,.088,.11,32),dress,[0,.955,0],[1,1,.8]));
+  W.add(mesh(new THREE.BoxGeometry(.07,.04,.012),SK,[0,.99,.056]));
+  W.add(mesh(new THREE.TorusGeometry(.089,.008,8,48),BLK,[0,.903,0],[1,.8,1],[Math.PI/2,0,0]));
+  W.add(varTube([[0,.9,.074],[0,.6,.108],[0,.35,.136],[0,.12,.156],[0,.04,.162]],()=>.006,BLK,40,6,false));
+  const lp=[];for(let i=0;i<=420;i++){const u=i/420;const a=-1.25+u*2.5;const ph=u*Math.PI*2*8;const r=.199+.014*Math.cos(ph);lp.push([Math.sin(a)*r,.075+.03*Math.sin(ph),Math.cos(a)*r*.8+.004]);}
+  W.add(varTube(lp,()=>.0035,BLK,600,5,false));
+  for(const s of[-1,1])W.add(blob(.04,dress,[s*.09,.985,0],[1,.9,.95],.18,3,s+2));
+  W.add(mesh(new THREE.CylinderGeometry(.024,.027,.05,16),SK,[0,1.035,0]));
+  W.add(sph(1,SK,[0,1.11,0],[.06,.074,.065]));
+  for(const e of[-1,1])W.add(sph(.0065,P('#2B1A12'),[e*.021,1.118,.058]));W.add(sph(1,P('#C9566B'),[0,1.083,.06],[.012,.004,.004]));
+  for(let i=0;i<19;i++){const a=-1.7+i/18*3.4;W.add(sph(.0055,PEARL,[Math.sin(a)*.037,1.018-.012*Math.cos(a),Math.cos(a)*.034]));}
+  W.add(mesh(new THREE.SphereGeometry(.07,32,16,0,Math.PI*2,0,1.3),HAIR,[0,1.12,-.006],null,[-.55,0,0]));
+  W.add(mesh(new THREE.TorusGeometry(.028,.012,10,24),HAIR,[0,1.15,-.062],null,[.35,0,0]));
+  for(const s of[-1,1])W.add(varTube([[s*.058,1.13,.01],[s*.066,1.1,.02],[s*.06,1.07,.015],[s*.066,1.045,.02]],()=>.008,HAIR,20,8));
+  for(let i=0;i<15;i++){const a=-1.3+i/14*2.6;W.add(sph(.0045,PEARL,[Math.sin(a)*.066,1.165+.012*Math.cos(a),Math.cos(a)*.05-.005]));}
+  W.add(varTube([[.09,.985,0],[.15,.9,.04],[.205,.835,.07]],u=>.017-.004*u,SK,24,10));
+  W.add(varTube([[.165,.875,.048],[.185,.858,.058]],()=>.019,BLK,6,10,false));
+  W.add(sph(.017,SK,[.208,.832,.072]));
+  W.add(varTube([[-.09,.985,0],[-.15,.86,.02],[-.12,.72,.085]],u=>.017-.004*u,SK,24,10));
+  W.add(varTube([[-.115,.95,.008],[-.15,.86,.02],[-.124,.735,.08]],u=>.0195-.004*u,P('#111111',{transparent:true,opacity:.82,roughness:.8}),30,10));
+  W.add(sph(1,SK,[-.118,.715,.09],[.016,.02,.012]));
+  for(const s of[-1,1])W.add(blob(1,BLK,[s*.045,.022,.15],[.028,.018,.045],.05));
+  /* ---- Caballero ---- */
+  const COAT=PT('#3A2B22',{roughness:.55,clearcoat:.2},.12),BREE=PT('#B07C6E',{clearcoat:.85,clearcoatRoughness:.22},.1),WHITE=P('#FAF8F2',{roughness:.55}),GOLD=P('#D9A82E',{metalness:.8,roughness:.3});
+  for(const s of[-1,1]){
+    M.add(varTube([[s*.045,.62,0],[s*.05,.48,.01],[s*.052,.37,.012]],u=>.05-.012*u,BREE,24,16));
+    M.add(mesh(new THREE.TorusGeometry(.038,.006,8,24),BREE,[s*.052,.37,.012],null,[Math.PI/2,0,0]));
+    M.add(varTube([[s*.052,.365,.012],[s*.052,.21,.004],[s*.05,.05,0]],u=>.032-.01*u,WHITE,30,12));
+    M.add(blob(1,BLK,[s*.05,.025,.03],[.03,.02,.06],.05));
+    M.add(mesh(new THREE.BoxGeometry(.022,.012,.006),GOLD,[s*.05,.042,.088],null,[-.5,0,0]));
+  }
+  M.add(mesh(new THREE.CylinderGeometry(.088,.082,.1,32),BREE,[0,.63,0],[1,1,.75]));
+  M.add(mesh(new THREE.CylinderGeometry(.09,.09,.035,32),P('#E2B23A',{clearcoat:.6}),[0,.685,0],[1,1,.78]));
+  M.add(mesh(new THREE.CylinderGeometry(.08,.088,.3,32),P('#EADDB8',{roughness:.5,clearcoat:.4}),[0,.85,0],[1,1,.72]));
+  for(let i=0;i<4;i++)M.add(sph(.006,GOLD,[0,.92-i*.05,.064]));
+  const coat=new THREE.Mesh(new THREE.CylinderGeometry(.092,.1,.34,40,1,true,.42,Math.PI*2-.84),COAT);coat.material.side=THREE.DoubleSide;coat.position.y=.85;coat.scale.z=.78;M.add(coat);
+  M.add(mesh(new THREE.CylinderGeometry(.06,.095,.06,32,1,false),COAT,[0,1.02,-.005],[1,1,.78]));
+  for(const s of[-1,1]){const t=new THREE.Mesh(new THREE.BoxGeometry(.065,.32,.014),COAT);t.position.set(s*.035,.53,-.07);t.rotation.set(.1,0,s*.06);M.add(t);
+    M.add(varTube([[s*.03,1.0,.07],[s*.05,.92,.075],[s*.07,.8,.06]],()=>.008,COAT,16,8,false));}
+  for(let i=0;i<5;i++)M.add(blob(.022,WHITE,[0,1.0-i*.022,.08+.004*i],[1.25-.08*i,.55,.5],.35,6,i+1));
+  M.add(mesh(new THREE.CylinderGeometry(.026,.03,.05,16),WHITE,[0,1.04,0]));
+  M.add(sph(1,SK,[0,1.115,0],[.058,.072,.063]));
+  for(const e of[-1,1])M.add(sph(.0065,P('#2B1A12'),[e*.02,1.122,.056]));M.add(sph(1,P('#B5605F'),[0,1.087,.057],[.011,.0035,.004]));
+  M.add(mesh(new THREE.SphereGeometry(.064,32,16,0,Math.PI*2,0,1.25),HAIRM,[0,1.125,-.008],null,[-.6,0,0]));
+  M.add(mesh(new THREE.CylinderGeometry(.088,.088,.008,40),BLK,[0,1.172,-.005]));
+  M.add(mesh(new THREE.CylinderGeometry(.054,.05,.13,40),BLK,[0,1.24,-.005]));
+  M.add(mesh(new THREE.CylinderGeometry(.052,.051,.018,40),P('#3A3A3A'),[0,1.19,-.005]));
+  M.add(varTube([[-.095,.99,0],[-.15,.9,.05],[-.198,.838,.07]],u=>.024-.006*u,COAT,24,12));
+  M.add(blob(.019,WHITE,[-.192,.842,.068],[1,1,1],.4,7,3));M.add(sph(.016,SK,[-.205,.83,.073]));
+  M.add(varTube([[.095,.99,0],[.16,.86,0],[.19,.74,.04]],u=>.024-.006*u,COAT,24,12));
+  M.add(blob(.019,WHITE,[.188,.752,.038],[1,1,1],.4,7,5));M.add(sph(.016,SK,[.193,.73,.045]));
+  L(0,[.21,1.27,.05],[.62,1.3,0]);L(1,[.21,.97,.1],[.62,1.12,0]);L(2,[.4,.752,.04],[.66,.94,0]);L(3,[.21,.82,.07],[.64,.77,0]);
+  L(4,[.3,.88,.03],[.64,.62,0]);L(5,[.27,.48,.045],[.62,.45,0]);L(6,[.27,.22,.03],[.62,.27,0]);L(7,[.27,.04,.07],[.6,.08,0]);
+  L(8,[-.21,1.17,-.06],[-.6,1.26,0]);L(9,[-.21,1.02,.036],[-.62,1.08,0]);L(10,[-.21,.5,.12],[-.62,.5,0]);L(11,[-.31,.99,.02],[-.62,.9,0]);
+  L(12,[-.36,.8,.04],[-.64,.72,0]);L(13,[-.255,.025,.16],[-.6,.12,0]);
+  return t=>{const s=Math.sin(t*.9);W.rotation.y=.07*s;M.rotation.y=-.07*s;W.position.y=.004*Math.max(0,Math.sin(t*1.8));M.position.y=.004*Math.max(0,Math.sin(t*1.8+1));};
+},
+campana(k){
+  const {THREE,group:g,sph,L,mesh}=k;const {P,PT,varTube,blob}=extra(k);
+  const cv=(draw,rep)=>{const c=document.createElement('canvas');c.width=c.height=256;const x=c.getContext('2d');draw(x);const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;t.wrapS=t.wrapT=THREE.RepeatWrapping;if(rep)t.repeat.set(rep[0],rep[1]);return t;};
+  let sd=9;const rn=()=>{sd=(sd*16807)%2147483647;return sd/2147483647;};
+  const floral=cv(x=>{x.fillStyle='#F3EAC8';x.fillRect(0,0,256,256);for(let i=0;i<90;i++){const px=rn()*256,py=rn()*256;x.fillStyle='#7BA05B';x.beginPath();x.ellipse(px+5,py+3,4,2,.6,0,7);x.fill();x.fillStyle=rn()<.5?'#E2B93B':'#D98C3F';for(let j=0;j<5;j++){const a=j*1.256;x.beginPath();x.arc(px+Math.cos(a)*3,py+Math.sin(a)*3,2.2,0,7);x.fill();}x.fillStyle='#8A5A2A';x.beginPath();x.arc(px,py,1.4,0,7);x.fill();}},[7,9]);
+  const stripes=cv(x=>{x.fillStyle='#F6F6F2';x.fillRect(0,0,256,256);x.fillStyle='#8FA6C4';for(let i=0;i<256;i+=16)x.fillRect(i,0,4,256);},[3,2]);
+  const fajaTex=cv(x=>{x.fillStyle='#E7DCC3';x.fillRect(0,0,256,256);x.strokeStyle='#2B2B2B';x.lineWidth=6;for(let y=0;y<256;y+=32){x.beginPath();for(let xx=0;xx<=256;xx+=32){x.lineTo(xx,y+(xx/32%2?16:0));}x.stroke();}x.fillStyle='#6B4A2B';x.fillRect(0,0,22,256);x.fillRect(234,0,22,256);},[1,2]);
+  const SK=P('#EDC2A0',{roughness:.6,clearcoat:.1}),HAIR=PT('#3B2416',{roughness:.6,clearcoat:.3},.2),BLK=P('#151515',{clearcoat:.7,clearcoatRoughness:.25}),SILVER=P('#D6D9DE',{metalness:.9,roughness:.25});
+  const W=new THREE.Group();W.position.set(-.2,0,0);g.add(W);
+  const M=new THREE.Group();M.position.set(.21,0,0);g.add(M);
+  /* ---- Mujer de campaña ---- */
+  const SKIRT=P('#FFFFFF',{map:floral,roughness:.7,side:THREE.DoubleSide});
+  const prof=[[.001,.035],[.24,.035],[.235,.08],[.2,.3],[.15,.52],[.1,.64],[.085,.67],[.001,.672]].map(([r,y])=>new THREE.Vector2(r,y));
+  const sk=new THREE.Mesh(new THREE.LatheGeometry(prof,64),SKIRT);sk.scale.z=.82;W.add(sk);
+  const fr=[];for(let i=0;i<=200;i++){const a=i/200*Math.PI*2;const r=.247+.01*Math.sin(a*36);fr.push([Math.sin(a)*r,.055+.004*Math.sin(a*36),Math.cos(a)*r*.82]);}
+  W.add(varTube(fr,()=>.016,SKIRT,400,8,false));
+  const BL=PT('#E6C995',{roughness:.65,clearcoat:.15},.08);
+  W.add(mesh(new THREE.CylinderGeometry(.074,.09,.3,32),BL,[0,.82,0],[1,1,.8]));
+  W.add(mesh(new THREE.CylinderGeometry(.092,.115,.06,32,1,true),BL,[0,.65,0],[1,1,.82]));
+  W.add(mesh(new THREE.TorusGeometry(.07,.012,8,40),BL,[0,.965,.004],[1,.8,1],[Math.PI/2+.25,0,0]));
+  for(const s of[-1,1]){W.add(varTube([[s*.075,.95,0],[s*.115,.88,.02],[s*.135,.8,.03]],u=>.028+.008*u,BL,20,12));
+    W.add(blob(.032,BL,[s*.137,.79,.032],[1,.55,1],.25,6,s+3));}
+  W.add(varTube([[.137,.79,.035],[.17,.76,.06],[.215,.79,.04]],u=>.015-.003*u,SK,16,10));W.add(sph(.015,SK,[.218,.792,.04]));
+  W.add(varTube([[-.137,.79,.035],[-.16,.7,.06],[-.15,.62,.1]],u=>.015-.003*u,SK,16,10));W.add(sph(1,SK,[-.148,.61,.105],[.015,.019,.012]));
+  W.add(mesh(new THREE.CylinderGeometry(.024,.027,.05,16),SK,[0,1.0,0]));
+  W.add(sph(1,SK,[0,1.075,0],[.058,.072,.063]));
+  for(const e of[-1,1])W.add(sph(.0062,P('#2B1A12'),[e*.02,1.084,.056]));W.add(sph(1,P('#C25A62'),[0,1.05,.058],[.012,.004,.004]));
+  W.add(mesh(new THREE.SphereGeometry(.066,32,16,0,Math.PI*2,0,1.5),HAIR,[0,1.085,-.004],null,[-.35,0,0]));
+  W.add(mesh(new THREE.BoxGeometry(.004,.01,.07),P('#E8D9C8'),[0,1.15,.02],null,[-.3,0,0]));
+  for(const s of[-1,1]){const pts=[[s*.05,1.06,-.02],[s*.065,1.0,.02],[s*.07,.92,.05],[s*.068,.82,.06]];W.add(varTube(pts,u=>.013*(1-.35*u)*(1+.18*Math.abs(Math.sin(u*40))),HAIR,80,10));
+    W.add(sph(.008,P('#C0392B'),[s*.068,.815,.06]));}
+  const FL=P('#F4C430',{roughness:.5}),FW=P('#FFFFFF',{roughness:.5});
+  for(let i=0;i<6;i++){const a=i*1.047;W.add(sph(.009,i%2?FL:FW,[-.05+Math.cos(a)*.012,1.125+Math.sin(a)*.012,.03]));}W.add(sph(.007,P('#8A5A2A'),[-.05,1.125,.036]));
+  for(const s of[-1,1]){const sh=blob(1,P('#F7F4EE',{roughness:.8}),[s*.05,.022,.16],[.026,.016,.045],.05);W.add(sh);W.add(varTube([[s*.04,.03,.18],[s*.05,.035,.2],[s*.06,.03,.18]],()=>.003,P('#3A6EA8'),10,5,false));}
+  /* ---- Varón de campaña ---- */
+  const SHIRT=P('#FFFFFF',{map:stripes,roughness:.6});
+  for(const s of[-1,1]){
+    M.add(varTube([[s*.05,.05,0],[s*.05,.2,0],[s*.052,.32,.005]],u=>.038+.006*u,BLK,30,16));
+    M.add(blob(1,BLK,[s*.05,.025,.035],[.032,.022,.07],.05));
+    M.add(mesh(new THREE.TorusGeometry(.04,.004,6,24),SILVER,[s*.05,.045,-.01],[1,1,1],[Math.PI/2,0,0]));
+    const sp=new THREE.Group();sp.position.set(s*.05,.035,-.055);for(let j=0;j<8;j++){sp.add(mesh(new THREE.BoxGeometry(.003,.022,.003),SILVER,[0,0,0],null,[0,0,j*.785]));}M.add(sp);
+    M.add(mesh(new THREE.CylinderGeometry(.045,.06,.07,24,1,true),P('#FAFAF7',{side:THREE.DoubleSide,roughness:.7}),[s*.05,.345,.005]));
+  }
+  const ch=[[.001,.37],[.13,.37],[.135,.42],[.13,.55],[.1,.64],[.001,.645]].map(([r,y])=>new THREE.Vector2(r,y));
+  const chm=PT('#1E1E1E',{roughness:.8,clearcoat:.05,side:THREE.DoubleSide},.08);const chi=new THREE.Mesh(new THREE.LatheGeometry(ch,48),chm);chi.scale.z=.8;M.add(chi);
+  M.add(varTube([[0,.62,.1],[0,.5,.11],[0,.4,.1]],()=>.006,P('#0A0A0A'),20,6,false));
+  M.add(mesh(new THREE.CylinderGeometry(.102,.102,.055,40),P('#2B1D14',{roughness:.5,clearcoat:.4}),[0,.66,0],[1,1,.8]));
+  for(let i=0;i<9;i++){const a=-1.1+i/8*2.2;const c=mesh(new THREE.CylinderGeometry(.009,.009,.003,20),SILVER,[Math.sin(a)*.104,.66,Math.cos(a)*.084],null,[Math.PI/2,0,-a]);c.lookAt(new THREE.Vector3(Math.sin(a)*2,.66,Math.cos(a)*2));c.rotateX(Math.PI/2);M.add(c);}
+  M.add(mesh(new THREE.BoxGeometry(.034,.024,.006),SILVER,[0,.66,.086]));
+  M.add(mesh(new THREE.BoxGeometry(.045,.26,.008),P('#FFFFFF',{map:fajaTex,roughness:.7}),[.075,.52,.095],null,[-.08,0,0]));
+  M.add(mesh(new THREE.CylinderGeometry(.1,.1,.03,40),P('#FFFFFF',{map:fajaTex,roughness:.7}),[0,.7,0],[1,1,.8]));
+  const fac=new THREE.Group();fac.position.set(.07,.665,-.085);fac.rotation.z=.15;M.add(fac);
+  fac.add(mesh(new THREE.CylinderGeometry(.01,.007,.12,12),P('#4A3020',{roughness:.6}),[.07,0,0],null,[0,0,Math.PI/2]));
+  fac.add(mesh(new THREE.CylinderGeometry(.009,.009,.06,12),SILVER,[-.02,0,0],null,[0,0,Math.PI/2]));
+  M.add(mesh(new THREE.CylinderGeometry(.078,.092,.3,32),SHIRT,[0,.85,0],[1,1,.78]));
+  const VEST=PT('#4A4F3A',{roughness:.6,clearcoat:.2},.12);
+  const vest=new THREE.Mesh(new THREE.CylinderGeometry(.083,.097,.3,40,1,true,.3,Math.PI*2-.6),VEST);vest.material.side=THREE.DoubleSide;vest.position.y=.85;vest.scale.z=.8;M.add(vest);
+  for(const s of[-1,1])for(let j=0;j<4;j++){M.add(sph(.006,j%2?P('#E2B93B'):P('#7BAF4C'),[s*.045,.8+j*.025,.069+.004*j]));}
+  M.add(mesh(new THREE.CylinderGeometry(.026,.03,.05,16),SHIRT,[0,1.03,0]));
+  const BLUE=P('#4F74B8',{roughness:.45,clearcoat:.3,side:THREE.DoubleSide});
+  M.add(mesh(new THREE.ConeGeometry(.028,.09,4),BLUE,[0,.955,.072],null,[Math.PI,0,0]));
+  M.add(mesh(new THREE.TorusGeometry(.036,.012,8,24),BLUE,[0,1.01,.005],[1,1,1],[Math.PI/2-.2,0,0]));
+  const tri=new THREE.Shape();tri.moveTo(-.09,0);tri.lineTo(.09,0);tri.lineTo(0,-.13);tri.closePath();
+  M.add(mesh(new THREE.ShapeGeometry(tri),BLUE,[0,1.0,-.072],null,[.15,0,0]));
+  M.add(sph(1,SK,[0,1.11,0],[.058,.072,.063]));
+  for(const e of[-1,1])M.add(sph(.0062,P('#2B1A12'),[e*.02,1.118,.056]));M.add(sph(1,P('#B5605F'),[0,1.085,.057],[.011,.0035,.004]));
+  M.add(mesh(new THREE.SphereGeometry(.064,32,16,0,Math.PI*2,0,1.3),HAIR,[0,1.12,-.008],null,[-.5,0,0]));
+  M.add(mesh(new THREE.CylinderGeometry(.1,.1,.007,40),BLK,[0,1.165,-.005],null,[.06,0,0]));
+  M.add(mesh(new THREE.CylinderGeometry(.052,.058,.075,40),BLK,[0,1.205,-.005],null,[.06,0,0]));
+  M.add(mesh(new THREE.CylinderGeometry(.059,.059,.014,40),P('#2E2E2E'),[0,1.175,-.005],null,[.06,0,0]));
+  for(const s of[-1,1]){M.add(varTube([[s*.09,.985,0],[s*.16,.9,-.02],[s*.2,.83,-.02]],u=>.028-.004*u,SHIRT,20,12));
+    M.add(mesh(new THREE.TorusGeometry(.024,.008,8,20),SHIRT,[s*.2,.83,-.02],null,[0,Math.PI/2,0]));
+    M.add(varTube([[s*.2,.83,-.02],[s*.16,.75,.03],[s*.1,.7,.07]],u=>.017-.003*u,SK,16,10));M.add(sph(1,SK,[s*.095,.698,.075],[.018,.016,.012]));}
+  L(0,[.21,1.22,.06],[.62,1.3,0]);L(1,[.21,.96,.08],[.62,1.15,0]);L(2,[.38,.88,-.01],[.64,1.0,0]);L(3,[.25,.86,.075],[.62,.86,0]);
+  L(4,[.285,.5,.1],[.64,.5,0]);L(5,[.21,.66,.09],[.64,.73,0]);L(6,[.25,.45,.11],[.62,.38,0]);L(7,[.26,.34,.06],[.62,.25,0]);
+  L(8,[.26,.04,-.06],[.6,.1,0]);L(9,[.33,.665,-.09],[.64,.61,0]);
+  L(10,[-.25,1.125,.03],[-.6,1.24,0]);L(11,[-.2,.85,.075],[-.62,.96,0]);L(12,[-.2,.35,.19],[-.62,.45,0]);L(13,[-.25,.025,.2],[-.6,.1,0]);
+  return t=>{const s=Math.sin(t*.9);W.rotation.y=.06*s;M.rotation.y=-.05*s;sk.rotation.y=.08*Math.sin(t*1.8);};
 }
 };
 
@@ -920,10 +1126,10 @@ async function openAR(){
     realLight(THREE,renderer,scene);
     const models=[];
     TOPICS.forEach((t,i)=>{const anchor=mindar.addAnchor(i);const m=buildTopic(THREE,i);m.labelGroup.visible=arLabelsOn;
-      const pivot=new THREE.Group();pivot.rotation.x=Math.PI/2;pivot.scale.setScalar(.85);pivot.add(m.group);anchor.group.add(pivot);models.push(m);
+      const pivot=new THREE.Group();pivot.rotation.x=Math.PI/2;pivot.scale.setScalar(.85);pivot.add(m.group);anchor.group.add(pivot);models.push(m);if(m.title&&m.title.parent)m.title.parent.remove(m.title);
       anchor.onTargetFound=()=>{const fresh=ARC.i!==i;arCurrent=i;ARC.i=i;m.reveal();$('reticle').classList.add('locked');$('hudMsg').hidden=true;showArCard(i,fresh);
         if(fresh||Date.now()-lastSpoke.t>25000){say(t.title+'. '+t.intro+' Tocá una palabra para escucharla, o preguntame con el micrófono.');lastSpoke={i,t:Date.now()};}};
-      anchor.onTargetLost=()=>{if(arCurrent===i){arCurrent=-1;$('reticle').classList.remove('locked');$('arCard').hidden=true;$('hudMsg').hidden=false;$('hudMsg').textContent='Apuntá a una de las láminas';}};});
+      anchor.onTargetLost=()=>{if(arCurrent===i){arCurrent=-1;$('reticle').classList.remove('locked');$('hudMsg').hidden=false;$('hudMsg').textContent='Apuntá a una de las láminas';}};});
     AR={mindar,renderer,models};
     onTap($('arBox'),e=>{if(arCurrent<0)return;const r=pickLabel(renderer.domElement,camera,models[arCurrent],e);if(r==='title')explainTopic(ARC);else if(r!=null&&r>=0)explainPart(ARC,r);});
     await mindar.start();busy(null);
@@ -932,12 +1138,13 @@ async function openAR(){
     renderer.setAnimationLoop(()=>{const t=clock.getElapsedTime();if(arCurrent>=0)models[arCurrent].tick(t);renderer.render(scene,camera);});
   }catch(e){console.error(e);busy(null);await closeAR();toast(cameraError(e));}
 }
+function resetArCard(){const c=$('arCard');c.style.removeProperty('--tc');$('arTitle').textContent='Mi escuela aumentada';$('arIntro').textContent='Apuntá la cámara a una de las láminas. Acá vas a ver la explicación del tema, sin tapar la imagen 3D.';showSaid(ARC,'');$('arQopts').hidden=true;}
 function showArCard(i,fresh){const t=TOPICS[i];const c=$('arCard');c.style.setProperty('--tc',t.color);$('arTitle').textContent=t.title;$('arIntro').textContent=t.intro;
   if(fresh){showSaid(ARC,'');$('arQopts').hidden=true;ARC.quizOn=false;}c.hidden=false;}
 async function closeAR(){
   const s=AR;AR=null;arCurrent=-1;ARC.i=-1;lastSpoke={i:-1,t:0};hush();if(rec)try{rec.abort();}catch(e){}
   if(s){try{s.renderer.setAnimationLoop(null);}catch(e){}try{s.mindar.stop();}catch(e){}try{s.renderer.dispose();}catch(e){}}
-  $('arBox').innerHTML='';$('viewer').hidden=true;$('arCard').hidden=true;$('reticle').classList.remove('locked');
+  $('arBox').innerHTML='';$('viewer').hidden=true;resetArCard();$('reticle').classList.remove('locked');
   if($('explorer').hidden)document.body.classList.remove('lock');
 }
 $('btnAR').addEventListener('click',openAR);
@@ -970,7 +1177,8 @@ const keyWords=t=>norm(t).split(' ').filter(w=>w.length>3&&!STOP.has(w));
 const stemIn=(n,w)=>n.split(' ').some(x=>x.slice(0,5)===w.slice(0,5));
 const listText=a=>a.length>1?a.slice(0,-1).join(', ')+' o '+a[a.length-1]:a[0];
 
-function showSaid(ctx,txt){const el=$(ctx.said);el.textContent=txt||'';el.hidden=!txt;}
+let saidT=null;
+function showSaid(ctx,txt){const el=$(ctx.said);el.textContent=txt||'';el.hidden=!txt;if(ctx.said==='arSaid'){clearTimeout(saidT);if(txt&&!/^Escuchando/.test(txt))saidT=setTimeout(()=>{el.hidden=true;},8000);}}
 function explainPart(ctx,j){
   const t=TOPICS[ctx.i],m=ctx.model();if(!t||!t.parts[j])return;
   if(m){if(!m.labelGroup.visible)ctx.showLabels();pulse(m.labels[j]);}
@@ -988,7 +1196,7 @@ function quizUI(box,ctx,speak){
 }
 function answerQuiz(ctx,j){
   const t=TOPICS[ctx.i];if(!ctx.q)return;ctx.q.bs.forEach(x=>x.classList.remove('ok','no'));const b=ctx.q.bs[j];
-  if(j===t.q.a){b.classList.add('ok');ctx.q.fb.textContent='¡Muy bien! Respuesta correcta.';ctx.q.fb.className='fb good';say('¡Muy bien! '+t.q.o[j]+' es la respuesta correcta.');ctx.quizOn=false;}
+  if(j===t.q.a){b.classList.add('ok');ctx.q.fb.textContent='¡Muy bien! Respuesta correcta.';ctx.q.fb.className='fb good';say('¡Muy bien! '+t.q.o[j]+' es la respuesta correcta.');ctx.quizOn=false;if(ctx.said==='arSaid')setTimeout(()=>{$('arQopts').hidden=true;},4000);}
   else{b.classList.add('no');ctx.q.fb.textContent='Casi. Mirá otra vez el modelo y probá de nuevo.';ctx.q.fb.className='fb bad';say('Casi. '+t.q.o[j]+' no es la respuesta. Probá de nuevo.');}
 }
 function handleSpeech(ctx,alts){
@@ -1030,7 +1238,7 @@ function pickLabel(dom,camera,model,ev){
 }
 function onTap(el,fn){let x0=0,y0=0;el.addEventListener('pointerdown',e=>{x0=e.clientX;y0=e.clientY;});el.addEventListener('pointerup',e=>{if(Math.hypot(e.clientX-x0,e.clientY-y0)<8)fn(e);});}
 const EXC={i:0,said:'exSaid',model:()=>exModel,showLabels:()=>{if(!showLabels)toggleLabels();},askQuiz(){quizUI($('exQuiz'),EXC,true);}};
-const ARC={i:-1,said:'arSaid',model:()=>AR&&AR.models[ARC.i],showLabels:()=>{if(!arLabelsOn)$('arLabels').click();},askQuiz(){const b=$('arQopts');b.hidden=false;quizUI(b,ARC,true);}};
+const ARC={i:-1,said:'arSaid',model:()=>AR&&AR.models[ARC.i],showLabels:()=>{if(!arLabelsOn)$('arLabels').click();},askQuiz(){const b=$('arQopts');b.hidden=false;quizUI(b,ARC,true);const x=document.createElement('button');x.type='button';x.textContent='Cerrar';x.addEventListener('click',()=>{b.hidden=true;ARC.quizOn=false;hush();});b.querySelector('.qhead').appendChild(x);}};
 $('exVoice').addEventListener('click',()=>setVoice(!VOZ.on));
 $('arVoice').addEventListener('click',()=>setVoice(!VOZ.on));
 $('exListen').addEventListener('click',()=>explainTopic(EXC));
@@ -1038,6 +1246,11 @@ $('exMic').addEventListener('click',()=>listen(EXC,$('exMic')));
 $('arListen').addEventListener('click',()=>explainTopic(ARC));
 $('arMic').addEventListener('click',()=>listen(ARC,$('arMic')));
 $('arQuiz').addEventListener('click',()=>ARC.askQuiz());
+try{if(localStorage.getItem('mea-lado')==='izq')$('arCard').classList.add('left');}catch(e){}
+const arRefit=()=>{setTimeout(()=>window.dispatchEvent(new Event('resize')),30);};
+$('arSide').addEventListener('click',()=>{const l=$('arCard').classList.toggle('left');try{localStorage.setItem('mea-lado',l?'izq':'der');}catch(e){}arRefit();});
+resetArCard();
+$('arMini').addEventListener('click',()=>{const m=$('arCard').classList.toggle('mini');$('arMini').textContent=m?'+':'–';$('arMini').setAttribute('aria-label',m?'Abrir el panel':'Achicar el panel');arRefit();});
 setVoice(VOZ.on);
 
 /* ================= Inicio ================= */
