@@ -227,6 +227,28 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
 .bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
 .bar span{display:block;height:100%;width:35%;background:var(--sun);animation:slide 1.2s ease-in-out infinite}
 @keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}
+.lam{position:fixed;inset:0;z-index:45;background:var(--paper);overflow-y:auto;padding-block:calc(env(safe-area-inset-top,0px) + 1rem) calc(env(safe-area-inset-bottom,0px) + 2rem)}
+.lam .bar{display:flex;justify-content:space-between;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}
+.lam h2{font-size:clamp(1.5rem,4vw,2rem)}
+.lam-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.8rem}
+.lam-grid a{display:block;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.lam-grid img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.lam-tip{color:var(--muted);margin:0 0 1rem;font-size:.95rem}
+.ds{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.2rem;max-width:760px}
+.ds-top{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:.6rem;flex-wrap:wrap}
+.ds-prog{display:flex;gap:.35rem}
+.ds-prog i{width:1.6rem;height:.45rem;border-radius:99px;background:var(--line)}
+.ds-prog i.on{background:var(--accent)}.ds-prog i.ok{background:var(--ok)}.ds-prog i.no{background:var(--bad)}
+.ds-area{font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--margin)}
+.ds h3{font-size:1.45rem;margin:.2rem 0 .9rem}
+.ds-opts{display:grid;gap:.5rem}
+.ds-opts button{text-align:left;background:var(--paper);border:2px solid var(--line);border-radius:12px;padding:.7rem .9rem;font-weight:700;cursor:pointer;font-size:1rem}
+.ds-opts button:hover{border-color:var(--accent)}
+.ds-opts button.ok{border-color:var(--ok);color:var(--ok)}.ds-opts button.no{border-color:var(--bad);color:var(--bad)}
+.ds-fb{font-weight:800;min-height:1.5em;margin:.7rem 0}
+.ds-fb.good{color:var(--ok)}.ds-fb.bad{color:var(--bad)}
+.ds-row{display:flex;gap:.5rem;flex-wrap:wrap}
+.ds-end{text-align:center}.ds-end .big{font-family:var(--display);font-size:3rem;color:var(--accent);line-height:1}
 #toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 1.2rem);transform:translateX(-50%);z-index:70;
   background:var(--ink);color:var(--paper);padding:.7rem 1.1rem;border-radius:12px;width:max-content;max-width:min(92vw,480px);font-weight:700}
 #toast[hidden]{display:none}
@@ -247,7 +269,8 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
           <svg class="cam" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
           Abrir cámara
         </button>
-        <a class="btn btn-line" href="laminas-18-mi-escuela-aumentada.pdf" target="_blank" rel="noopener">Láminas para imprimir (PDF)</a>
+        <button class="btn btn-line" id="btnLam" type="button">Ver las 18 láminas</button>
+        <a class="btn btn-line" href="#desafio">Desafío: 7 preguntas</a>
         <a class="btn btn-line" href="presentacion.html">Presentación 3D</a>
       </div>
       <p class="team">Proyecto 2 de Prácticas Profesionalizantes · <b>Fernández, Alejandra · Benítez, Magali · Acosta, Melina</b></p>
@@ -267,6 +290,11 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
       <p>Cada lámina es un marcador. Sin cámara, tocá «Ver en 3D» para girar el modelo con el dedo o el mouse.</p>
     </div>
     <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="wrap" id="desafio" aria-labelledby="dT">
+    <div class="sec-head"><h2 id="dT">Desafío: 7 preguntas</h2><p>Repasá lo que aprendiste con las láminas. Tocá la respuesta correcta.</p></div>
+    <div class="ds" id="ds"></div>
   </section>
 
   <section class="wrap" aria-labelledby="uT">
@@ -344,6 +372,13 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
 </div>
 
 <div id="busy" hidden><div class="busy-card"><p id="busyMsg"></p><div class="bar"><span></span></div></div></div>
+<div class="lam" id="lamView" hidden role="dialog" aria-modal="true" aria-labelledby="lamT">
+  <div class="wrap">
+    <div class="bar"><h2 id="lamT">Las 18 láminas</h2><button class="btn btn-sun" id="lamClose" type="button">← Volver</button></div>
+    <p class="lam-tip">Tocá una lámina para abrirla grande e imprimirla o mostrarla en otra pantalla. También podés <a href="laminas-18-mi-escuela-aumentada.pdf" target="_blank" rel="noopener">descargar el PDF con las 18</a>.</p>
+    <div class="lam-grid" id="lamGrid"></div>
+  </div>
+</div>
 <div id="toast" role="status" hidden></div>
 
 <script>
@@ -1969,6 +2004,41 @@ resetArCard();
 $('arMini').addEventListener('click',()=>{const m=$('arCard').classList.toggle('mini');$('arMini').textContent=m?'+':'–';$('arMini').setAttribute('aria-label',m?'Abrir el panel':'Achicar el panel');arRefit();});
 setVoice(VOZ.on);
 document.addEventListener('pointerdown',()=>unlockVoice(),{once:true,capture:true});
+
+
+/* ---------- Ver láminas ---------- */
+function openLam(){const g=$('lamGrid');if(!g.children.length)TOPICS.forEach((t,i)=>{const a=document.createElement('a');a.href=t.img;a.target='_blank';a.rel='noopener';
+  a.innerHTML=`<img loading="lazy" alt="Lámina ${i+1}: ${t.title}" src="${t.img}">`;g.appendChild(a);});
+  $('lamView').hidden=false;$('lamView').scrollTop=0;document.body.classList.add('lock');}
+$('btnLam').addEventListener('click',openLam);
+$('lamClose').addEventListener('click',()=>{$('lamView').hidden=true;document.body.classList.remove('lock');});
+/* ---------- Desafío: 7 preguntas ---------- */
+const DESAFIO=[
+ {a:'Cuerpo humano',p:'¿Qué órgano bombea la sangre por todo el cuerpo?',o:['El estómago','El corazón','El pulmón'],c:1,e:'El corazón es un músculo que late unas 70 veces por minuto.'},
+ {a:'Cuerpo humano',p:'¿En qué parte del sistema respiratorio el oxígeno pasa a la sangre?',o:['En los alvéolos pulmonares','En la laringe','En el esófago'],c:0,e:'Los alvéolos son bolsitas diminutas dentro de los pulmones.'},
+ {a:'La célula',p:'¿Qué tiene la célula vegetal que no tiene la célula animal?',o:['Núcleo','Mitocondrias','Pared celular y cloroplastos'],c:2,e:'Los cloroplastos fabrican alimento con la luz del sol.'},
+ {a:'Matemática',p:'¿Cuál de estos cuerpos geométricos puede rodar?',o:['El cubo','El cilindro','La pirámide cuadrada'],c:1,e:'El cilindro es un cuerpo redondo: tiene una cara curva.'},
+ {a:'Geografía',p:'¿Cuál es la montaña más alta de América?',o:['El Aconcagua','El cerro de los Siete Colores','El volcán Lanín'],c:0,e:'El Aconcagua está en Mendoza y mide casi 7.000 metros.'},
+ {a:'Geografía',p:'¿Qué río separa a Formosa de Chaco?',o:['El Paraná','El Uruguay','El Bermejo'],c:2,e:'El Bermejo tiene agua rojiza por el barro que arrastra.'},
+ {a:'Lengua',p:'En la oración «El perro grande corre», ¿qué palabra es el verbo?',o:['perro','corre','grande'],c:1,e:'El verbo indica la acción: correr.'}
+];
+let dsI=0,dsOk=0,dsRes=[];
+function dsRender(){const box=$('ds');
+  if(dsI>=DESAFIO.length){const msg=dsOk===7?'¡Perfecto! Sos un experto del aula aumentada.':dsOk>=5?'¡Muy bien! Aprendiste mucho.':dsOk>=3?'¡Bien! Repasá las láminas y probá otra vez.':'¡Seguí explorando las láminas y volvé a intentarlo!';
+    box.innerHTML=`<div class="ds-end"><div class="big">${dsOk} / 7</div><h3>${msg}</h3><div class="ds-row" style="justify-content:center"><button class="btn btn-sun" type="button" id="dsAgain">Jugar de nuevo</button></div></div>`;
+    $('dsAgain').addEventListener('click',()=>{dsI=0;dsOk=0;dsRes=[];dsRender();});say(dsOk+' de 7 respuestas correctas. '+msg);return;}
+  const q=DESAFIO[dsI];
+  box.innerHTML=`<div class="ds-top"><span class="ds-area">${q.a} · Pregunta ${dsI+1} de 7</span><div class="ds-prog">${DESAFIO.map((_,k)=>`<i class="${dsRes[k]===true?'ok':dsRes[k]===false?'no':k===dsI?'on':''}"></i>`).join('')}</div></div>
+   <h3></h3><div class="ds-opts"></div><p class="ds-fb" role="status"></p><div class="ds-row"><button class="btn btn-line" type="button" id="dsListen">🔊 Escuchar</button><button class="btn btn-sun" type="button" id="dsNext" hidden>Siguiente ▶</button></div>`;
+  box.querySelector('h3').textContent=q.p;const ops=box.querySelector('.ds-opts'),fb=box.querySelector('.ds-fb');let done=false;
+  q.o.forEach((o,j)=>{const b=document.createElement('button');b.type='button';b.textContent=o;b.addEventListener('click',()=>{if(done)return;done=true;
+    if(j===q.c){b.classList.add('ok');dsOk++;dsRes[dsI]=true;fb.textContent='¡Correcto! '+q.e;fb.className='ds-fb good';say('¡Correcto! '+q.e);}
+    else{b.classList.add('no');ops.children[q.c].classList.add('ok');dsRes[dsI]=false;fb.textContent='Casi. La respuesta es «'+q.o[q.c]+'». '+q.e;fb.className='ds-fb bad';say('Casi. La respuesta es '+q.o[q.c]+'. '+q.e);}
+    $('dsNext').hidden=false;$('dsNext').textContent=dsI===6?'Ver resultado':'Siguiente ▶';});ops.appendChild(b);});
+  $('dsListen').addEventListener('click',()=>say(q.p+' Las opciones son: '+q.o.join(', ')+'.'));
+  $('dsNext').addEventListener('click',()=>{dsI++;dsRender();box.scrollIntoView({behavior:'smooth',block:'center'});});
+}
+dsRender();
 
 /* ================= Inicio ================= */
 renderGrid();
