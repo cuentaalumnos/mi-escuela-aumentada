@@ -285,7 +285,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
 </header>
 
 <main>
-  <section class="wrap" aria-labelledby="tT">
+  <section class="wrap" id="laminas" aria-labelledby="tT">
     <div class="sec-head">
       <h2 id="tT">Las 18 láminas</h2>
       <p>Cada lámina es un marcador. Sin cámara, tocá «Ver en 3D» para girar el modelo con el dedo o el mouse.</p>
@@ -2048,7 +2048,8 @@ dsRender();
 /* ================= Inicio ================= */
 renderGrid();
 window.__okApp=true;
-const h=(location.hash||'').slice(1);const hi=TOPICS.findIndex(t=>t.key===h);if(hi>=0)openExplorer(hi);
+function fromHash(){const h=(location.hash||'').slice(1);const hi=TOPICS.findIndex(t=>t.key===h);if(hi>=0){if($('explorer').hidden)openExplorer(hi);else setExplorer(hi);}}
+fromHash();addEventListener('hashchange',fromHash);
 </script>
 </body>
 </html>
