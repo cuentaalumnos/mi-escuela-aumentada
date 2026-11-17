@@ -158,6 +158,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
 .quiz .opts button.no{border-color:var(--bad);color:var(--bad)}
 .quiz .fb{margin:.5rem 0 0;font-weight:800;min-height:1.5em}
 .quiz .fb.good{color:var(--ok)} .quiz .fb.bad{color:var(--bad)}
+.quiz .qnext{margin-top:.2rem;background:var(--sun);color:var(--on-sun);border:0;border-radius:999px;padding:.45rem 1rem;font-weight:800;cursor:pointer}
 .quiz .qhead{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-bottom:.4rem}
 .quiz .qhead h3{margin:0}
 .quiz .qq{margin:0 0 .5rem}
@@ -324,7 +325,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
     </div>
   </section>
 
-  <footer class="wrap"><b>Versión 12/11 · 18 láminas · giro 360°</b> · Coloquio Final · Prácticas Profesionalizantes · Auxiliar en Inteligencia Artificial · ISFD y T «República Federal de Alemania», El Colorado, Formosa · 2026</footer>
+  <footer class="wrap"><b>Versión 17/11 · 18 láminas · 4 preguntas por lámina</b> · Coloquio Final · Prácticas Profesionalizantes · Auxiliar en Inteligencia Artificial · ISFD y T «República Federal de Alemania», El Colorado, Formosa · 2026</footer>
 </main>
 
 <!-- Explorador 3D sin cámara -->
@@ -340,7 +341,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
         <button class="chip-btn" id="exNext" type="button" aria-label="Tema siguiente">›</button>
       </div>
     </div>
-    <span class="stage-hint">Gira solo 360° · arrastrá para girarlo vos · pellizcá para acercar</span>
+    <span class="stage-hint">Arrastrá para mirarlo desde otro lado · pellizcá para acercar</span>
   </div>
   <aside class="panel" id="exPanel">
     <span class="area" id="exArea"></span>
@@ -359,7 +360,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.9rem;border-top:2px
   <div id="arStage">
   <div id="arBox"></div>
   <div class="reticle" id="reticle"></div>
-  <div class="hud"><button id="arClose" class="hud-btn" type="button">Cerrar</button><div class="hud-r"><button id="arSpin" class="hud-btn" type="button" aria-pressed="true">Girar: sí</button><button id="arVoice" class="hud-btn" type="button" aria-pressed="true">Voz: sí</button><button id="arLabels" class="hud-btn" type="button">Rótulos: sí</button></div></div>
+  <div class="hud"><button id="arClose" class="hud-btn" type="button">Cerrar</button><div class="hud-r"><button id="arVoice" class="hud-btn" type="button" aria-pressed="true">Voz: sí</button><button id="arLabels" class="hud-btn" type="button">Rótulos: sí</button></div></div>
   <p id="hudMsg" role="status">Abriendo cámara…</p>
   </div>
   <div class="arcard" id="arCard">
@@ -1526,8 +1527,7 @@ async function openExplorer(i){
     realLight(THREE,renderer,scene);
     const sc=document.createElement('canvas');sc.width=sc.height=128;const sx=sc.getContext('2d');const gr=sx.createRadialGradient(64,64,4,64,64,64);gr.addColorStop(0,'rgba(0,0,0,.28)');gr.addColorStop(1,'rgba(0,0,0,0)');sx.fillStyle=gr;sx.fillRect(0,0,128,128);
     const shadow=new THREE.Mesh(new THREE.PlaneGeometry(1.3,1.3),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(sc),transparent:true,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=-.002;scene.add(shadow);
-    const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.minDistance=.6;controls.maxDistance=5;controls.autoRotate=true;controls.autoRotateSpeed=1.6;
-    let arT=null;controls.addEventListener('start',()=>{controls.autoRotate=false;clearTimeout(arT);});controls.addEventListener('end',()=>{clearTimeout(arT);arT=setTimeout(()=>controls.autoRotate=true,3000);});
+    const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.minDistance=.6;controls.maxDistance=5;
     const fit=()=>{const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();};
     new ResizeObserver(fit).observe(host);fit();
     const clock=new THREE.Clock();
@@ -1552,7 +1552,7 @@ function setExplorer(i){
   t.parts.forEach((p,j)=>{const li=document.createElement('li');const b=document.createElement('button');b.type='button';
     b.innerHTML='<i></i><span><strong></strong><small></small></span>';b.querySelector('strong').textContent=p[0];b.querySelector('small').textContent=p[1];
     b.addEventListener('click',()=>explainPart(EXC,j));li.appendChild(b);ul.appendChild(li);});
-  EXC.i=exIndex;showSaid(EXC,'');quizUI($('exQuiz'),EXC,false);
+  EXC.i=exIndex;EXC.qi=0;showSaid(EXC,'');quizUI($('exQuiz'),EXC,false);
   speakTopic(t);
 }
 function toggleLabels(){showLabels=!showLabels;$('exLabels').setAttribute('aria-pressed',String(showLabels));if(exModel)exModel.labelGroup.visible=showLabels;}
@@ -1570,7 +1570,7 @@ function cameraError(e){
   if(e&&e.name==='NotFoundError')return 'No se encontró ninguna cámara en este dispositivo. Usá «Ver en 3D».';
   return 'No se pudo abrir la cámara. Probá con otro navegador o usá «Ver en 3D».';
 }
-let lastSpoke={i:-1,t:0};let arSpinOn=true,arSpinT=0;
+let lastSpoke={i:-1,t:0};let arSpinOn=false,arSpinT=0;
 async function openAR(){
   unlockVoice();
   let L;try{L=await libs();}catch(e){toast('No se pudo cargar el 3D. Revisá la conexión a internet.');return;}
@@ -1598,7 +1598,7 @@ async function openAR(){
     AR={mindar,renderer,models,spins};
     {let down=false,lx=0;const box=$('arBox');
      box.addEventListener('pointerdown',e=>{down=true;lx=e.clientX;});
-     box.addEventListener('pointermove',e=>{if(!down||arCurrent<0)return;const dx=e.clientX-lx;lx=e.clientX;if(Math.abs(dx)>0){spins[arCurrent].rotation.y+=dx*.012;arSpinT=performance.now();}});
+     box.addEventListener('pointermove',e=>{if(!down||arCurrent<0)return;const dx=e.clientX-lx;lx=e.clientX;});
      ['pointerup','pointercancel','pointerleave'].forEach(ev=>box.addEventListener(ev,()=>{down=false;}));}
     onTap($('arBox'),e=>{if(arCurrent<0)return;const r=pickLabel(renderer.domElement,camera,models[arCurrent],e);if(r==='title')explainTopic(ARC);else if(r!=null&&r>=0)explainPart(ARC,r);});
     await mindar.start();busy(null);
@@ -1609,7 +1609,7 @@ async function openAR(){
 }
 function resetArCard(){const c=$('arCard');c.style.removeProperty('--tc');$('arTitle').textContent='Mi escuela aumentada';$('arIntro').textContent='Apuntá la cámara a una de las láminas. Acá vas a ver la explicación del tema, sin tapar la imagen 3D.';showSaid(ARC,'');$('arQopts').hidden=true;}
 function showArCard(i,fresh){const t=TOPICS[i];const c=$('arCard');c.style.setProperty('--tc',t.color);$('arTitle').textContent=t.title;$('arIntro').textContent=topicIntro(t);
-  if(fresh){showSaid(ARC,'');$('arQopts').hidden=true;ARC.quizOn=false;}c.hidden=false;}
+  if(fresh){showSaid(ARC,'');$('arQopts').hidden=true;ARC.quizOn=false;ARC.qi=0;}c.hidden=false;}
 async function closeAR(){
   const s=AR;AR=null;arCurrent=-1;ARC.i=-1;lastSpoke={i:-1,t:0};hush();if(rec)try{rec.abort();}catch(e){}
   if(s){try{s.renderer.setAnimationLoop(null);}catch(e){}try{s.mindar.stop();}catch(e){}try{s.renderer.dispose();}catch(e){}}
@@ -1618,7 +1618,7 @@ async function closeAR(){
 }
 $('btnAR').addEventListener('click',openAR);
 $('arClose').addEventListener('click',closeAR);
-$('arSpin').addEventListener('click',()=>{arSpinOn=!arSpinOn;$('arSpin').textContent=arSpinOn?'Girar: sí':'Girar: no';$('arSpin').setAttribute('aria-pressed',String(arSpinOn));});
+
 $('arLabels').addEventListener('click',()=>{arLabelsOn=!arLabelsOn;$('arLabels').textContent=arLabelsOn?'Rótulos: sí':'Rótulos: no';if(AR)AR.models.forEach(m=>m.labelGroup.visible=arLabelsOn);});
 $('arMore').addEventListener('click',async()=>{const i=ARC.i>=0?ARC.i:arCurrent;await closeAR();if(i>=0)openExplorer(i);});
 
@@ -1632,6 +1632,8 @@ function pickVoice(){
   return vs.find(v=>L(v).startsWith('es'))||null;
 }
 if(VOZ.ok){VOZ.voice=pickVoice();try{speechSynthesis.addEventListener('voiceschanged',()=>{VOZ.voice=pickVoice();});}catch(e){}}
+const QS={"digestivo": [{"p": "¿En qué órgano pasan la mayoría de los nutrientes a la sangre?", "o": ["Estómago", "Intestino delgado", "Esófago"], "a": 1}, {"p": "¿Qué órgano fabrica la bilis?", "o": ["El hígado", "El páncreas", "El estómago"], "a": 0}, {"p": "¿Qué hace el intestino grueso?", "o": ["Mastica la comida", "Absorbe el agua y forma la materia fecal", "Fabrica saliva"], "a": 1}, {"p": "¿Qué tubo lleva la comida de la boca al estómago?", "o": ["La tráquea", "El esófago", "El apéndice"], "a": 1}], "respiratorio": [{"p": "¿Dónde pasa el oxígeno a la sangre?", "o": ["En la tráquea", "En los alvéolos pulmonares", "En la laringe"], "a": 1}, {"p": "¿Qué parte tiene las cuerdas vocales?", "o": ["La laringe", "El bronquio", "El diafragma"], "a": 0}, {"p": "¿Qué músculo baja cuando inspiramos?", "o": ["El corazón", "El diafragma", "El estómago"], "a": 1}, {"p": "¿Cuántos pulmones tenemos?", "o": ["Uno", "Dos", "Tres"], "a": 1}], "circulatorio": [{"p": "¿Qué vasos llevan la sangre desde el corazón hacia el cuerpo?", "o": ["Las arterias", "Las venas", "Los bronquios"], "a": 0}, {"p": "¿De qué tamaño es más o menos el corazón?", "o": ["Como una pelota de fútbol", "Como tu puño", "Como una uva"], "a": 1}, {"p": "¿Qué hacen las venas?", "o": ["Devuelven la sangre al corazón", "Fabrican sangre", "Llevan aire"], "a": 0}, {"p": "¿Cuál es la arteria más grande del cuerpo?", "o": ["La aorta", "La arteria pulmonar", "La vena cava"], "a": 0}], "esqueletico": [{"p": "¿Qué huesos protegen el corazón y los pulmones?", "o": ["Las costillas", "El fémur", "El húmero"], "a": 0}, {"p": "¿Cuántos huesos tiene un adulto?", "o": ["106", "206", "306"], "a": 1}, {"p": "¿Cuál es el hueso más largo del cuerpo?", "o": ["El fémur", "La clavícula", "El cráneo"], "a": 0}, {"p": "¿Qué hueso protege el cerebro?", "o": ["La pelvis", "El cráneo", "La tibia"], "a": 1}], "celula-animal": [{"p": "¿Qué organela produce la energía de la célula?", "o": ["El núcleo", "La mitocondria", "El ribosoma"], "a": 1}, {"p": "¿Qué parte guarda el ADN y dirige la célula?", "o": ["El núcleo", "El lisosoma", "La vacuola"], "a": 0}, {"p": "¿Qué controla lo que entra y sale de la célula?", "o": ["La membrana plasmática", "El citoplasma", "El aparato de Golgi"], "a": 0}, {"p": "¿Qué fabrican los ribosomas?", "o": ["Grasas", "Proteínas", "Agua"], "a": 1}], "celula-vegetal": [{"p": "¿Qué tiene la célula vegetal que NO tiene la célula animal?", "o": ["Núcleo", "Pared celular y cloroplastos", "Membrana plasmática"], "a": 1}, {"p": "¿Para qué sirven los cloroplastos?", "o": ["Para fabricar alimento con la luz del sol", "Para moverse", "Para guardar el ADN"], "a": 0}, {"p": "¿Qué guarda la vacuola grande?", "o": ["Agua y sustancias de reserva", "Huesos", "Aire"], "a": 0}, {"p": "¿De qué está hecha la pared celular?", "o": ["De celulosa", "De metal", "De sangre"], "a": 0}], "cuerpos": [{"p": "¿Cuántas caras tiene un cubo?", "o": ["4", "6", "8"], "a": 1}, {"p": "¿Cuál de estos cuerpos puede rodar?", "o": ["El cubo", "El cilindro", "La pirámide"], "a": 1}, {"p": "¿Cuántos vértices tiene el cono?", "o": ["Ninguno", "Uno", "Cuatro"], "a": 1}, {"p": "¿Cuál es un poliedro, con todas sus caras planas?", "o": ["La esfera", "La pirámide cuadrada", "El cono"], "a": 1}], "plantas": [{"p": "¿Qué parte de la planta absorbe el agua y los minerales?", "o": ["Las hojas", "La raíz", "La flor"], "a": 1}, {"p": "¿Qué parte fabrica el alimento con la luz del sol?", "o": ["Las hojas", "El fruto", "La raíz"], "a": 0}, {"p": "¿Qué protege el fruto?", "o": ["Las semillas", "Las raíces", "El tallo"], "a": 0}, {"p": "¿Cómo se llama el proceso con el que la planta fabrica su alimento?", "o": ["Digestión", "Fotosíntesis", "Respiración"], "a": 1}], "atuendo": [{"p": "¿Cómo se llamaban los volados de puntilla en los puños de la camisa?", "o": ["Jabot", "Llorones", "Mitones"], "a": 1}, {"p": "¿Qué sombrero alto usaba el caballero?", "o": ["La galera", "El chambergo", "La boina"], "a": 0}, {"p": "¿Cómo era el vestido de la dama?", "o": ["Línea imperio, con el talle debajo del busto", "Corto hasta la rodilla", "De cuero"], "a": 0}, {"p": "¿Qué eran los mitones?", "o": ["Zapatos", "Guantes largos que dejan libres los dedos", "Sombreros"], "a": 1}], "campana": [{"p": "¿Qué prenda de merino negro usaba el varón sobre el calzoncillo?", "o": ["El chiripá", "El chaleco", "La faja"], "a": 0}, {"p": "¿Cómo se llama el sombrero del varón de campaña?", "o": ["Galera", "Chambergo", "Gorra"], "a": 1}, {"p": "¿Qué calzado usaba la mujer de campaña?", "o": ["Alpargatas bordadas", "Escarpines de raso", "Zapatillas"], "a": 0}, {"p": "¿Con qué estaba adornado el tirador con rastra?", "o": ["Con monedas", "Con plumas", "Con flores"], "a": 0}], "mapa": [{"p": "¿Cuál es la capital de la provincia de Formosa?", "o": ["Resistencia", "Formosa", "Posadas"], "a": 1}, {"p": "¿Cuántas provincias tiene la Argentina?", "o": ["23", "20", "25"], "a": 0}, {"p": "¿En qué provincia está el Aconcagua?", "o": ["Salta", "Mendoza", "Córdoba"], "a": 1}, {"p": "¿Cuál es la provincia más pequeña?", "o": ["Tucumán", "Misiones", "La Pampa"], "a": 0}, {"p": "¿De qué provincia forman parte las Islas Malvinas?", "o": ["Santa Cruz", "Tierra del Fuego, Antártida e Islas del Atlántico Sur", "Chubut"], "a": 1}], "relieve": [{"p": "¿Cuál es la montaña más alta de América?", "o": ["El Aconcagua", "El Tronador", "El Lanín"], "a": 0}, {"p": "¿Dónde está la Cordillera de los Andes?", "o": ["Al este del país", "Al oeste del país", "En el centro"], "a": 1}, {"p": "¿En qué tipo de relieve está Formosa?", "o": ["En la llanura", "En la meseta", "En la Puna"], "a": 0}, {"p": "¿Cómo es la Meseta Patagónica?", "o": ["Fría y ventosa", "Selvática", "Con volcanes activos en todas partes"], "a": 0}], "rios": [{"p": "¿Qué río separa a Formosa de Chaco?", "o": ["El Bermejo", "El Uruguay", "El Iguazú"], "a": 0}, {"p": "¿Qué río separa a Formosa del país Paraguay?", "o": ["El río Paraguay", "El río Colorado", "El río Negro"], "a": 0}, {"p": "¿En qué provincia están las Cataratas del Iguazú?", "o": ["Corrientes", "Misiones", "Formosa"], "a": 1}, {"p": "¿Dónde desembocan el Paraná y el Uruguay?", "o": ["En el Río de la Plata", "En el Bañado La Estrella", "En el Pilcomayo"], "a": 0}], "biomas": [{"p": "¿Qué animal es el roedor más grande del mundo?", "o": ["El tatú", "El carpincho", "El yacaré"], "a": 1}, {"p": "¿Qué come el oso hormiguero?", "o": ["Pescados", "Hormigas y termitas", "Frutas"], "a": 1}, {"p": "¿Qué árbol de madera durísima es típico del monte chaqueño?", "o": ["El quebracho colorado", "El pino", "El sauce"], "a": 0}, {"p": "¿Qué es un bañado?", "o": ["Un terreno cubierto de agua poco profunda", "Una montaña", "Un desierto"], "a": 0}], "solar": [{"p": "¿Cuál es el planeta más grande del sistema solar?", "o": ["Saturno", "La Tierra", "Júpiter"], "a": 2}, {"p": "¿Qué es el Sol?", "o": ["Un planeta", "Una estrella", "Un satélite"], "a": 1}, {"p": "¿Cuál es el planeta rojo?", "o": ["Marte", "Venus", "Neptuno"], "a": 0}, {"p": "¿Cuánto tarda la Tierra en dar una vuelta alrededor del Sol?", "o": ["Un día", "Un mes", "Un año"], "a": 2}], "capas": [{"p": "¿En qué capa de la Tierra vivimos?", "o": ["En el manto", "En la corteza", "En el núcleo"], "a": 1}, {"p": "¿Cuál es la capa más delgada?", "o": ["La corteza", "El manto", "El núcleo"], "a": 0}, {"p": "¿De qué está hecho el núcleo?", "o": ["De metal muy caliente", "De hielo", "De agua"], "a": 0}, {"p": "¿Qué capa de aire rodea la Tierra?", "o": ["La atmósfera", "El manto", "La corteza"], "a": 0}], "palabras": [{"p": "En «El perro grande corre», ¿qué clase de palabra es «grande»?", "o": ["Verbo", "Adjetivo", "Sustantivo"], "a": 1}, {"p": "¿Qué palabra es un verbo?", "o": ["Saltar", "Mesa", "Lindo"], "a": 0}, {"p": "¿Qué palabra es un sustantivo?", "o": ["Rojo", "Correr", "Formosa"], "a": 2}, {"p": "¿Qué palabra es un artículo?", "o": ["La", "Alto", "Comer"], "a": 0}], "abc": [{"p": "¿Cuántas letras tiene el abecedario en español?", "o": ["25", "27", "30"], "a": 1}, {"p": "¿Cuáles son las vocales?", "o": ["A, E, I, O, U", "B, C, D, F, G", "M, N, Ñ"], "a": 0}, {"p": "¿Con qué letra empieza «ñandú»?", "o": ["N", "Ñ", "M"], "a": 1}, {"p": "¿Qué sílabas forma la letra M?", "o": ["ma, me, mi, mo, mu", "pa, pe, pi, po, pu", "sa, se, si, so, su"], "a": 0}]};
+function curQ(ctx){const t=TOPICS[ctx.i];const L=QS[t.key]||[t.q];ctx.qi=(ctx.qi||0)%L.length;return {q:L[ctx.qi],n:L.length};}
 /* ---------- Voces en primera persona ---------- */
 const VOCES={
 "relieve":{pitch:0.9,rate:1,
@@ -1935,23 +1937,26 @@ function explainPart(ctx,j){
 }
 function explainTopic(ctx){const t=TOPICS[ctx.i];if(!t)return;showSaid(ctx,'');speakTopic(t);}
 function quizUI(box,ctx,speak){
-  const t=TOPICS[ctx.i];
-  box.innerHTML='<div class="qhead"><h3>Pregunta para repasar</h3><button type="button">Escuchar</button></div><p class="qq"></p><div class="opts"></div><p class="fb" role="status"></p>';
-  box.querySelector('.qq').textContent=t.q.p;const fb=box.querySelector('.fb'),bs=[];
-  const read=()=>say(t.q.p+' Las opciones son: '+listText(t.q.o)+'.');
+  const {q,n}=curQ(ctx);
+  box.innerHTML='<div class="qhead"><h3>Pregunta '+(ctx.qi+1)+' de '+n+'</h3><button type="button">Escuchar</button></div><p class="qq"></p><div class="opts"></div><p class="fb" role="status"></p><button type="button" class="qnext" hidden>Siguiente pregunta ▶</button>';
+  box.querySelector('.qq').textContent=q.p;const fb=box.querySelector('.fb'),bs=[];
+  const read=()=>say(q.p+' Las opciones son: '+listText(q.o)+'.');
   box.querySelector('.qhead button').addEventListener('click',()=>{ctx.quizOn=true;read();});
-  t.q.o.forEach((o,j)=>{const b=document.createElement('button');b.type='button';b.textContent=o;b.addEventListener('click',()=>answerQuiz(ctx,j));box.querySelector('.opts').appendChild(b);bs.push(b);});
-  ctx.q={bs,fb};ctx.quizOn=!!speak;if(speak)read();
+  q.o.forEach((o,j)=>{const b=document.createElement('button');b.type='button';b.textContent=o;b.addEventListener('click',()=>answerQuiz(ctx,j));box.querySelector('.opts').appendChild(b);bs.push(b);});
+  const nx=box.querySelector('.qnext');nx.addEventListener('click',()=>{ctx.qi++;quizUI(box,ctx,true);if(box.id==='arQopts'&&ctx.addClose)ctx.addClose(box);});
+  ctx.q={bs,fb,nx,box};ctx.quizOn=!!speak;if(speak)read();
 }
 function answerQuiz(ctx,j){
-  const t=TOPICS[ctx.i];if(!ctx.q)return;ctx.q.bs.forEach(x=>x.classList.remove('ok','no'));const b=ctx.q.bs[j];
-  if(j===t.q.a){b.classList.add('ok');ctx.q.fb.textContent='¡Muy bien! Respuesta correcta.';ctx.q.fb.className='fb good';say('¡Muy bien! '+t.q.o[j]+' es la respuesta correcta.');ctx.quizOn=false;if(ctx.said==='arSaid')setTimeout(()=>{$('arQopts').hidden=true;},4000);}
-  else{b.classList.add('no');ctx.q.fb.textContent='Casi. Mirá otra vez el modelo y probá de nuevo.';ctx.q.fb.className='fb bad';say('Casi. '+t.q.o[j]+' no es la respuesta. Probá de nuevo.');}
+  if(!ctx.q)return;const {q,n}=curQ(ctx);ctx.q.bs.forEach(x=>x.classList.remove('ok','no'));const b=ctx.q.bs[j];
+  if(j===q.a){b.classList.add('ok');ctx.q.fb.textContent='¡Muy bien! Respuesta correcta.';ctx.q.fb.className='fb good';ctx.quizOn=false;
+    const last=ctx.qi>=n-1;ctx.q.nx.hidden=false;ctx.q.nx.textContent=last?'Empezar de nuevo ▶':'Siguiente pregunta ▶';
+    say('¡Muy bien! '+q.o[j]+' es la respuesta correcta.'+(last?' ¡Respondiste todas las preguntas de esta lámina!':''));if(last)ctx.qi=-1;}
+  else{b.classList.add('no');ctx.q.fb.textContent='Casi. Mirá otra vez el modelo y probá de nuevo.';ctx.q.fb.className='fb bad';say('Casi. '+q.o[j]+' no es la respuesta. Probá de nuevo.');}
 }
 function handleSpeech(ctx,alts){
   const t=TOPICS[ctx.i];if(!t)return;const ns=alts.map(norm);const heard=alts[0]||'';
   if(ctx.quizOn&&ctx.q){
-    for(const n of ns){const j=t.q.o.findIndex(o=>{const no=norm(o);return n.includes(no)||keyWords(o).some(w=>stemIn(n,w));});if(j>=0){showSaid(ctx,'Escuché: «'+heard+'»');answerQuiz(ctx,j);return;}}
+    for(const n of ns){const j=curQ(ctx).q.o.findIndex(o=>{const no=norm(o);return n.includes(no)||keyWords(o).some(w=>stemIn(n,w));});if(j>=0){showSaid(ctx,'Escuché: «'+heard+'»');answerQuiz(ctx,j);return;}}
   }
   if(ns.some(n=>/pregunt/.test(n))){ctx.askQuiz();showSaid(ctx,'Escuché: «'+heard+'»');return;}
   let best=-1,score=0;
@@ -1989,7 +1994,7 @@ function pickLabel(dom,camera,model,ev){
 }
 function onTap(el,fn){let x0=0,y0=0;el.addEventListener('pointerdown',e=>{x0=e.clientX;y0=e.clientY;});el.addEventListener('pointerup',e=>{if(Math.hypot(e.clientX-x0,e.clientY-y0)<8)fn(e);});}
 const EXC={i:0,said:'exSaid',model:()=>exModel,showLabels:()=>{if(!showLabels)toggleLabels();},askQuiz(){quizUI($('exQuiz'),EXC,true);}};
-const ARC={i:-1,said:'arSaid',model:()=>AR&&AR.models[ARC.i],showLabels:()=>{if(!arLabelsOn)$('arLabels').click();},askQuiz(){const b=$('arQopts');b.hidden=false;quizUI(b,ARC,true);const x=document.createElement('button');x.type='button';x.textContent='Cerrar';x.addEventListener('click',()=>{b.hidden=true;ARC.quizOn=false;hush();});b.querySelector('.qhead').appendChild(x);}};
+const ARC={i:-1,said:'arSaid',model:()=>AR&&AR.models[ARC.i],showLabels:()=>{if(!arLabelsOn)$('arLabels').click();},addClose(b){const x=document.createElement('button');x.type='button';x.textContent='Cerrar';x.addEventListener('click',()=>{b.hidden=true;ARC.quizOn=false;hush();});b.querySelector('.qhead').appendChild(x);},askQuiz(){const b=$('arQopts');b.hidden=false;quizUI(b,ARC,true);ARC.addClose(b);}};
 $('exVoice').addEventListener('click',()=>setVoice(!VOZ.on));
 $('arVoice').addEventListener('click',()=>setVoice(!VOZ.on));
 $('exListen').addEventListener('click',()=>explainTopic(EXC));
